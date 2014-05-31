@@ -1,6 +1,6 @@
 lbs:
   centos:
     '5':
-      repos: ['http://download.opensuse.org/repositories/home:tpokorra:mono/CentOS_CentOS-5/home:tpokorra:openpetra.repo']
+      repos: ['http://download.opensuse.org/repositories/home:tpokorra:openpetra/CentOS_CentOS-5/home:tpokorra:openpetra.repo']
     '6':
-      repos: ['http://download.opensuse.org/repositories/home:tpokorra:mono/CentOS_CentOS-6/home:tpokorra:openpetra.repo']
+      repos: ['http://download.opensuse.org/repositories/home:tpokorra:openpetra/CentOS_CentOS-6/home:tpokorra:openpetra.repo']
