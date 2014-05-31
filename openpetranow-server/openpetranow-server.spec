@@ -22,7 +22,7 @@ Server of OpenPetra using Postgresql as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n openpetragit-%{trunkversion}
+%setup  -q -n OpenPetraNow-%{trunkversion}
 
 %build
 . %{MonoPath}/env.sh
