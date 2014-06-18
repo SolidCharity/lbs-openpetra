@@ -35,12 +35,12 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 mkdir -p $RPM_BUILD_ROOT/var/www
-mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/html
+mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 mkdir -p $RPM_BUILD_ROOT/etc/init.d
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
 chmod a+x $RPM_BUILD_ROOT/etc/init.d/openpetra-server
 dos2unix $RPM_BUILD_ROOT/etc/init.d/openpetra-server
-ln -s ../../../%{OpenPetraServerPath}/bin30 $RPM_BUILD_ROOT/var/www/html/bin
+ln -s ../../../%{OpenPetraServerPath}/bin30 $RPM_BUILD_ROOT/var/www/openpetra/bin
 cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 
 %clean
@@ -50,7 +50,7 @@ cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 %files
 %{OpenPetraServerPath}
 /etc/init.d/openpetra-server
-/var/www/html
+/var/www/openpetra
 
 %post
 echo "For the first install, now run:"
