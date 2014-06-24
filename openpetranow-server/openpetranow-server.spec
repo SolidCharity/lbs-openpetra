@@ -37,8 +37,8 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 mkdir -p $RPM_BUILD_ROOT/var/www
-ln -s %{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
-ln -s %{OpenPetraServerPath}/bin30 $RPM_BUILD_ROOT/var/www/openpetra/bin
+ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
+ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
 mkdir -p $RPM_BUILD_ROOT/etc/init.d
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
 chmod a+x $RPM_BUILD_ROOT/etc/init.d/openpetra-server
