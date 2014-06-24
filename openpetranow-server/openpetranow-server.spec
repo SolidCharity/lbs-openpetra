@@ -16,6 +16,7 @@ Requires: mono-xsp-opt mono-opt postgresql-server = 9.2 lighttpd lighttpd-fastcg
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
 Source1: base.yml.gz
+Patch0: optmono.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -23,6 +24,7 @@ Server of OpenPetra using Postgresql as database backend
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
 %setup  -q -n OpenPetraNow-%{trunkversion}
+%patch0 -p1
 
 %build
 . %{MonoPath}/env.sh
