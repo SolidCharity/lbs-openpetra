@@ -8,7 +8,8 @@ yum install -y wget mono-nant-opt postgresql92-server sudo xorg-x11-server-Xvfb 
 wget http://bazaar.launchpad.net/~christian-k/openpetraorg/20140624_webservices_branch__client_server_fixes/tarball/2588  || exit -1
 
 tar xzf 2588 || exit -1
-cd \~christian-k/openpetraorg/20140624_webservices_branch__client_server_fixes/
+mv \~christian-k/openpetraorg/20140624_webservices_branch__client_server_fixes openpetraorg
+cd openpetraorg
 
 . /opt/mono/env.sh
 ln -s /opt/mono /opt/mono-openpetra
@@ -34,6 +35,6 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 # apply a patch so that starting and stopping works on Linux and Mono
-patch -p1 < ../../../OpenPetra.default.targets.xml.patch
+patch -p1 < ../OpenPetra.default.targets.xml.patch
 /usr/bin/Xvfb :99 -screen 0 1024x768x24 -fbdir /var/run -ac >& /dev/null &
 nant test-client || exit -1
