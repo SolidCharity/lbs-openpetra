@@ -4,7 +4,7 @@ PGVERSION=9.2
 
 rpm -Uhv http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
 rpm -Uhv http://mirror.de.leaseweb.net/epel/6/x86_64/epel-release-6-8.noarch.rpm
-yum install -y wget mono-nant-opt postgresql92-server sudo xorg-x11-server-Xvfb mono-xsp-opt
+yum install -y wget mono-nant-opt postgresql92-server sudo xorg-x11-server-Xvfb mono-xsp-opt patch
 wget http://bazaar.launchpad.net/~christian-k/openpetraorg/20140624_webservices_branch__client_server_fixes/tarball/2588  || exit -1
 
 tar xzf 2588 || exit -1
