@@ -33,7 +33,7 @@ nant createDatabaseUser || exit -1
 nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
-rm delivery/bin/Mono*.dll
-rm delivery/bin/sqlite3.dll
+# apply a patch so that starting and stopping works on Linux and Mono
+patch -p1 < ../../../OpenPetra.default.targets.xml.patch
 /usr/bin/Xvfb :99 -screen 0 1024x768x24 -fbdir /var/run -ac >& /dev/null &
 nant test-client || exit -1
