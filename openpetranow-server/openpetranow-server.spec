@@ -1,6 +1,6 @@
 %define name openpetranow-server
-%define version 2014.5.1
-%define trunkversion Release2014_05
+%define version 2014.7.1
+%define trunkversion Release2014_07
 %define MonoPath /opt/mono
 %define OpenPetraServerPath /usr/local/openpetraorg
 
@@ -58,6 +58,8 @@ echo "  service openpetra-server init"
 echo "  service openpetra-server start"
 
 %changelog
+* Wed Jul 30 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- release 2014-07
 * Sat May 31 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - release 2014-05
 * Thu Aug 01 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
