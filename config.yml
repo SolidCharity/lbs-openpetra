@@ -2,3 +2,6 @@ lbs:
   centos:
     '6':
       repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/centos/6/lbs-tpokorra-mono.repo']
+  fedora:
+    '20':
+      repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/fedora/20/lbs-tpokorra-mono.repo']
