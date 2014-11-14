@@ -16,6 +16,9 @@ Requires: mono-xsp-opt mono-opt postgresql-server = 9.2 lighttpd lighttpd-fastcg
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
 Source1: base.yml.gz
+Source2: plugin_bankimport.tar.gz
+Source3: plugin_bankimport_csv.tar.gz
+Patch1: uinavigation_plugins.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -23,6 +26,9 @@ Server of OpenPetra using Postgresql as database backend
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
 %setup  -q -n OpenPetraNow-%{trunkversion}
+%Patch1 -p1
+tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
+tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 
 %build
 . %{MonoPath}/env.sh
