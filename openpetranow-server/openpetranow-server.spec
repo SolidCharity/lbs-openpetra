@@ -1,6 +1,6 @@
 %define name openpetranow-server
-%define version 2014.7.1
-%define trunkversion Release2014_07
+%define version 2014.11.0
+%define trunkversion Release2014_11
 %define MonoPath /opt/mono
 %define OpenPetraServerPath /usr/local/openpetraorg
 
