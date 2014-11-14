@@ -1,5 +1,7 @@
 lbs:
   source:
-    download: ["http://github.com/SolidCharity/OpenPetraNow/archive/Release2014_11.tar.gz", "http://downloads.sourceforge.net/project/openpetraorg/openpetraorg/demodata/base.yml.gz"]
+    download: 
+      Release2014_11.tar.gz: "http://github.com/SolidCharity/OpenPetraNow/archive/Release2014_11.tar.gz"
+      base.yml.gz: "http://downloads.sourceforge.net/project/openpetraorg/openpetraorg/demodata/base.yml.gz"
       plugin_bankimport.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_Bankimport/archive/master.tar.gz"
       plugin_bankimport_csv.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportCSV/archive/master.tar.gz"
