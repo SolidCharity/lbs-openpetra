@@ -5,3 +5,4 @@ lbs:
       base.yml.gz: "http://downloads.sourceforge.net/project/openpetraorg/openpetraorg/demodata/base.yml.gz"
       plugin_bankimport.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_Bankimport/archive/master.tar.gz"
       plugin_bankimport_csv.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportCSV/archive/master.tar.gz"
+      plugin_bankimport_mt940.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportMT940/archive/master.tar.gz"

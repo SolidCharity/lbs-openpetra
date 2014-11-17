@@ -18,6 +18,7 @@ Source: %{trunkversion}.tar.gz
 Source1: base.yml.gz
 Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
+Source4: plugin_bankimport_mt940.tar.gz
 Patch1: uinavigation_plugins.patch
 
 %description
@@ -30,6 +31,7 @@ dos2unix csharp/ICT/Petra/Definitions/UINavigation.yml
 %patch1 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
+tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportMT940
 
 %build
 . %{MonoPath}/env.sh
@@ -66,6 +68,8 @@ echo "  service openpetra-server init"
 echo "  service openpetra-server start"
 
 %changelog
+* Mon Nov 17 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- release 2014-11
 * Wed Jul 30 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - release 2014-07
 * Sat May 31 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
