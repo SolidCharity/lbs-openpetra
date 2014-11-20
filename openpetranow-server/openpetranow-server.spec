@@ -46,7 +46,7 @@ cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}/* $RPM_BUILD_ROOT/%{OpenPet
 mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
-ln -s ../js30/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx
+cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx; ln -s ../js30/* .; cd -
 mkdir -p $RPM_BUILD_ROOT/etc/init.d
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
 chmod a+x $RPM_BUILD_ROOT/etc/init.d/openpetra-server
