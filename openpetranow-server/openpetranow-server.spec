@@ -61,6 +61,7 @@ mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
 ln -s ../client $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/client
+mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/js30/Client.aspx $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx; ln -s ../js30/* .; cd -
 mkdir -p $RPM_BUILD_ROOT/etc/init.d
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
