@@ -21,6 +21,7 @@ Source3: plugin_bankimport_csv.tar.gz
 Source4: plugin_bankimport_mt940.tar.gz
 Patch1: uinavigation_plugins.patch
 Patch2: setup_withremoteclient.patch
+Patch3: setup_remote_client.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -32,6 +33,11 @@ dos2unix csharp/ICT/Petra/Definitions/UINavigation.yml
 %patch1 -p1
 dos2unix setup/setup.build
 %patch2 -p1
+dos2unix csharp/ICT/Common/CustomAppSettings.cs
+dos2unix setup/petra0300/remoteclientWin/remote.nsi
+dos2unix setup/petra0300/remoteclientWin/PetraClientRemote.config
+dos2unix js/Default.aspx
+%patch3 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
