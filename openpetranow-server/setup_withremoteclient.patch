@@ -1,0 +1,32 @@
+--- a/setup/setup.build	2014-11-24 11:28:10.436749624 +0000
++++ b/setup/setup.build	2014-11-24 11:32:10.840742309 +0000
+@@ -287,16 +287,27 @@
+ 
+ <target name="buildServerCentOSPostgresqlOBS">
+   <property name="WithLinuxClient" value="false"/>
+-  <property name="WithWindowsClient" value="false"/>
++  <property name="WithWindowsClient" value="true"/>
+   <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
+   <property name="HostedPort" value="9000"/>
+   <property name="PostgreSQL.Version" value="9.2"/>
++  <property name="OrgName" value="Demo OpenPetra" overwrite="false"/>
++  <property name="OrgNameWithoutSpace" value="DemoOpenPetra" overwrite="false"/>
++  <property name="HostedServer" value="demo.solidcharity.com" overwrite="false"/>
++  <property name="PublisherUrl" value="www.solidcharity.com" overwrite="false"/>
++
+   <call target="nanttasks"/>
+   <call target="minimalGenerateSolution"/>
+-  <property name="solution" value="Server"/>
+   <call target="quickCompile"/>
+   <property name="DBMS.Type" value="postgresql"/>
+   <call target="createSQLStatements"/>
++  <!-- todo target translation ??? -->
++
++  <!-- build Remote Setup Windows installer -->
++  <property name="BuildArchive" value="client" overwrite="true"/>
++  <call target="prepareSetupDirForTarFile"/>
++  <call target="setupRemote"/>
++
+   <property name="BuildArchive" value="server" overwrite="true"/>
+   <call target="prepareSetupDirForTarFile"/>
+   <move file="${setupDir}/centos/openpetraorg-server.sh" tofile="${setupDir}/openpetraorg-server.sh"/>

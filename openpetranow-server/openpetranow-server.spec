@@ -11,7 +11,7 @@ Release: %{release}
 Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
-BuildRequires: mono-nant-opt dos2unix
+BuildRequires: mono-nant-opt dos2unix nsis
 Requires: mono-xsp-opt mono-opt postgresql-server = 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
@@ -20,6 +20,7 @@ Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
 Source4: plugin_bankimport_mt940.tar.gz
 Patch1: uinavigation_plugins.patch
+Patch2: setup_withremoteclient.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -29,6 +30,8 @@ Server of OpenPetra using Postgresql as database backend
 %setup  -q -n OpenPetraNow-%{trunkversion}
 dos2unix csharp/ICT/Petra/Definitions/UINavigation.yml
 %patch1 -p1
+dos2unix setup/setup.build
+%patch2 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
@@ -43,9 +46,12 @@ nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
+mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
+cp `pwd`/delivery/*.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
+ln -s ../client $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/client
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx; ln -s ../js30/* .; cd -
 mkdir -p $RPM_BUILD_ROOT/etc/init.d
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
