@@ -10,10 +10,10 @@
    <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
    <property name="HostedPort" value="9000"/>
    <property name="PostgreSQL.Version" value="9.2"/>
-+  <property name="OrgName" value="Demo OpenPetra" overwrite="false"/>
-+  <property name="OrgNameWithoutSpace" value="DemoOpenPetra" overwrite="false"/>
++  <property name="OrgName" value="OpenPetra by SolidCharity" overwrite="false"/>
++  <property name="OrgNameWithoutSpace" value="Demo" overwrite="false"/>
 +  <property name="HostedServer" value="demo.solidcharity.com" overwrite="false"/>
-+  <property name="PublisherUrl" value="www.solidcharity.com" overwrite="false"/>
++  <property name="PublisherUrl" value="demo.solidcharity.com" overwrite="false"/>
 +
    <call target="nanttasks"/>
    <call target="minimalGenerateSolution"/>
