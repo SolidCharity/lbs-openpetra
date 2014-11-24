@@ -50,7 +50,7 @@ mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}.%{release}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 cp `pwd`/delivery/*.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
-cp `pwd`/delivery/Patch-win_%{version}.0_%{version}.%{release}.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
+cp `pwd`/delivery/Patch-win_%{version}.0_%{version}.%{release}.zip $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
