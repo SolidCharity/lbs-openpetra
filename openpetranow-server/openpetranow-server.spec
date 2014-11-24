@@ -11,7 +11,7 @@ Release: %{release}
 Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
-BuildRequires: mono-nant-opt dos2unix nsis
+BuildRequires: mono-nant-opt dos2unix nsis gettext
 Requires: mono-xsp-opt mono-opt postgresql-server = 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
@@ -40,7 +40,9 @@ tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_Banki
 . %{MonoPath}/env.sh
 # TODO initdb
 #nant nanttasks createDatabaseUser
-nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}
+export NSISDIR=/usr/local/nsis/
+export PATH=$NSISDIR:$PATH
+nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}.%{release}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -48,6 +50,7 @@ mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 cp `pwd`/delivery/*.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
+cp `pwd`/delivery/Patch-win_%{version}.0_%{version}.%{release}.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
 ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
