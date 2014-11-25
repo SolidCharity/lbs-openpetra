@@ -9,7 +9,7 @@
 +            	string [] NameOfInstance = Directory.GetDirectories(TAppSettingsManager.ApplicationDirectory + "/../patches30");
 +            	if (NameOfInstance.Length == 1)
 +            	{
-+            		ReturnValue = ReturnValue.Replace("demo", NameOfInstance[0].ToLower());
++            		ReturnValue = ReturnValue.Replace("demo", Path.GetFileName(NameOfInstance[0].ToLower()));
 +            	}
 +            }
 +
