@@ -53,7 +53,7 @@
 
 --- a/js/Default.aspx	2014-11-24 16:20:09.424216582 +0000
 +++ b/js/Default.aspx	2014-11-24 17:09:21.220126769 +0000
-@@ -31,12 +31,23 @@
+@@ -31,12 +31,25 @@
      <div class="container">
  
        <form class="form-signin">
@@ -65,7 +65,9 @@
 +<% if (HttpContext.Current.Request.ServerVariables["HTTP_HOST"].Contains("demo")) { %>
 +<div class="bs-callout bs-callout-warning"><h4>Login information</h4><p>Please login with user <b>demo</b> and password <b>demo</b>, or even easier, just click "Sign in"!</p></div>
 +<% }
-+string [] files = System.IO.Directory.GetFiles("../client", "*.exe");
++string customer = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
++customer = customer.Substring(0, customer.IndexOf('.'));
++string [] files = System.IO.Directory.GetFiles("../client", "OpenPetraRemoteSetup-" + customer + "-*.exe");
 +string filename = String.Empty;
 +if (files.Length > 0)
 +{
