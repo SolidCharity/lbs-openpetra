@@ -53,7 +53,7 @@
 
 --- a/js/Default.aspx	2014-11-24 16:20:09.424216582 +0000
 +++ b/js/Default.aspx	2014-11-24 17:09:21.220126769 +0000
-@@ -31,12 +31,16 @@
+@@ -31,12 +31,23 @@
      <div class="container">
  
        <form class="form-signin">
@@ -64,8 +64,15 @@
          <button id="btnLogin" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 +<% if (HttpContext.Current.Request.ServerVariables["HTTP_HOST"].Contains("demo")) { %>
 +<div class="bs-callout bs-callout-warning"><h4>Login information</h4><p>Please login with user <b>demo</b> and password <b>demo</b>, or even easier, just click "Sign in"!</p></div>
-+<% } %>
-+<div class="bs-callout bs-callout-warning"><h4>Download</h4><p>Get the <a href="https://<% Response.Write(HttpContext.Current.Request.ServerVariables["HTTP_HOST"]); %>/client/">Windows Client</a>!</p></div>
++<% }
++string [] files = System.IO.Directory.GetFiles("../client", "*.exe");
++string filename = String.Empty;
++if (files.Length > 0)
++{
++   filename = files[0];
++}
++%>
++<div class="bs-callout bs-callout-warning"><h4>Download</h4><p>Get the <a href="https://<% Response.Write(HttpContext.Current.Request.ServerVariables["HTTP_HOST"]); %>/client/<% Response.Write(filename); %>">Windows Client</a>!</p></div>
 +<div class="bs-callout bs-callout-info"><h4>You are welcome!</h4><p>Brought to you by <a href="https://www.solidcharity.com">www.solidcharity.com</a></p></div>
        </form>
 -
