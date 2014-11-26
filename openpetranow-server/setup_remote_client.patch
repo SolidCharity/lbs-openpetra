@@ -106,7 +106,7 @@
 
 --- a/js/Default.aspx	2014-11-24 16:20:09.424216582 +0000
 +++ b/js/Default.aspx	2014-11-24 17:09:21.220126769 +0000
-@@ -31,12 +31,25 @@
+@@ -31,12 +31,40 @@
      <div class="container">
  
        <form class="form-signin">
@@ -120,11 +120,26 @@
 +<% }
 +string customer = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
 +customer = customer.Substring(0, customer.IndexOf('.'));
-+string [] files = System.IO.Directory.GetFiles("../client", "OpenPetraRemoteSetup-" + customer + "-*.exe");
++string [] files = System.IO.Directory.GetFiles("../client", "OpenPetraRemoteSetup-demo-*.exe");
 +string filename = String.Empty;
 +if (files.Length > 0)
 +{
-+   filename = files[0];
++    filename = files[0].Replace("-demo-", "-" + customer + "-");
++    if (!System.IO.File.Exists(filename))
++    {
++        System.IO.File.Copy(files[0], filename);
++        // delete older installers
++        string currentversion = System.IO.Path.GetFileName(files[0]).Substring("OpenPetraRemoteSetup-demo".Length);
++        string [] oldinstallers = System.IO.Directory.GetFiles("../client", "OpenPetraRemoteSetup-*.exe");
++        foreach (string oldinstaller in oldinstallers)
++        {
++            if (!oldinstaller.EndsWith(currentversion))
++            {
++                System.IO.File.Delete(oldinstaller);
++            }
++        }
++    }
++    filename=System.IO.Path.GetFileName(filename);
 +}
 +%>
 +<div class="bs-callout bs-callout-warning"><h4>Download</h4><p>Get the <a href="https://<% Response.Write(HttpContext.Current.Request.ServerVariables["HTTP_HOST"]); %>/client/<% Response.Write(filename); %>">Windows Client</a>!</p></div>
