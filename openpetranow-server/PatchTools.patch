@@ -1,5 +1,5 @@
 --- a/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 16:18:29.110961935 +0000
-+++ b/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 16:20:21.794958506 +0000
++++ b/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 21:05:26.730438063 +0000
 @@ -99,10 +99,7 @@
          /// <returns></returns>
          public Boolean PatchApplies(String APatchZipFile)
@@ -26,7 +26,7 @@
  
              return patchStartVersion.Compare(ACurrentVersion) == 0;
          }
-@@ -1215,20 +1224,6 @@
+@@ -1215,20 +1219,6 @@
  
              if (FLatestAvailablePatch.Compare(testPatchVersion) != 0)
              {
@@ -47,3 +47,30 @@
                  TLogging.Log("missing patchfile from version " + testPatchVersion.ToString() + " to " + FLatestAvailablePatch.ToString());
                  return new SortedList();
              }
+@@ -1283,6 +1273,8 @@
+                 }
+             }
+ 
++            File.Move(APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe", APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.Update.exe");
++
+             // check for the latest version of those files in the new patches
+             foreach (string patch in FListOfNewPatches.GetValueList())
+             {
+@@ -1303,4 +1295,4 @@
+             }
+         }
+     }
+-}
+\ No newline at end of file
++}
+--- a/csharp/ICT/Petra/Client/app/MainWindow/PetraClientMain.cs	2014-11-26 21:08:03.186433302 +0000
++++ b/csharp/ICT/Petra/Client/app/MainWindow/PetraClientMain.cs	2014-11-26 21:08:45.794432006 +0000
+@@ -258,7 +258,7 @@
+                     // check for newer patchtool
+                     patchTools.CopyLatestPatchProgram(TempPath);
+ 
+-                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe";
++                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.Update.exe";
+ 
+                     if (!File.Exists(PatchToolExe))
+                     {

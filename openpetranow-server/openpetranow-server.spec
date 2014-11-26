@@ -46,6 +46,7 @@ dos2unix csharp/ICT/Common/IO/HTTPUtils.cs
 dos2unix csharp/ICT/Petra/Server/lib/MSysMan/UserManager.cs
 %patch5 -p1
 dos2unix csharp/ICT/Common/IO/PatchTools.cs
+dos2unix csharp/ICT/Petra/Client/app/MainWindow/PetraClientMain.cs
 %patch6 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
