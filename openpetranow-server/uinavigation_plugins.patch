@@ -4,7 +4,7 @@
                  GiftProcessing: {Namespace=Ict.Petra.Client.MFinance.Gui.Gift, DontShowNestedTasksAsLinks=true}
                      SearchBoxes: [Donor, Recipient]
                      GiftEntry:
-+                        ImportGiftsFromBankStatement: {Description: "Process bank statements", Namespace=Ict.Petra.Plugins.Bankimport.Client, ActionOpenScreen=TFrmBankStatement
++                        ImportGiftsFromBankStatement: {Description: "Process bank statements", Namespace=Ict.Petra.Plugins.Bankimport.Client, ActionOpenScreen=TFrmBankStatement}
                          GiftBatches: {Description:Manually enter and post Gift batches, ActionOpenScreen=TFrmGiftBatch}
                          RecurringGiftBatches: {Description:Manually enter Recurring Gift batches, ActionOpenScreen=TFrmRecurringGiftBatch}
                          #AddGifts:
