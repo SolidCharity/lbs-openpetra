@@ -51,7 +51,7 @@
                  }
              }
  
-+            File.Move(APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe", APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.Update.exe");
++            File.Move(APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe", APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.Clever.exe");
 +
              // check for the latest version of those files in the new patches
              foreach (string patch in FListOfNewPatches.GetValueList())
@@ -70,7 +70,7 @@
                      patchTools.CopyLatestPatchProgram(TempPath);
  
 -                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe";
-+                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.Update.exe";
++                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.Clever.exe";
  
                      if (!File.Exists(PatchToolExe))
                      {
