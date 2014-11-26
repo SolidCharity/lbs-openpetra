@@ -99,7 +99,7 @@
 -    <add key="OpenPetra.Path.RemotePatches" value="http://${PublisherUrl}/patches/${OrgNameWithoutSpace}/"/>
 -    <add key="OpenPetra.HTTPServer" value="http://${HostedServer}/openpetra${HostedPort}"/>
 +    <add key="OpenPetra.Path.RemotePatches" value="https://demo.solidcharity.com/client/"/>
-+    <add key="OpenPetra.HTTPServer" value="https://demo.solidcharity.com/"/>
++    <add key="OpenPetra.HTTPServer" value="https://demo.solidcharity.com"/>
      <add key="UINavigation.File" value="UINavigation.yml" />
      <add key="Resource.Dir" value="..\resources30" />
      <add key="UseWindowsUserID" value="true" />                <!-- Default Value: "false" -->
