@@ -27,6 +27,34 @@
  ;--------------------------------
  ;General
  
+@@ -18,15 +20,15 @@
+ 
+   ;Name and file
+   Name "${MUI_PRODUCT}"
+-  OutFile "{#DELIVERY.DIR}/OpenPetraRemoteSetup-${ORGNAME}-${VERSION}.exe"
++  OutFile "{#DELIVERY.DIR}/OpenPetraRemoteSetup-${ORGNAMEWITHOUTSPACE}-${VERSION}.exe"
+   BrandingText "by developers of OpenPetra.org"
+ 
+ 
+   ;Default installation folder
+-  InstallDir "$APPDATA\OpenPetra${ORGNAME}"
++  InstallDir "$APPDATA\OpenPetra${ORGNAMEWITHOUTSPACE}"
+ 
+   ;Get installation folder from registry if available
+-  InstallDirRegKey HKCU "Software\OpenPetra${ORGNAME}" ""
++  InstallDirRegKey HKCU "Software\OpenPetra${ORGNAMEWITHOUTSPACE}" ""
+ 
+   ;Request application privileges for Windows Vista
+   RequestExecutionLevel user
+@@ -41,7 +43,7 @@
+ 
+   ;Remember the installer language
+   !define MUI_LANGDLL_REGISTRY_ROOT "HKCU" 
+-  !define MUI_LANGDLL_REGISTRY_KEY "Software\OpenPetra${ORGNAME}" 
++  !define MUI_LANGDLL_REGISTRY_KEY "Software\OpenPetra${ORGNAMEWITHOUTSPACE}" 
+   !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
+   
+ ;--------------------------------
 @@ -88,6 +90,8 @@
    CreateDirectory "$INSTDIR\tmp30"
    CreateDirectory "$INSTDIR\patches30"
@@ -36,6 +64,23 @@
    SetOutPath "$INSTDIR\bin30"
    File ..\..\..\csharp\ThirdParty\DevAge\SourceGrid.dll
    File ..\..\..\csharp\ThirdParty\SQLite\Mono.Data.Sqlite.dll
+@@ -128,7 +132,7 @@
+   File ..\..\..\resources\petraico-big.ico
+   
+   ;Store installation folder
+-  WriteRegStr HKCU "Software\OpenPetra${ORGNAME}" "" $INSTDIR
++  WriteRegStr HKCU "Software\OpenPetra${ORGNAMEWITHOUTSPACE}" "" $INSTDIR
+ 
+   ; Now create shortcuts
+   CreateDirectory "$SMPROGRAMS\${MUI_PRODUCT}"
+@@ -236,6 +240,6 @@
+   Delete "$SMPROGRAMS\${MUI_PRODUCT}\*.*"
+   RmDir  "$SMPROGRAMS\${MUI_PRODUCT}"  
+ 
+-  DeleteRegKey /ifempty HKCU "Software\OpenPetra${ORGNAME}"
++  DeleteRegKey /ifempty HKCU "Software\OpenPetra${ORGNAMEWITHOUTSPACE}"
+ 
+ SectionEnd
 
 --- a/setup/petra0300/remoteclientWin/PetraClientRemote.config	2014-11-24 16:14:08.044227578 +0000
 +++ b/setup/petra0300/remoteclientWin/PetraClientRemote.config	2014-11-24 16:16:18.648223604 +0000
