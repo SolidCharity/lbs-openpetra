@@ -18,7 +18,7 @@
  
 --- a/setup/petra0300/remoteclientWin/remote.nsi	2014-11-24 15:41:09.088287790 +0000
 +++ b/setup/petra0300/remoteclientWin/remote.nsi	2014-11-24 15:51:15.220269348 +0000
-@@ -7,6 +7,8 @@
+@@ -7,26 +7,29 @@
  
    !include "MUI2.nsh"
    !include LogicLib.nsh
@@ -27,7 +27,13 @@
  ;--------------------------------
  ;General
  
-@@ -18,15 +20,15 @@
+ !define ORGNAME "{#ORGNAME}"
++!define ORGNAMEWITHOUTSPACE "{#ORGNAMEWITHOUTSPACE}"
+ !define VERSION "{#RELEASEVERSION}"
+ !define PRODUCT_WEB_SITE "http://{#PUBLISHERURL}"
+ 
+-!define MUI_PRODUCT "OpenPetra.org ${ORGNAME}"
++!define MUI_PRODUCT "OpenPetra ${ORGNAME}"
  
    ;Name and file
    Name "${MUI_PRODUCT}"
@@ -46,7 +52,7 @@
  
    ;Request application privileges for Windows Vista
    RequestExecutionLevel user
-@@ -41,7 +43,7 @@
+@@ -41,7 +44,7 @@
  
    ;Remember the installer language
    !define MUI_LANGDLL_REGISTRY_ROOT "HKCU" 
@@ -55,7 +61,7 @@
    !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
    
  ;--------------------------------
-@@ -88,6 +90,8 @@
+@@ -88,6 +91,8 @@
    CreateDirectory "$INSTDIR\tmp30"
    CreateDirectory "$INSTDIR\patches30"
    CreateDirectory "$INSTDIR\bin30"
@@ -64,7 +70,7 @@
    SetOutPath "$INSTDIR\bin30"
    File ..\..\..\csharp\ThirdParty\DevAge\SourceGrid.dll
    File ..\..\..\csharp\ThirdParty\SQLite\Mono.Data.Sqlite.dll
-@@ -128,7 +132,7 @@
+@@ -128,7 +133,7 @@
    File ..\..\..\resources\petraico-big.ico
    
    ;Store installation folder
@@ -73,7 +79,7 @@
  
    ; Now create shortcuts
    CreateDirectory "$SMPROGRAMS\${MUI_PRODUCT}"
-@@ -236,6 +240,6 @@
+@@ -236,6 +241,6 @@
    Delete "$SMPROGRAMS\${MUI_PRODUCT}\*.*"
    RmDir  "$SMPROGRAMS\${MUI_PRODUCT}"  
  

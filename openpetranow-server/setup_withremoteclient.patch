@@ -10,7 +10,7 @@
    <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
    <property name="HostedPort" value="9000"/>
    <property name="PostgreSQL.Version" value="9.2"/>
-+  <property name="OrgName" value="OpenPetra by SolidCharity" overwrite="true"/>
++  <property name="OrgName" value="by SolidCharity.com" overwrite="true"/>
 +  <property name="OrgNameWithoutSpace" value="Demo" overwrite="true"/>
 +  <property name="HostedServer" value="demo.solidcharity.com" overwrite="true"/>
 +  <property name="PublisherUrl" value="demo.solidcharity.com" overwrite="true"/>
