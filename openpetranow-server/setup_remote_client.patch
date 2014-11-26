@@ -27,10 +27,12 @@
  ;--------------------------------
  ;General
  
- !define ORGNAME "{#ORGNAME}"
-+!define ORGNAMEWITHOUTSPACE "{#ORGNAMEWITHOUTSPACE}"
+-!define ORGNAME "{#ORGNAME}"
++!define ORGNAME "by SolidCharity"
++!define ORGNAMEWITHOUTSPACE "Demo"
  !define VERSION "{#RELEASEVERSION}"
- !define PRODUCT_WEB_SITE "http://{#PUBLISHERURL}"
+-!define PRODUCT_WEB_SITE "http://{#PUBLISHERURL}"
++!define PRODUCT_WEB_SITE "http://www.solidcharity.com"
  
 -!define MUI_PRODUCT "OpenPetra.org ${ORGNAME}"
 +!define MUI_PRODUCT "OpenPetra ${ORGNAME}"
@@ -38,7 +40,7 @@
    ;Name and file
    Name "${MUI_PRODUCT}"
 -  OutFile "{#DELIVERY.DIR}/OpenPetraRemoteSetup-${ORGNAME}-${VERSION}.exe"
-+  OutFile "{#DELIVERY.DIR}/OpenPetraRemoteSetup-${ORGNAMEWITHOUTSPACE}-${VERSION}.exe"
++  OutFile "{#DELIVERY.DIR}/OpenPetraRemoteSetup-demo-${VERSION}.exe"
    BrandingText "by developers of OpenPetra.org"
  
  
