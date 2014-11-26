@@ -1,0 +1,49 @@
+--- a/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 16:18:29.110961935 +0000
++++ b/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 16:20:21.794958506 +0000
+@@ -99,10 +99,7 @@
+         /// <returns></returns>
+         public Boolean PatchApplies(String APatchZipFile)
+         {
+-            StringCollection versions = GetVersionsFromDiffZipName(APatchZipFile);
+-            TFileVersionInfo patchStartVersion = new TFileVersionInfo(versions[0]);
+-
+-            return patchStartVersion.Compare(this) == 0;
++            return TPatchFileVersionInfo.PatchApplies(this, APatchZipFile);
+         }
+ 
+         /// <summary>
+@@ -112,6 +109,13 @@
+         {
+             StringCollection versions = GetVersionsFromDiffZipName(APatchZipFile);
+             TFileVersionInfo patchStartVersion = new TFileVersionInfo(versions[0]);
++            
++            // generic patch
++            if (patchStartVersion.FilePrivatePart == 0)
++            {
++                TFileVersionInfo patchEndVersion = new TFileVersionInfo(versions[1]);
++                return patchEndVersion.Compare(ACurrentVersion) > 0;
++            }
+ 
+             return patchStartVersion.Compare(ACurrentVersion) == 0;
+         }
+@@ -1215,20 +1224,6 @@
+ 
+             if (FLatestAvailablePatch.Compare(testPatchVersion) != 0)
+             {
+-                // check for a generic patch file, starting from version 0.0.99.99
+-                foreach (string patch in AOrderedListOfAllPatches.GetValueList())
+-                {
+-                    if (patch.Contains("0.0.99.99"))
+-                    {
+-                        testPatchVersion = TPatchFileVersionInfo.GetLatestPatchVersionFromDiffZipName(patch);
+-                        ResultPatchList.Clear();
+-                        ResultPatchList.Add(patch, patch);
+-                    }
+-                }
+-            }
+-
+-            if (FLatestAvailablePatch.Compare(testPatchVersion) != 0)
+-            {
+                 TLogging.Log("missing patchfile from version " + testPatchVersion.ToString() + " to " + FLatestAvailablePatch.ToString());
+                 return new SortedList();
+             }
