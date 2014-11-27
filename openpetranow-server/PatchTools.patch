@@ -47,11 +47,18 @@
                  TLogging.Log("missing patchfile from version " + testPatchVersion.ToString() + " to " + FLatestAvailablePatch.ToString());
                  return new SortedList();
              }
-@@ -1283,6 +1273,8 @@
+@@ -1283,6 +1273,15 @@
                  }
              }
- 
-+            File.Move(APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe", APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.Clever.exe");
+
++            // compiling on Linux with Mono, we cannot use the manifest that tells the UAC that running a exe with patch in the name is fine without administrator rights
++            // therefore we rename the file so that the normal user can execute it
++            string newNameUAC = APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.Ptchtool.exe";
++            if (File.Exists(newNameUAC))
++            {
++               File.Delete(newNameUAC);
++            }
++            File.Move(APatchDirectory + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe", newNameUAC);
 +
              // check for the latest version of those files in the new patches
              foreach (string patch in FListOfNewPatches.GetValueList())
@@ -70,7 +77,7 @@
                      patchTools.CopyLatestPatchProgram(TempPath);
  
 -                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.PatchTool.exe";
-+                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.Clever.exe";
++                    string PatchToolExe = TempPath + Path.DirectorySeparatorChar + "Ict.Tools.PtchTool.exe";
  
                      if (!File.Exists(PatchToolExe))
                      {
