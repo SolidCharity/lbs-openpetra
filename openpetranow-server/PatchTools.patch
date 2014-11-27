@@ -1,5 +1,5 @@
---- PatchTools.cs.orig	2014-11-26 16:18:29.110961935 +0000
-+++ PatchTools.cs	2014-11-27 15:17:41.468444070 +0000
+--- a/csharp/ICT/Common/IO/PatchTools.cs	2014-11-26 16:18:29.110961935 +0000
++++ b/csharp/ICT/Common/IO/PatchTools.cs	2014-11-27 15:17:41.468444070 +0000
 @@ -99,10 +99,7 @@
          /// <returns></returns>
          public Boolean PatchApplies(String APatchZipFile)
