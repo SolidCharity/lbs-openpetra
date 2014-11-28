@@ -26,6 +26,7 @@ Patch4: ssl.patch
 Patch5: NoChangePasswordDemo.patch
 Patch6: PatchTools.patch
 Patch7: backportPartnerEditBug3634.patch
+Patch8: remote.nsi.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -38,7 +39,6 @@ dos2unix csharp/ICT/Petra/Definitions/UINavigation.yml
 dos2unix setup/setup.build
 %patch2 -p1
 dos2unix csharp/ICT/Common/CustomAppSettings.cs
-dos2unix setup/petra0300/remoteclientWin/remote.nsi
 dos2unix setup/petra0300/remoteclientWin/PetraClientRemote.config
 dos2unix js/Default.aspx
 %patch3 -p1
@@ -51,6 +51,8 @@ dos2unix csharp/ICT/Petra/Client/app/MainWindow/PetraClientMain.cs
 %patch6 -p1
 dos2unix csharp/ICT/Petra/Server/lib/MPartner/connect/Partner.PartnerEdit.cs
 %patch7 -p1
+dos2unix setup/petra0300/remoteclientWin/remote.nsi
+%patch8 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
