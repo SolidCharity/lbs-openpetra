@@ -27,6 +27,8 @@ Patch5: NoChangePasswordDemo.patch
 Patch6: PatchTools.patch
 Patch7: remote.nsi.patch
 Patch8: fix_postglbatch_postingregister.patch
+Patch9: fix_downloadymlgz.patch
+Patch10: fix_uploadymlgz.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -53,6 +55,10 @@ dos2unix setup/petra0300/remoteclientWin/remote.nsi
 %patch7 -p1
 dos2unix csharp/ICT/Petra/Server/lib/MFinance/Common/Common.Posting.cs
 %patch8 -p1
+dos2unix csharp/ICT/Common/Remoting/Shared/Serialization.cs
+%patch9 -p1
+dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
+%patch10 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
