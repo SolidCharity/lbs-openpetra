@@ -5,7 +5,7 @@
                  if (s.StartsWith("\"") && s.EndsWith("\""))
                  {
 +                    s = s.Replace("\\\\", "\\");
-+                    s = s.Replace("\\\"", "\"");
++                    //s = s.Replace("\\\"", "\"");
                      s = s.Substring(1, s.Length - 2);
                  }
              }
