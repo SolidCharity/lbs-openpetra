@@ -1,6 +1,6 @@
-%define name openpetranow-server
-%define version 2014.11.0
-%define trunkversion Release2014_11
+%define name openpetra-server-test
+%define version 2014.12.0
+%define trunkversion master
 %define MonoPath /opt/mono
 %define OpenPetraServerPath /usr/local/openpetraorg
 
@@ -30,15 +30,13 @@ Patch8: fix_postglbatch_postingregister.patch
 Patch9: fix_downloadymlgz.patch
 Patch10: fix_uploadymlgz.patch
 Patch11: enable_phone_email.patch
-Patch12: giftimport_bug3652.patch
-Patch13: giftimport_corp_exrate_bug3653.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n OpenPetraNow-%{trunkversion}
+%setup  -q -n openpetra-%{trunkversion}
 dos2unix csharp/ICT/Petra/Definitions/UINavigation.yml
 %patch1 -p1
 dos2unix setup/setup.build
@@ -64,10 +62,6 @@ dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
 %patch10 -p1
 dos2unix csharp/ICT/Petra/Client/MPartner/Gui/UC_PartnerAddresses.yaml
 %patch11 -p1
-dos2unix csharp/ICT/Petra/Server/lib/MFinance/Gift/Gift.Importing.cs
-%patch12 -p1
-dos2unix csharp/ICT/Petra/Shared/lib/MFinance/validation/Gift.Validation.cs
-%patch13 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
