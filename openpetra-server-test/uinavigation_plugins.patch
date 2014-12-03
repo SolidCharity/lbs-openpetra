@@ -1,0 +1,11 @@
+--- a/csharp/ICT/Petra/Definitions/UINavigation.yml
++++ b/csharp/ICT/Petra/Definitions/UINavigation.yml
+@@ -190,6 +190,7 @@
+                 GiftProcessing: {Namespace=Ict.Petra.Client.MFinance.Gui.Gift, DontShowNestedTasksAsLinks=true}
+                     SearchBoxes: [Donor, Recipient]
+                     GiftEntry:
++                        ImportGiftsFromBankStatement: {Description: "Process bank statements", Namespace=Ict.Petra.Plugins.Bankimport.Client, ActionOpenScreen=TFrmBankStatementImport}
+                         GiftBatches: {Description:Manually enter and post Gift batches, ActionOpenScreen=TFrmGiftBatch}
+                         RecurringGiftBatches: {Description:Manually enter Recurring Gift batches, ActionOpenScreen=TFrmRecurringGiftBatch}
+                         #AddGifts:
+
