@@ -1,0 +1,12 @@
+--- openpetra-master/inc/nant/OpenPetra.default.targets.xml.orig	2014-12-23 21:32:54.058505617 +0000
++++ openpetra-master/inc/nant/OpenPetra.default.targets.xml	2014-12-23 21:40:35.694451392 +0000
+@@ -181,6 +181,9 @@
+     </if>
+   </if>
+   <if test="${'unix'==platform::get-name()}" >
++      <delete file="${dir.bin}/Mono.Security.dll" failonerror="false"/>
++      <delete file="${dir.bin}/Mono.Data.Sqlite.dll" failonerror="false"/>
++
+       <!-- create symbolic links for OpenPetra.js -->
+       <if test="${not directory::exists(dir.delivery + '/ThirdParty')}">
+         <exec program="bash"
