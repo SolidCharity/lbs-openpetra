@@ -1,4 +1,6 @@
-yum -y install mono-xsp-opt mono-opt-devel wget tar
+#!/bin/bash
+
+yum -y install mono-xsp-opt mono-opt-devel mono-nant-opt wget tar
 . /opt/mono/env.sh
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
 tar xzf master.tar.gz
