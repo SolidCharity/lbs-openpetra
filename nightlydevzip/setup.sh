@@ -16,6 +16,7 @@ cat > OpenPetra.build.config << EOF
 EOF
 patch -p1 < ../stopServer.patch
 patch -p1 < ../serveradmin.patch
+patch -p1 < ../devzip.patch
 nant devzip
 
 mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
