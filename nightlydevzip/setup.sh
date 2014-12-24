@@ -19,3 +19,14 @@ nant devzip
 
 mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
 echo download at http://download.lbs.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
+
+#upload to Sourceforge
+if [ -f ~/.ssh/id_rsa_cronjob ]
+then
+  eval `ssh-agent`
+  ssh-add ~/.ssh/id_rsa_cronjob
+  echo "put ../openpetra_development_`date +"%Y-%m-%d"`.zip" | sftp pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly
+  rm -f ../openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip
+  echo "rm openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip" | sftp pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly
+  kill $SSH_AGENT_PID
+fi
