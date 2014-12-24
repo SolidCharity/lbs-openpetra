@@ -14,9 +14,7 @@ cat > OpenPetra.build.config << EOF
     <property name="DBMS.Password" value=""/>
 </project>
 EOF
-patch -p1 < ../stopServer.patch
-patch -p1 < ../serveradmin.patch
-patch -p1 < ../devzip.patch
+patch -p1 --ignore-whitespace < ../devzip.patch
 nant devzip
 
 mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball

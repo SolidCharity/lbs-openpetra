@@ -1,3 +1,24 @@
+--- openpetra-master/inc/nant/OpenPetra.default.targets.xml.orig	2014-12-24 08:14:25.776893951 +0000
++++ openpetra-master/inc/nant/OpenPetra.default.targets.xml	2014-12-24 08:14:36.784034758 +0000
+@@ -181,6 +181,9 @@
+     </if>
+   </if>
+   <if test="${'unix'==platform::get-name()}" >
++      <delete file="${dir.bin}/Mono.Security.dll" failonerror="false"/>
++      <delete file="${dir.bin}/Mono.Data.Sqlite.dll" failonerror="false"/>
++
+       <!-- create symbolic links for OpenPetra.js -->
+       <if test="${not directory::exists(dir.delivery + '/ThirdParty')}">
+         <exec program="bash"
+@@ -192,7 +195,7 @@
+       <exec program="xsp4" 
+               workingdir="${dir.delivery}"
+               commandline="--verbose --root . --port ${Server.Port} --applications /:."
+-              spawn="false">
++              spawn="true">
+         <environment>
+           <variable name="PATH" path="${environment::get-variable('PATH')};${MonoBinPath}"/>
+           <variable name="MONO_PATH" path="${MonoBinPath}\.."/>
 --- openpetra-master/OpenPetra.build.orig       2014-12-23 22:09:49.013435756 +0000
 +++ openpetra-master/OpenPetra.build    2014-12-24 06:51:44.305187540 +0000
 @@ -547,8 +547,9 @@
@@ -11,4 +32,3 @@
      <ExecDotNet program="${dir.bin}/PetraServerAdminConsole.exe"
          commandline="-C:${dir.root}/etc/ServerAdmin.config -Command:LoadYmlGz -YmlGzFile:${dir.root}/demoWith2ledgers.yml.gz"/>
      <call target="stopPetraServer"/>
-
