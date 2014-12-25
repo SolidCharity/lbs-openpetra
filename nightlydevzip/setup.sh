@@ -17,9 +17,6 @@ EOF
 patch -p1 --ignore-whitespace < ../devzip.patch
 nant devzip
 
-mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
-echo download at http://download.lbs.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
-
 #upload to Sourceforge
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
@@ -30,3 +27,6 @@ then
   echo "rm openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly
   kill $SSH_AGENT_PID
 fi
+
+mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
+echo download at http://download.lbs.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
