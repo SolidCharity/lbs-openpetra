@@ -13,7 +13,7 @@
 @@ -192,7 +195,7 @@
        <exec program="xsp4" 
                workingdir="${dir.delivery}"
-               commandline="--verbose --root . --port ${Server.Port} --applications /:."
+               commandline="--verbose --nonstop --root . --port ${Server.Port} --applications /:."
 -              spawn="false">
 +              spawn="true">
          <environment>
