@@ -21,14 +21,17 @@
            <variable name="MONO_PATH" path="${MonoBinPath}\.."/>
 --- openpetra-master/OpenPetra.build.orig       2014-12-23 22:09:49.013435756 +0000
 +++ openpetra-master/OpenPetra.build    2014-12-24 06:51:44.305187540 +0000
-@@ -547,8 +547,13 @@
+@@ -547,8 +547,16 @@
 -    <delete file="demoWith2ledgers.yml.gz" />
 +    <delete file="demoWith1ledger.yml.gz" />
 -    <exec program="wget" commandline="http://sourceforge.net/projects/openpetraorg/files/openpetraorg/demodata/demoWith2ledgers.yml.gz/download -OdemoWith2ledgers.yml.gz"/>
-+    <exec program="wget" commandline="http://sourceforge.net/projects/openpetraorg/files/openpetraorg/demodata/demoWith1ledger.yml.gz/download -OdemoWithledger.yml.gz"/>
++    <exec program="wget" commandline="http://sourceforge.net/projects/openpetraorg/files/openpetraorg/demodata/demoWith1ledger.yml.gz/download -OdemoWith1ledger.yml.gz"/>
 +    <loadtasks assembly="${Ict.Tools.NAntTasks.DLL}" unless="${task::exists('GenerateNamespaceMap')}"/>
 +    <call target="initConfigFiles"/>
      <call target="startPetraServer"/>
++    <exec program="ps" commandline="xaf"/>
++    <exec program="netstat" commandline="-atplou"/>
++    <sleep seconds="2"/>
 +    <exec program="ps" commandline="xaf"/>
 +    <exec program="netstat" commandline="-atplou"/>
 -    <sleep seconds="3"/>
