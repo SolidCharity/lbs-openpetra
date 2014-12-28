@@ -43,3 +43,13 @@
 -        commandline="-C:${dir.root}/etc/ServerAdmin.config -Command:LoadYmlGz -YmlGzFile:${dir.root}/demoWith2ledgers.yml.gz"/>
 +        commandline="-C:${dir.root}/etc/ServerAdmin.config -Command:LoadYmlGz -YmlGzFile:${dir.root}/demoWith1ledger.yml.gz"/>
      <call target="stopPetraServer"/>
+--- openpetra-master/csharp/ICT/Petra/ServerAdmin/PetraServerAdminConsole/Main.cs.orig	2014-12-28 15:43:37.988756464 +0000
++++ openpetra-master/csharp/ICT/Petra/ServerAdmin/PetraServerAdminConsole/Main.cs	2014-12-28 15:44:16.773715624 +0000
+@@ -789,6 +789,7 @@
+                 Console.WriteLine("Exception occured while connecting/communicating to PETRAServer: " + exp.ToString());
+             }
+ 
++            System.Environment.Exit(-1);
+             return;
+         }
+ 
