@@ -30,4 +30,5 @@ then
 fi
 
 mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
+rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d --date='6 days ago'"`.zip
 echo download at http://download.lbs.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
