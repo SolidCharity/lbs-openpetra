@@ -15,7 +15,7 @@ cat > OpenPetra.build.config << EOF
     <property name="DBMS.Password" value=""/>
 </project>
 EOF
-patch -p1 --ignore-whitespace < ../devzip.patch
+
 nant devzip
 
 #upload to Sourceforge
