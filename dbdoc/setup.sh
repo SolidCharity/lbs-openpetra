@@ -12,9 +12,11 @@ cat > OpenPetra.build.config << EOF
 <project name="OpenPetra-userconfig">
     <property name="DBMS.Type" value="sqlite"/>
     <property name="DBMS.Password" value=""/>
+    <property name="sql2dia" value="csharp/ThirdParty/sql2dia/sql2dia64" overwrite="false"/>
 </project>
 EOF
 
+chmod a+x csharp/ThirdParty/sql2dia/sql2dia64
 nant generateTools dbdoc || exit -1
 
 cd delivery/dbdoc
