@@ -1,0 +1,5 @@
+lbs:
+  source:
+    download:
+      sql2diagram.tar.gz: "https://github.com/tpokorra/sql2diagram/archive/master.tar.gz"
+
