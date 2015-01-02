@@ -18,7 +18,7 @@ create html documentation for sql database structure
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup -q -n sql2diagram
+%setup -q -n sql2diagram-master
 
 %build
 aclocal
