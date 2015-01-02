@@ -15,7 +15,7 @@ cat > OpenPetra.build.config << EOF
 </project>
 EOF
 
-nant dbdoc
+nant generateTools dbdoc || exit -1
 
 cd delivery/dbdoc
 rm -Rf bak
@@ -27,8 +27,8 @@ if [ -f ~/.ssh/id_rsa_cronjob ]
 then
   eval `ssh-agent`
   ssh-add ~/.ssh/id_rsa_cronjob
-  echo "put ../dbdoc.tar.gz" | sftp -o StrictHostKeyChecking=no -oPort=2033 upload@dbdoc.openpetra.org:dbdoc
-  ssh -o StrictHostKeyChecking=no -oPort=2033 upload@dbdoc.openpetra.org -c "cd dbdoc; tar xzf dbdoc.tar.gz"
+  echo "put ../dbdoc.tar.gz" | sftp -o StrictHostKeyChecking=no -oPort=2033 upload@dbdoc.openpetra.org:dbdoc || exit -1
+  ssh -o StrictHostKeyChecking=no -oPort=2033 upload@dbdoc.openpetra.org -c "cd dbdoc; tar xzf dbdoc.tar.gz" || exit -1
   kill $SSH_AGENT_PID
 fi
 
