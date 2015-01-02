@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum -y install mono-opt mono-opt-devel mono-nant-opt wget tar sqlite sql2diagram
+yum -y install mono-opt mono-opt-devel mono-nant-opt wget tar sqlite sql2diagram dia
 . /opt/mono/env.sh
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz

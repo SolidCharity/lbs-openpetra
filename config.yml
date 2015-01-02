@@ -1,4 +1,4 @@
 lbs:
   centos:
     '6':
-      repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/centos/6/lbs-tpokorra-mono.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/6/lbs-tpokorra-nsis.repo']
+      repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/centos/6/lbs-tpokorra-mono.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/6/lbs-tpokorra-nsis.repo', 'http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm']
