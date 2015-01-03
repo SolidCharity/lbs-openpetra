@@ -18,6 +18,8 @@ cat > OpenPetra.build.config << EOF
 EOF
 
 nant generateTools dbdoc || exit -1
+# need to run twice, so that the diagrams can be picked up
+nant dbdoc || exit -1
 
 cd delivery/dbdoc
 rm -Rf bak
