@@ -30,8 +30,6 @@ make
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/bin/
-pwd
-ls -la
 cp src/sql2dia %{buildroot}/usr/bin/
 
 %clean
