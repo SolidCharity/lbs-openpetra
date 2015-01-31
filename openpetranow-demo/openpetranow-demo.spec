@@ -20,9 +20,11 @@ Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
 Source4: plugin_bankimport_mt940.tar.gz
 Patch1: setup_withremoteclient.patch
-Patch2: NoChangePasswordDemo.patch
-Patch3: fix_postglbatch_postingregister.patch
-Patch4: fix_uploadymlgz.patch
+Patch2: setup_remote_client.patch
+Patch3: NoChangePasswordDemo.patch
+Patch4: fix_postglbatch_postingregister.patch
+Patch5: fix_uploadymlgz.patch
+Patch6: fixClientDownload.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -32,12 +34,16 @@ Server of OpenPetra using Postgresql as database backend
 %setup  -q -n openpetra-%{trunkversion}
 dos2unix setup/setup.build
 %patch1 -p1
-dos2unix csharp/ICT/Petra/Server/lib/MSysMan/UserManager.cs
+dos2unix js/Default.aspx
 %patch2 -p1
-dos2unix csharp/ICT/Petra/Server/lib/MFinance/Common/Common.Posting.cs
+dos2unix csharp/ICT/Petra/Server/lib/MSysMan/UserManager.cs
 %patch3 -p1
-dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
+dos2unix csharp/ICT/Petra/Server/lib/MFinance/Common/Common.Posting.cs
 %patch4 -p1
+dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
+%patch5 -p1
+dos2unix js/Client.aspx
+%patch6 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
