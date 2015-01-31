@@ -1,6 +1,6 @@
 %define name openpetranow-demo
 %define version 2015.01.0
-%define trunkversion Release2015_01
+%define trunkversion ALPHA2015_01
 %define MonoPath /opt/mono
 %define OpenPetraServerPath /usr/local/openpetraorg
 
@@ -29,7 +29,7 @@ Server of OpenPetra using Postgresql as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n OpenPetraNow-%{trunkversion}
+%setup  -q -n openpetra-%{trunkversion}
 dos2unix setup/setup.build
 %patch1 -p1
 dos2unix csharp/ICT/Petra/Server/lib/MSysMan/UserManager.cs
