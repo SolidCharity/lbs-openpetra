@@ -40,7 +40,7 @@
  
 +       <div class="form-signin">
 +<%
-+string [] files = System.IO.Directory.GetFiles("/var/www/openpetra/client", "OpenPetraRemoteSetup-demo-*.exe");
++string [] files = System.IO.Directory.GetFiles("/var/www/openpetra/client", "OpenPetraRemoteSetup-Demo-*.exe");
 +string filename = String.Empty;
 +if (files.Length > 0)
 +{
@@ -50,7 +50,7 @@
 +      <div class="form-signin">
 +        <div class="bs-callout bs-callout-warning"><h4>Download</h4>
 +          <p>Install the Windows client and connect to our Demo OpenPetra server:</p>
-+               <button id="btnDownload" class="btn btn-lg" 
++               <button id="btnDownload" class="btn btn-lg btn-primary btn-block" 
 +                  onclick="location.href = '/client/<% Response.Write(filename); %>'">
 +                    Get the Windows Client!
 +               </button>
