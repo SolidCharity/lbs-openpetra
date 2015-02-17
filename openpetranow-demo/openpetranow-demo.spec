@@ -1,6 +1,6 @@
 %define name openpetranow-demo
 %define version 2015.01.0
-%define trunkversion ALPHA2015_01
+%define trunkversion 20150131_fixdemo
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetraorg
 
@@ -87,8 +87,7 @@ cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 
 %post
 echo "For the first install, now run:"
-echo "  service openpetra-server init"
-echo "  service openpetra-server start"
+echo "  %{OpenPetraServerPath}/bin30/openpetra-server init"
 
 %changelog
 * Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
