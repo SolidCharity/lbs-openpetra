@@ -1,13 +1,5 @@
 --- a/setup/setup.build	2014-11-24 11:28:10.436749624 +0000
 +++ b/setup/setup.build	2014-11-24 11:32:10.840742309 +0000
-@@ -229,6 +229,7 @@
-     <!-- for remote installer -->
-     <if test="${property::exists('HostedServer')}">
-         <property name="dummy" value="${script::ReplaceInFile(Current.File, '{#ORGNAME}', OrgName)}"/>
-+        <property name="dummy" value="${script::ReplaceInFile(Current.File, '{#ORGNAMEWITHOUTSPACE}', OrgNameWithoutSpace)}"/>
-         <property name="dummy" value="${script::ReplaceInFile(Current.File, '{#PUBLISHERURL}', PublisherUrl)}"/>
-         <property name="dummy" value="${script::ReplaceInFile(Current.File, '{#SERVERHOST}', HostedServer)}"/>
-         <property name="dummy" value="${script::ReplaceInFile(Current.File, '{#SERVERPORT}', HostedPort)}"/>
 @@ -294,16 +295,28 @@
  
  <target name="buildServerCentOSPostgresqlOBS">
