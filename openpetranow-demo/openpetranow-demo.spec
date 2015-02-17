@@ -104,5 +104,5 @@ echo "  service openpetra-server start"
 - release 2014-05
 * Thu Aug 01 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - build from github
-* Sat Jul 04 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+* Thu Jul 04 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - First build
