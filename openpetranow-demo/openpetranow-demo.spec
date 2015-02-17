@@ -69,12 +69,11 @@ ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
 ln -s ../client $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/client
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/js30/Client.aspx $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/Default.aspx
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx; ln -s ../js30/* .; cd -
-mkdir -p $RPM_BUILD_ROOT/etc/init.d
-mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/etc/init.d/openpetra-server
-chmod a+x $RPM_BUILD_ROOT/etc/init.d/openpetra-server
+mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
+chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
+dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
 # allow the OpenPetra server to copy the installer files for each customer
 chmod a+w $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/
-dos2unix $RPM_BUILD_ROOT/etc/init.d/openpetra-server
 cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 
 %clean
