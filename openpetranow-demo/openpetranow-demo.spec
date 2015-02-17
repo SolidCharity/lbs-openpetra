@@ -75,6 +75,8 @@ dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
 # allow the OpenPetra server to copy the installer files for each customer
 chmod a+w $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/
 cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
+mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
+cp `pwd`/setup/petra0300/linuxserver/postgresql/centos/openpetra-server.service $RPM_BUILD_ROOT/usr/lib/systemd/system
 
 %clean
 # Clean up after ourselves, but be careful in case someone sets a bad buildroot
@@ -82,7 +84,7 @@ cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 
 %files
 %{OpenPetraServerPath}
-/etc/init.d/openpetra-server
+/usr/lib/systemd/system
 /var/www/openpetra
 
 %post
