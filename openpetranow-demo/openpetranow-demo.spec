@@ -1,7 +1,7 @@
 %define name openpetranow-demo
 %define version 2015.01.0
 %define trunkversion ALPHA2015_01
-%define MonoPath /opt/mono
+%define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetraorg
 
 Summary: server of OpenPetra using Postgresql as database backend
@@ -11,8 +11,8 @@ Release: %{release}
 Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
-BuildRequires: mono-nant-opt dos2unix nsis gettext
-Requires: mono-xsp-opt mono-opt postgresql-server = 9.2 lighttpd lighttpd-fastcgi lsb
+BuildRequires: nant dos2unix nsis gettext
+Requires: mono xsp postgresql-server = 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
 Source1: base.yml.gz
@@ -49,7 +49,6 @@ tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_Bankimp
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
 
 %build
-. %{MonoPath}/env.sh
 # TODO initdb
 #nant nanttasks createDatabaseUser
 export NSISDIR=/usr/local/nsis/
@@ -92,6 +91,8 @@ echo "  service openpetra-server init"
 echo "  service openpetra-server start"
 
 %changelog
+* Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- build for CentOS7 and with Xamarin packages
 * Sat Jan 31 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - release 2015-01
 * Mon Nov 17 2014 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
