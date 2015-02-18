@@ -2,7 +2,7 @@
 %define version 2015.01.0
 %define trunkversion 20150131_fixdemo
 %define MonoPath /usr/
-%define OpenPetraServerPath /usr/local/openpetraorg
+%define OpenPetraServerPath /usr/local/openpetra
 
 Summary: server of OpenPetra using Postgresql as database backend
 Name: %{name}
@@ -66,9 +66,10 @@ ln -s ../bin30 $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/bin
 ln -s ../client $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx/client
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/js30/Client.aspx $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/Default.aspx
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/asmx; ln -s ../js30/* .; cd -
-mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetraorg-server.sh $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
-chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
-dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/openpetra-server
+mkdir -p $RPM_BUILD_ROOT/usr/bin
+mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh $RPM_BUILD_ROOT/usr/bin/openpetra-server
+chmod a+x $RPM_BUILD_ROOT/usr/bin/openpetra-server
+dos2unix $RPM_BUILD_ROOT/usr/bin/openpetra-server
 # allow the OpenPetra server to copy the installer files for each customer
 chmod a+w $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/
 cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
@@ -86,7 +87,7 @@ cp `pwd`/setup/petra0300/linuxserver/postgresql/centos/openpetra-server.service 
 
 %post
 echo "For the first install, now run:"
-echo "  %{OpenPetraServerPath}/bin30/openpetra-server init"
+echo "  openpetra-server init"
 
 %changelog
 * Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
