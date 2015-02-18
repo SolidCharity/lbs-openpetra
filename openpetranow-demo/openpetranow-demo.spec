@@ -81,6 +81,7 @@ cp `pwd`/setup/petra0300/linuxserver/postgresql/centos/openpetra-server.service 
 %files
 %{OpenPetraServerPath}
 /usr/lib/systemd/system
+/usr/bin/openpetra-server
 /var/www/openpetra
 
 %post
