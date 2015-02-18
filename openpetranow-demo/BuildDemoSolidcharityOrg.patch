@@ -1,6 +1,6 @@
 --- a/setup/setup.build	2014-11-24 11:28:10.436749624 +0000
 +++ b/setup/setup.build	2014-11-24 11:32:10.840742309 +0000
-@@ -294,16 +295,28 @@
+@@ -294,16 +295,30 @@
  
  <target name="buildServerCentOSPostgresqlOBS">
    <property name="WithLinuxClient" value="false"/>
@@ -14,6 +14,8 @@
 +  <property name="OrgNameWithoutSpace" value="Demo" overwrite="true"/>
 +  <property name="HostedServer" value="demo.solidcharity.com" overwrite="true"/>
 +  <property name="PublisherUrl" value="demo.solidcharity.com" overwrite="true"/>
++  <property name="RemotePatchesURL" value="https://demo.solidcharity.com/client/" overwrite="true"/>
++  <property name="HostedServerURL" value="https://demo.solidcharity.com" overwrite="true"/>
 +
    <call target="nanttasks"/>
    <call target="minimalGenerateSolution"/>

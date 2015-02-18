@@ -20,8 +20,8 @@ Source1: base.yml.gz
 Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
 Source4: plugin_bankimport_mt940.tar.gz
-Patch1: setup_withremoteclient.patch
-Patch2: setup_remote_client.patch
+Patch1: BuildDemoSolidcharityOrg.patch
+Patch2: DefaultPageWithClientDownload.patch
 Patch3: NoChangePasswordDemo.patch
 Patch4: fix_postglbatch_postingregister.patch
 Patch5: fix_uploadymlgz.patch

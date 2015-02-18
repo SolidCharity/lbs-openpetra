@@ -1,17 +1,3 @@
---- a/setup/petra0300/remoteclientWin/PetraClientRemote.config	2014-11-24 16:14:08.044227578 +0000
-+++ b/setup/petra0300/remoteclientWin/PetraClientRemote.config	2014-11-24 16:16:18.648223604 +0000
-@@ -6,8 +6,8 @@
-     <add key="Reporting.PathReportSettings" value="{applicationbindir}\..\reports30\Settings" />
-     <add key="Reporting.PathReportUserSettings" value="{applicationbindir}\..\reports30\Settings" />
-     <add key="OpenPetra.Path.Patches" value="{applicationbindir}\..\patches30"/>
--    <add key="OpenPetra.Path.RemotePatches" value="http://${PublisherUrl}/patches/${OrgNameWithoutSpace}/"/>
--    <add key="OpenPetra.HTTPServer" value="http://${HostedServer}/openpetra${HostedPort}"/>
-+    <add key="OpenPetra.Path.RemotePatches" value="https://demo.solidcharity.com/client/"/>
-+    <add key="OpenPetra.HTTPServer" value="https://demo.solidcharity.com"/>
-     <add key="UINavigation.File" value="UINavigation.yml" />
-     <add key="Resource.Dir" value="..\resources30" />
-     <add key="UseWindowsUserID" value="true" />                <!-- Default Value: "false" -->
-
 --- a/js/Default.aspx	2014-11-24 16:20:09.424216582 +0000
 +++ b/js/Default.aspx	2014-11-24 17:09:21.220126769 +0000
 @@ -8,13 +8,18 @@
