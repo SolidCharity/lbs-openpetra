@@ -47,8 +47,6 @@ tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_Bankimp
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
 
 %build
-# TODO initdb
-#nant nanttasks createDatabaseUser
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}.%{release}
@@ -58,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}.%{release}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
-cp `pwd`/delivery/*.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
+cp `pwd`/delivery/OpenPetraRemoteSetup*.exe $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 cp `pwd`/delivery/Patch-win_%{version}.0_%{version}.%{release}.zip $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/var/www
 ln -s ../../%{OpenPetraServerPath}/asmx $RPM_BUILD_ROOT/var/www/openpetra
