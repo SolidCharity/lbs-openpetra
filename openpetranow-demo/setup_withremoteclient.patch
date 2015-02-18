@@ -30,4 +30,4 @@
 +
    <property name="BuildArchive" value="server" overwrite="true"/>
    <call target="prepareSetupDirForTarFile"/>
-   <move file="${setupDir}/centos/openpetraorg-server.sh" tofile="${setupDir}/openpetraorg-server.sh"/>
+   <move file="${setupDir}/centos/openpetra-server.sh" tofile="${setupDir}/openpetra-server.sh"/>
