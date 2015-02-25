@@ -3,7 +3,7 @@
 yum -y install mono-xsp-opt mono-opt-devel mono-nant-opt wget tar sqlite
 . /opt/mono/env.sh
 
-wget https://github.com/openpetra/openpetra/archive/master.tar.gz
+wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
 tar xzf master.tar.gz
 mv openpetra-master nightlydevzip
 
@@ -16,16 +16,16 @@ cat > OpenPetra.build.config << EOF
 </project>
 EOF
 
-nant devzip
+nant devzip || exit -1
 
 #upload to Sourceforge
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
   eval `ssh-agent`
   ssh-add ~/.ssh/id_rsa_cronjob
-  echo "put ../openpetra_development_`date +"%Y-%m-%d"`.zip" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly
+  echo "put ../openpetra_development_`date +"%Y-%m-%d"`.zip" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly || exit -1
   rm -f ../openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip
-  echo "rm openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly
+  echo "rm openpetra_development_`date +"%Y-%m-%d" --date='10 days ago'`.zip" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/devzip-nightly || exit -1
   kill $SSH_AGENT_PID
 fi
 
