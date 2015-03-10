@@ -3,4 +3,4 @@ lbs:
     '6':
       repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/centos/6/lbs-tpokorra-mono.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/6/lbs-tpokorra-nsis.repo', 'http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm']
     '7':
-      repos: ['http://download.mono-project.com/repo/centos/', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/7/lbs-tpokorra-nsis.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nant/centos/7/lbs-tpokorra-nant.repo', 'http://ftp-stud.hs-esslingen.de/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm']
+      repos: ['http://download.mono-project.com/repo/centos/', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/7/lbs-tpokorra-nsis.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nant/centos/7/lbs-tpokorra-nant.repo', 'https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/lbs-tpokorra-openpetra.repo', 'epel-release']

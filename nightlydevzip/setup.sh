@@ -1,7 +1,6 @@
 #!/bin/bash
 
-yum -y install mono-xsp-opt mono-opt-devel mono-nant-opt wget tar sqlite
-. /opt/mono/env.sh
+yum -y install mono xsp nant wget tar sqlite
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
 tar xzf master.tar.gz
@@ -31,4 +30,4 @@ fi
 
 mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
 rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='6 days ago'`.zip
-echo download at http://download.lbs.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
+echo download at https://download.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
