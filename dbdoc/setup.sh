@@ -4,7 +4,7 @@
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-yum -y install mono nant wget tar sqlite sql2diagram dia
+yum -y install mono nant-0.92.999 wget tar sqlite sql2diagram dia
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
 #wget https://github.com/tpokorra/openpetra/archive/master.tar.gz
