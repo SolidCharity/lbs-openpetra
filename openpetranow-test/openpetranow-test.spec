@@ -1,6 +1,6 @@
 %define name openpetranow-test
-%define version 2015.03.0
-%define trunkversion mergeLP20150316
+%define version 2015.03.1
+%define trunkversion master
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
 
