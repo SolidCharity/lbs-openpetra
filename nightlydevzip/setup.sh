@@ -6,9 +6,12 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono xsp mono-mvc nant wget tar sqlite
 
-wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
-tar xzf master.tar.gz
-mv openpetra-master nightlydevzip
+#wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
+#tar xzf master.tar.gz
+#mv openpetra-master nightlydevzip
+wget https://github.com/tpokorra/openpetra/archive/mono4.tar.gz || exit -1
+tar xzf mono4.tar.gz
+mv openpetra-mono4 nightlydevzip
 
 cd nightlydevzip
 cat > OpenPetra.build.config << EOF
