@@ -4,7 +4,7 @@
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-yum -y install mono xsp nant wget tar sqlite
+yum -y install mono xsp mono-mvc nant wget tar sqlite
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
 tar xzf master.tar.gz
