@@ -19,7 +19,7 @@ cat > OpenPetra.build.config << EOF
 </project>
 EOF
 
-nant quickClean deleteBakFiles generateSolution errorCodeDoc apiDoc || exit -1
+nant quickClean deleteBakFiles minimalGenerateSolution errorCodeDoc apiDoc || exit -1
 
 cd delivery/API-Doc/html
 tar czf ../codedoc.tar.gz .
