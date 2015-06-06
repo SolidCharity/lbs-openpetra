@@ -3,7 +3,7 @@
 #install the key from Xamarin
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 
-yum install mono-complete nant dos2unix nsis gettext
+yum install -y mono-complete nant dos2unix nsis gettext
 
 tar xzf master.tar.gz
 cd openpetra-master
@@ -12,4 +12,9 @@ export PATH=$NSISDIR:$PATH
 nant buildWindowsStandalone -D:OpenBuildService=true || exit -1
 
 mkdir -p ~/repo/windows
-cp delivery/OpenPetraSetup-*.exe ~/repo/windows
+cd delivery
+for f in OpenPetraSetup-*.exe
+do
+  cp $f ~/repo/windows
+  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/windows/$f"
+done
