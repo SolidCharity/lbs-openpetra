@@ -9,4 +9,7 @@ tar xzf master.tar.gz
 cd openpetra-master
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-nant buildWindowsStandalone -D:OpenBuildService=true
+nant buildWindowsStandalone -D:OpenBuildService=true || exit -1
+
+mkdir -p ~/repo/windows
+cp delivery/OpenPetraSetup-*.exe ~/repo/windows
