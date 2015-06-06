@@ -16,5 +16,5 @@ cd delivery
 for f in OpenPetraSetup-*.exe
 do
   cp $f ~/repo/windows
-  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/windows/$f"
+  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/windows/$f"
 done
