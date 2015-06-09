@@ -7,7 +7,7 @@ yum install -y mono-complete nant dos2unix nsis gettext patch
 
 tar xzf ~/sources/master.tar.gz
 cd openpetra-master
-patch -p1 < ../StandaloneNoClientCache.patch
+patch -p1 < ../StandaloneNoClientCache.patch || exit -1
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 nant buildWindowsStandalone -D:OpenBuildService=true || exit -1
