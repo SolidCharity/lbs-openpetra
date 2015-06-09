@@ -12,10 +12,11 @@ export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 nant buildWindowsStandalone -D:OpenBuildService=true || exit -1
 
-mkdir -p ~/repo/windows
+path=windows/openpetranow-standalone
+mkdir -p ~/repo/$path
 cd delivery
 for f in OpenPetraSetup-*.exe
 do
-  cp $f ~/repo/windows
-  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/windows/$f"
+  cp $f ~/repo/$path
+  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/$path/$f"
 done
