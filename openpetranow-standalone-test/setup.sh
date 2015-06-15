@@ -13,7 +13,7 @@ export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 nant buildWindowsStandalone -D:OpenBuildService=true || exit -1
 
-path=windows/openpetranow-standalone
+path=windows/openpetranow-standalone-test
 mkdir -p ~/repo/$path
 cd delivery
 for f in OpenPetraSetup-*.exe
