@@ -1,6 +1,7 @@
 %define name openpetranow-test
-%define version 2015.03.1
-%define trunkversion master
+%define version 2015.05.99
+%define trunkversion test
+%define branch 201506_prepare_release
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
 
@@ -31,7 +32,7 @@ Server of OpenPetra using Postgresql as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n openpetra-%{trunkversion}
+%setup  -q -n openpetra-%{branch}
 dos2unix setup/setup.build
 %patch1 -p1
 dos2unix js/Default.aspx
@@ -89,6 +90,8 @@ echo "For the first install, now run:"
 echo "  openpetra-server init"
 
 %changelog
+* Thu Jun 25 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- prepare release 2015-06
 * Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - build for CentOS7 and with Xamarin packages
 * Sat Jan 31 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
