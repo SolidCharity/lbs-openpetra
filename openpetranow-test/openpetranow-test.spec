@@ -13,8 +13,8 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
-BuildRequires: nant dos2unix nsis gettext
-Requires: mono xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb
+BuildRequires: nant dos2unix nsis gettext mono-mvc
+Requires: mono mono-mvc xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
 Source: %{trunkversion}.tar.gz
 Source1: base.yml.gz
