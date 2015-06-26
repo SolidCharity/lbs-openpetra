@@ -17,7 +17,7 @@
 +
 +                    if (PrintReportOnClientDelegate != null)
 +                    {
-+                        PrintReportOnClientDelegate("Batch Posting Register", ParamStr);
++                        PrintReportOnClientDelegate("Batch Posting Register", paramStr);
 +                    }
                  }
              }
