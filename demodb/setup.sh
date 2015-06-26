@@ -25,6 +25,9 @@ cd demodata/generated
 unzip ../../generatedDataUsedForDemodatabases.zip
 cd ../../
 
+# apply a patch so that starting and stopping works on Linux and Mono
+patch -p1 < ../OpenPetra.default.targets.xml.patch
+
 nant minimalGenerateSolution || exit -1
 # csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll still references .Net 2.0
 # if we compile against it, we cannot start the server with sqlite because it searches for the wrong dll
@@ -36,7 +39,7 @@ function SaveYmlGzDatabase
 {
 ymlgzfile=$1
 
-  nant startServer &
+  nant startServer
   sleep 3
   cd delivery/bin
   mono PetraServerAdminConsole.exe -C:../../etc/ServerAdmin.config -Command:SaveYmlGz -YmlGzFile:../../$ymlgzfile || exit -1
