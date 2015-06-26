@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum -y install mono-core nant wget tar sqlite unzip || exit -1
+dnf -y install mono-core mono-devel nant wget tar sqlite unzip || exit -1
 
 #repoowner=openpetra
 #branch=master
