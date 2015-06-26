@@ -30,7 +30,7 @@ nant minimalGenerateSolution || exit -1
 # if we compile against it, we cannot start the server with sqlite because it searches for the wrong dll
 rm csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll
 find . -name "*.csproj" -print -exec sed -i 's#<HintPath>.*ThirdParty/SQLite/Mono\.Data\.Sqlite\.dll</HintPath>##g' {} \;
-nant quickCompile recreateDatabase || exit -1
+nant quickCompile recreateDatabase initConfigFiles || exit -1
 
 function SaveYmlGzDatabase
 {
