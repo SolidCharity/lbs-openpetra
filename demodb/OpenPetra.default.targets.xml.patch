@@ -1,5 +1,5 @@
---- inc/nant/OpenPetra.default.targets.xml.orig	2015-06-26 18:52:41.352187836 +0200
-+++ inc/nant/OpenPetra.default.targets.xml	2015-06-26 18:54:35.023219702 +0200
+--- a/inc/nant/OpenPetra.default.targets.xml	2015-06-26 18:52:41.352187836 +0200
++++ b/inc/nant/OpenPetra.default.targets.xml	2015-06-26 18:54:35.023219702 +0200
 @@ -199,10 +199,10 @@
        <delete file="${dir.bin}/sqlite3.dll"/>
        <echo message="in your browser, go to http://localhost:${Server.Port}/"/>
