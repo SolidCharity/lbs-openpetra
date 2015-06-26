@@ -50,7 +50,7 @@ tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_Banki
 %build
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}.%{release}
+nant buildDemoSolidCharityCom -D:ReleaseID=%{version}.%{release}
 
 %install
 rm -rf $RPM_BUILD_ROOT
