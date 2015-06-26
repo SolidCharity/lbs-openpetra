@@ -1,19 +1,17 @@
---- a/inc/nant/OpenPetra.default.targets.xml.orig	2014-06-30 21:38:55.719171001 +0200
-+++ b/inc/nant/OpenPetra.default.targets.xml	2014-06-30 21:37:56.319171000 +0200
-@@ -176,10 +176,12 @@
-   </if>
-   <if test="${'unix'==platform::get-name()}" >
+--- inc/nant/OpenPetra.default.targets.xml.orig	2015-06-26 18:52:41.352187836 +0200
++++ inc/nant/OpenPetra.default.targets.xml	2015-06-26 18:54:35.023219702 +0200
+@@ -199,10 +199,10 @@
+       <delete file="${dir.bin}/sqlite3.dll"/>
        <echo message="in your browser, go to http://localhost:${Server.Port}/"/>
+       <property name="spawnxsp" value="false" overwrite="false"/>
 -      <exec program="xsp4" 
-+      <delete file="${dir.bin}/Mono.Security.dll"/>
-+      <delete file="${dir.bin}/sqlite3.dll"/>
 +      <exec program="bash" 
                workingdir="${dir.delivery}"
--              commandline="--verbose --root . --port ${Server.Port} --applications /:."
--              spawn="false">
+-              commandline="--verbose --nonstop --root . --port ${Server.Port} --applications /:."
+-              spawn="${spawnxsp}">
 +              commandline="-c &quot; xsp4 --nonstop --verbose --root . --port ${Server.Port} --applications /:. &amp; &quot;"
 +              spawn="true">
          <environment>
            <variable name="PATH" path="${environment::get-variable('PATH')};${MonoBinPath}"/>
-           <variable name="MONO_PATH" path="${MonoBinPath}\..\lib\mono\4.0"/>
+           <variable name="MONO_PATH" path="${MonoBinPath}\.."/>
 
