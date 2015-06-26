@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dnf -y install mono-core mono-devel nant wget tar sqlite unzip || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip || exit -1
 
 #repoowner=openpetra
 #branch=master
@@ -25,33 +25,39 @@ cd demodata/generated
 unzip ../../generatedDataUsedForDemodatabases.zip
 cd ../../
 
-nant quickClean deleteBakFiles generateTools recreateDatabase || exit -1
+nant minimalGenerateSolution || exit -1
+# csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll still references .Net 2.0
+# if we compile against it, we cannot start the server with sqlite because it searches for the wrong dll
+rm csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll
+find . -name "*.csproj" -print -exec sed -i 's#<HintPath>.*ThirdParty/SQLite/Mono\.Data\.Sqlite\.dll</HintPath>##g' {} \;
+nant quickCompile recreateDatabase || exit -1
 
 function SaveYmlGzDatabase
 {
 ymlgzfile=$1
 
-  nant startServer
+  nant startServer &
+  sleep 3
   cd delivery/bin
-  mono PetraServerAdminConsole.exe -C:../../etc/PetraServerAdminConsole.config -Command:SaveYmlGz -YmlGzFile:../../$ymlgzfile
+  mono PetraServerAdminConsole.exe -C:../../etc/ServerAdmin.config -Command:SaveYmlGz -YmlGzFile:../../$ymlgzfile || exit -1
   cd ../../
   nant stopServer
 }
 
 # create the base database
-nant resetDatabase
+nant resetDatabase || exit -1
 SaveYmlGzDatabase base.yml.gz
 
 # create a database with one ledger with one year of data
-nant resetDatabase importDemodata
+nant resetDatabase importDemodata || exit -1
 SaveYmlGzDatabase demoWith1ledger.yml.gz
 
 # create a database with a ledger with several years
-nant resetDatabase importDemodata -D:operation=ledgerMultipleYears
+nant resetDatabase importDemodata -D:operation=ledgerMultipleYears || exit -1
 SaveYmlGzDatabase demoMultipleYears.yml.gz
 
 # add a second ledger
-nant importDemodata -D:operation=secondLedger
+nant importDemodata -D:operation=secondLedger || exit -1
 SaveYmlGzDatabase demoWith2ledgers.yml.gz
 
 #upload to Sourceforge
