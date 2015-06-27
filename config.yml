@@ -3,7 +3,7 @@ lbs:
     '21':
       repos: ['https://download.solidcharity.com/repos/tpokorra/nant/fedora/21/lbs-tpokorra-nant.repo', 'http://download.mono-project.com/repo/centos/']
     '22':
-      repos: ['https://copr.fedoraproject.org/coprs/tpokorra/mono/repo/fedora-22/tpokorra-mono-fedora-22.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/fedora/22/lbs-tpokorra-nsis.repo']
+      repos: ['https://copr.fedoraproject.org/coprs/tpokorra/mono/repo/fedora-22/tpokorra-mono-fedora-22.repo']
   centos:
     '6':
       repos: ['http://lbs.solidcharity.com/repos/tpokorra/mono/centos/6/lbs-tpokorra-mono.repo', 'http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/6/lbs-tpokorra-nsis.repo', 'epel-release']
