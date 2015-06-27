@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo || exit -1
 
 #repoowner=openpetra
 #branch=master
@@ -9,14 +9,6 @@ branch=201506_prepare_release
 wget https://github.com/$repoowner/openpetra/archive/$branch.tar.gz
 tar xzf $branch.tar.gz
 cd openpetra-$branch
-
-cat > OpenPetra.build.config << EOF
-<?xml version="1.0"?>
-<project name="OpenPetra-userconfig">
-    <property name="DBMS.Type" value="sqlite"/>
-    <property name="DBMS.Password" value=""/>
-</project>
-EOF
 
 wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/demodata/generatedDataUsedForDemodatabases.zip/download -O generatedDataUsedForDemodatabases.zip
 
@@ -28,11 +20,22 @@ cd ../../
 # apply a patch so that starting and stopping works on Linux and Mono
 patch -p1 < ../OpenPetra.default.targets.xml.patch
 
+PGVERSION=9.4
+PATH=/usr/pgsql-$PGVERSION/bin:$PATH
+ln -s /usr/pgsql-9.2/bin/psql /usr/bin/psql
+service postgresql-$PGVERSION initdb
+PGHBAFILE=/var/lib/pgsql/$PGVERSION/data/pg_hba.conf
+echo "local all petraserver md5
+host all petraserver ::1/128 md5
+host all petraserver 127.0.0.1/32 md5" | cat - $PGHBAFILE > /tmp/out && mv -f /tmp/out $PGHBAFILE
+service postgresql-$PGVERSION start
+chkconfig postgresql-$PGVERSION on
+# avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
+sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
+
+nant createDatabaseUser || exit -1
+
 nant minimalGenerateSolution || exit -1
-# csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll still references .Net 2.0
-# if we compile against it, we cannot start the server with sqlite because it searches for the wrong dll
-rm csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll
-find . -name "*.csproj" -print -exec sed -i 's#<HintPath>.*ThirdParty/SQLite/Mono\.Data\.Sqlite\.dll</HintPath>##g' {} \;
 nant quickCompile recreateDatabase initConfigFiles || exit -1
 
 function SaveYmlGzDatabase
