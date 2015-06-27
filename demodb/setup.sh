@@ -33,10 +33,9 @@ chkconfig postgresql-$PGVERSION on
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
-nant createDatabaseUser || exit -1
 
-nant minimalGenerateSolution || exit -1
-nant quickCompile recreateDatabase initConfigFiles || exit -1
+nant generateSolution initConfigFiles || exit -1
+nant createDatabaseUser recreateDatabase || exit -1
 
 function SaveYmlGzDatabase
 {
