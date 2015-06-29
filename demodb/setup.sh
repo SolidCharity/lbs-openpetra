@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server || exit -1
 
 #repoowner=openpetra
 #branch=master
@@ -18,21 +18,17 @@ unzip ../../generatedDataUsedForDemodatabases.zip
 cd ../../
 
 # apply a patch so that starting and stopping works on Linux and Mono
-patch -p1 < ../OpenPetra.default.targets.xml.patch
+patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
 
-PGVERSION=9.4
-PATH=/usr/pgsql-$PGVERSION/bin:$PATH
-ln -s /usr/pgsql-9.2/bin/psql /usr/bin/psql
-service postgresql-$PGVERSION initdb
-PGHBAFILE=/var/lib/pgsql/$PGVERSION/data/pg_hba.conf
+postgresql-setup --initdb --unit postgresql
+PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf
 echo "local all petraserver md5
 host all petraserver ::1/128 md5
 host all petraserver 127.0.0.1/32 md5" | cat - $PGHBAFILE > /tmp/out && mv -f /tmp/out $PGHBAFILE
-service postgresql-$PGVERSION start
-chkconfig postgresql-$PGVERSION on
+systemctl start postgresql
+systemctl enable postgresql
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
-
 
 nant generateSolution initConfigFiles || exit -1
 nant createDatabaseUser recreateDatabase || exit -1
