@@ -48,7 +48,7 @@ if (($result = file_get_contents($requesturl, false, $context)) === false) {
         die();
 }
 $result = json_decode($result);
-echo print_r($result,true);
+#echo print_r($result,true);
 }
 
 if (true) {
@@ -65,7 +65,7 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 );
 $result = curl_exec($conn);
 curl_close($conn);
-echo $result."\n";
+#echo $result."\n";
 }
 
 
@@ -95,12 +95,12 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 $result = curl_exec($conn);
 curl_close($conn);
 $result = json_decode($result);
-echo print_r($result, true)."\n";
+#echo print_r($result, true)."\n";
 $id = $result->id;
 $upload_url = $result->upload_url;
 # now upload the zip file
 $conn=curl_init();
-$data_string = file_get_contents('/root/lbs-openpetra/nightlydevzip/nightlydevzip/openpetra-nightlydevzip/'.$zipname.'.zip');
+$data_string = file_get_contents('/root/tarball/'.$zipname.'.zip');
 $upload_url = str_replace('{?name}', '?name='.$zipname.'.zip', $upload_url);
 echo "uploading to ".$upload_url."...\n";
 curl_setopt($conn, CURLOPT_CUSTOMREQUEST, 'POST');

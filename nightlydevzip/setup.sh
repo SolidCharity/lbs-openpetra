@@ -27,6 +27,7 @@ rm -Rf csharp/ThirdParty/SQLite/Mono.Data.Sqlite.dll
 cp /usr/lib/mono/4.5/Mono.Data.Sqlite.dll csharp/ThirdParty/SQLite/
 
 nant devzip || exit -1
+mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
 
 #upload to Github
 if [ -f ~/.ssh/github_config.php ]
@@ -34,6 +35,5 @@ then
   php ../github_uploadrelease.php
 fi
 
-mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
 rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='6 days ago'`.zip
 echo download at https://download.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
