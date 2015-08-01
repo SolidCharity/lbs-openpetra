@@ -118,7 +118,7 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 #curl_close($conn);
 #echo $result."\n";
 #echo print_r(json_decode($result),true)."\n";
-$cmd = 'curl -# -XPOST -H "Authorization: Basic '.base64_encode($token).'" -H "Content-Type:application/octet-stream" --data-binary @/root/lbs-openpetra/nightlydevzip/nightlydevzip/openpetra-nightlydevzip/'.$zipname.'.zip '.$upload_url;
+$cmd = 'curl -# -XPOST -H "Authorization: Basic '.base64_encode($token).'" -H "Content-Type:application/octet-stream" --data-binary @/root/tarball/'.$zipname.'.zip '.$upload_url;
 exec($cmd,$result);
 echo print_r($result,true)."\n";
 }
