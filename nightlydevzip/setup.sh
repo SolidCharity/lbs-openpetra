@@ -32,7 +32,7 @@ mv ../openpetra_development_`date +"%Y-%m-%d"`.zip ~/tarball
 #upload to Github
 if [ -f ~/.ssh/github_config.php ]
 then
-  php ../github_uploadrelease.php
+  php ../github_uploadrelease.php || exit -1
 fi
 
 rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='6 days ago'`.zip
