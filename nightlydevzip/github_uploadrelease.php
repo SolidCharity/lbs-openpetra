@@ -55,10 +55,24 @@ if (true) {
 # delete a release
 $releaseId = "1616067";
 $releaseId = $result[0]->id;
+$tag = $result[0]->tag_name;
 $conn=curl_init();
 curl_setopt($conn, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($conn, CURLOPT_USERAGENT, "myClient");
 curl_setopt($conn, CURLOPT_URL, $url."/repos/openpetra/openpetra-nightlydevzip/releases/$releaseId");
+curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($conn, CURLOPT_HTTPHEADER, array(
+    'Authorization: Basic '.base64_encode($user.":".$token))
+);
+$result = curl_exec($conn);
+curl_close($conn);
+#echo $result."\n";
+
+# delete the tag as well
+$conn=curl_init();
+curl_setopt($conn, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($conn, CURLOPT_USERAGENT, "myClient");
+curl_setopt($conn, CURLOPT_URL, $url."/repos/openpetra/openpetra-nightlydevzip/git/refs/tags/$tag");
 curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($conn, CURLOPT_HTTPHEADER, array(
     'Authorization: Basic '.base64_encode($user.":".$token))
