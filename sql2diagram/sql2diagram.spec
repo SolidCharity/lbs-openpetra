@@ -23,7 +23,7 @@ create html documentation for sql database structure
 %build
 aclocal
 autoconf
-automake
+automake --add-missing
 ./configure
 make
 
