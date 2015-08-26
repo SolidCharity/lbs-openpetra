@@ -1,5 +1,5 @@
 %define name sql2diagram
-%define version 0.2
+%define version 0.2.1
 %define DATE    %(date +%%Y%%m%%d)
 
 Summary: create html documentation for sql database structure
@@ -30,7 +30,9 @@ make
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/bin/
+mkdir -p %{buildroot}/usr/share/sql2diagram/template
 cp src/sql2dia %{buildroot}/usr/bin/
+cp template/* %{buildroot}/usr/share/sql2diagram/template
 
 %clean
 # Clean up after ourselves, but be careful in case someone sets a bad buildroot
@@ -38,10 +40,13 @@ cp src/sql2dia %{buildroot}/usr/bin/
 
 %files
 /usr/bin/sql2dia
+/usr/share/sql2diagram/template/*
 
 %post
 
 %changelog
+* Wed Aug 26 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com> - 0.2.1
+- fix build for Fedora 22. include template files
 * Mon Jun 17 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - First build
 
