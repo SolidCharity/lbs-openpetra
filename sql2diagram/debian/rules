@@ -18,7 +18,7 @@ build-stamp:
 	dh_testdir
 
 	# Add here commands to compile the package.
-	( aclocal && autoconf && automake --add-missing && ./configure && make; rm -Rf /tmp/buildroot; mkdir -p /tmp/buildroot/usr/bin; cp src/sql2dia /tmp/buildroot/usr/bin ) 
+	( autoreconf --install && ./configure && make; rm -Rf /tmp/buildroot; mkdir -p /tmp/buildroot/usr/bin; cp src/sql2dia /tmp/buildroot/usr/bin ) 
 
 	touch build-stamp
 

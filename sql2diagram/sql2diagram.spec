@@ -21,9 +21,7 @@ create html documentation for sql database structure
 %setup -q -n sql2diagram-master
 
 %build
-aclocal
-autoconf
-automake --add-missing
+autoreconf --install
 ./configure
 make
 
