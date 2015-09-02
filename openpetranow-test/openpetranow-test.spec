@@ -1,7 +1,7 @@
 %define name openpetranow-test
-%define version 2015.05.99
+%define version 2015.08.99
 %define trunkversion test
-%define branch 201506_prepare_release
+%define branch 20150902_merge_from_ICT
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
 
@@ -90,6 +90,8 @@ echo "For the first install, now run:"
 echo "  openpetra-server init"
 
 %changelog
+* Wed Sep 02 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- prepare release 2015-09
 * Thu Jun 25 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - prepare release 2015-06
 * Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
