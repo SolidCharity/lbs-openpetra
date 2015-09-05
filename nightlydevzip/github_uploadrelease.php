@@ -48,10 +48,10 @@ if (($result = file_get_contents($requesturl, false, $context)) === false) {
         die();
 }
 $result = json_decode($result);
-echo print_r($result,true);
+#echo print_r($result,true);
 }
 
-if (true) {
+if (isset($result[0])) {
 # delete a release
 $releaseId = "1616067";
 $releaseId = $result[0]->id;
@@ -91,7 +91,7 @@ $query_string = "";
 $zipname = "openpetra_development_".date("Y-m-d");
 $tagname = date("Y-m-d");
 $values = array( "tag_name" => $tagname,
-        "prerelease" => "true",
+        "prerelease" => true,
         "target_commitish" => "master"
     );
 $data_string = json_encode($values);
@@ -109,7 +109,7 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 $result = curl_exec($conn);
 curl_close($conn);
 $result = json_decode($result);
-echo print_r($result, true)."\n";
+#echo print_r($result, true)."\n";
 $id = $result->id;
 $upload_url = $result->upload_url;
 # now upload the zip file
