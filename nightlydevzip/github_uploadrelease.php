@@ -48,7 +48,7 @@ if (($result = file_get_contents($requesturl, false, $context)) === false) {
         die();
 }
 $result = json_decode($result);
-#echo print_r($result,true);
+echo print_r($result,true);
 }
 
 if (true) {
