@@ -109,7 +109,7 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 $result = curl_exec($conn);
 curl_close($conn);
 $result = json_decode($result);
-#echo print_r($result, true)."\n";
+echo print_r($result, true)."\n";
 $id = $result->id;
 $upload_url = $result->upload_url;
 # now upload the zip file
@@ -133,8 +133,11 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 #echo $result."\n";
 #echo print_r(json_decode($result),true)."\n";
 $cmd = 'curl --silent -XPOST -H "Authorization: Basic '.base64_encode($token).'" -H "Content-Type:application/octet-stream" --data-binary @/root/tarball/'.$zipname.'.zip '.$upload_url;
-exec($cmd,$result);
-#echo print_r($result,true)."\n";
+exec($cmd,$result,$returnvar);
+if ($returnvar!=0) {
+   echo print_r($result,true)."\n";
+   exit(-1);
+}
 }
 
 
