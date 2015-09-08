@@ -74,7 +74,7 @@ then
   cp -f base.yml.gz demo-databases
   cp -f demo*.yml.gz demo-databases
   cd demo-databases
-  msg="commit latest demo databases " `date +%Y%m%d`
+  msg="commit latest demo databases `date +%Y%m%d`"
   git config --global user.name "LBS BuildBot"
   git config --global user.email "buildbot@lbs.solidcharity.com"
   git commit -a -m "$msg" || exit -1
