@@ -62,13 +62,20 @@ SaveYmlGzDatabase demoMultipleYears.yml.gz
 nant importDemodata -D:operation=secondLedger || exit -1
 SaveYmlGzDatabase demoWith2ledgers.yml.gz
 
-#upload to Sourceforge
-if [ -f ~/.ssh/id_rsa_cronjob ]
+#upload to Github
+if [ -f ~/.ssh/gitkey ]
 then
   eval `ssh-agent`
-  ssh-add ~/.ssh/id_rsa_cronjob
-  echo "put base.yml.gz" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/demodata || exit -1
-  echo "put demo*.yml.gz" | sftp -o StrictHostKeyChecking=no pokorra@frs.sourceforge.net:/home/frs/project/openpetraorg/openpetraorg/demodata || exit -1
+  ssh-add ~/.ssh/gitkey
+  ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+  git clone --depth 1 git@github.com:openpetra/demo-databases.git || exit -1
+
+  alias cp=cp
+  cp -f base.yml.gz demo-databases
+  cp -f demo*.yml.gz demo-databases
+  cd demo-databases
+  msg="commit latest demo databases " `date +%Y%m%d`
+  git commit -a -m "$msg" || exit -1
   kill $SSH_AGENT_PID
 fi
 
