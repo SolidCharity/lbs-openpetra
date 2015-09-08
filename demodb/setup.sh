@@ -11,7 +11,7 @@ tar xzf $branch.tar.gz
 cd openpetra-$branch
 
 generatedData=https://github.com/openpetra/demo-databases/raw/master/generatedDataUsedForDemodatabases.zip
-wget $generatedDataUsed -O generatedDataUsedForDemodatabases.zip
+wget $generatedData -O generatedDataUsedForDemodatabases.zip
 
 mkdir -p demodata/generated
 cd demodata/generated
