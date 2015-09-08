@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server git || exit -1
 
 repoowner=tpokorra
 branch=somebranch
@@ -75,7 +75,10 @@ then
   cp -f demo*.yml.gz demo-databases
   cd demo-databases
   msg="commit latest demo databases " `date +%Y%m%d`
+  git config --global user.name "LBS BuildBot"
+  git config --global user.email "buildbot@lbs.solidcharity.com"
   git commit -a -m "$msg" || exit -1
+  git push || exit -1
   kill $SSH_AGENT_PID
 fi
 
