@@ -1,6 +1,8 @@
 #!/bin/bash
 
 yum install -y epel
+#install the key from Xamarin
+rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 yum install -y wget sudo mono mono-mvc mono-wcf nant xsp postgresql-server lsb
 yum install -y xorg-x11-server-Xvfb patch
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz || exit -1
