@@ -1,7 +1,7 @@
 %define name openpetranow-test
-%define version 2015.08.99
+%define version %{VERSION}
 %define trunkversion test
-%define branch 20150909_release_2015-09
+%define branch %{BRANCH}
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
 

@@ -1,8 +1,6 @@
 lbs:
   source:
     download: 
-      #master.tar.gz: "https://github.com/openpetra/openpetra/archive/master.tar.gz"
-      test.tar.gz: "https://github.com/tpokorra/openpetra/archive/20150909_release_2015-09.tar.gz"
       base.yml.gz: "https://github.com/openpetra/demo-databases/raw/master/base.yml.gz"
       plugin_bankimport.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_Bankimport/archive/master.tar.gz"
       plugin_bankimport_csv.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportCSV/archive/master.tar.gz"
