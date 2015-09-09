@@ -5,8 +5,9 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 
 yum install -y mono-complete nant dos2unix nsis gettext patch
 
-tar xzf ~/sources/master.tar.gz
-cd openpetra-master
+tar xzf ~/sources/sources.tar.gz
+dir=$(find . -type d -name openpetra-*)
+cd $dir
 patch -p1 < ../StandaloneNoClientCache.patch || exit -1
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
