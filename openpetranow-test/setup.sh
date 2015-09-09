@@ -14,6 +14,7 @@ if [ ! -z "$1" ]; then
   fi
 fi
 
+yum install -y wget
 if [[ "$branch" == "master" ]]
 then
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
