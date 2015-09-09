@@ -40,4 +40,5 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 /usr/bin/Xvfb :99 -screen 0 1024x768x24 -fbdir /var/run -ac >& /dev/null &
+export DISPLAY=:99
 nant test-client || exit -1
