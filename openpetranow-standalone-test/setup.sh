@@ -27,7 +27,7 @@ else
   wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 fi
 
-tar xzf ~/sources/sources.tar.gz
+tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)
 cd $dir
 export NSISDIR=/usr/local/nsis/
