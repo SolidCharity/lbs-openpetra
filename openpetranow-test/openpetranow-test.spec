@@ -50,6 +50,8 @@ tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_Banki
 %build
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
+# adjust for test.solidcharity.com
+sed -i "s#demo\.solidcharity\.com#test.solidcharity.com#g" setup/setup.build
 nant buildDemoSolidCharityCom -D:ReleaseID=%{version}.%{release}
 
 %install
