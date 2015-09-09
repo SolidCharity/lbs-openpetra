@@ -5,7 +5,7 @@ branch=20150909_release_2015-09
 version=2015.09.0
 if [ ! -z "$1" ]; then
   branch=$1
-  version=`echo $version | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
+  version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
   version="$version.0"
   echo "calculated version: $version"
   if [ -z "$version" ]
