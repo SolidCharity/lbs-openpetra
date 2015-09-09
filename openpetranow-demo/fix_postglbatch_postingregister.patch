@@ -9,14 +9,15 @@
  
          private const int POSTING_LOGLEVEL = 1;
  
-@@ -1362,7 +1362,10 @@ namespace Ict.Petra.Server.MFinance.Common
-                         "param_ledger_name=\"" + LedgerName + "\""
+@@ -1936,7 +1936,11 @@
                      };
-                     String ParamStr = String.Join(",", Params);
--                    PrintReportOnClientDelegate("Batch Posting Register", ParamStr);
+ 
+                     String paramStr = String.Join(",", Params);
+-                    PrintReportOnClientDelegate("Batch Posting Register", paramStr);
++
 +                    if (PrintReportOnClientDelegate != null)
 +                    {
-+                        PrintReportOnClientDelegate("Batch Posting Register", ParamStr);
++                        PrintReportOnClientDelegate("Batch Posting Register", paramStr);
 +                    }
                  }
              }

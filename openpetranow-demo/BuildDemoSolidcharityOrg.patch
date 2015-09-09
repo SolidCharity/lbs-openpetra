@@ -1,15 +1,16 @@
---- a/setup/setup.build	2014-11-24 11:28:10.436749624 +0000
-+++ b/setup/setup.build	2014-11-24 11:32:10.840742309 +0000
-@@ -294,16 +295,30 @@
+--- a/setup/setup.build	2015-06-26 08:43:09.159500484 +0200
++++ b/setup/setup.build	2015-06-26 08:45:21.311494309 +0200
+@@ -613,4 +613,37 @@
+   </if>
+ </target> 
  
- <target name="buildServerCentOSPostgresqlOBS">
-   <property name="WithLinuxClient" value="false"/>
--  <property name="WithWindowsClient" value="false"/>
++<target name="buildDemoSolidCharityCom">
++  <property name="WithLinuxClient" value="false"/>
 +  <property name="WithWindowsClient" value="true"/>
 +  <property name="OpenBuildService" value="true"/>
-   <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
-   <property name="HostedPort" value="9000"/>
-   <property name="PostgreSQL.Version" value="9.2"/>
++  <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
++  <property name="HostedPort" value="9000"/>
++  <property name="PostgreSQL.Version" value="9.2"/>
 +  <property name="OrgName" value="by SolidCharity.com" overwrite="true"/>
 +  <property name="OrgNameWithoutSpace" value="Demo" overwrite="true"/>
 +  <property name="HostedServer" value="demo.solidcharity.com" overwrite="true"/>
@@ -17,12 +18,11 @@
 +  <property name="RemotePatchesURL" value="https://demo.solidcharity.com/client/" overwrite="true"/>
 +  <property name="HostedServerURL" value="https://demo.solidcharity.com" overwrite="true"/>
 +
-   <call target="nanttasks"/>
-   <call target="minimalGenerateSolution"/>
--  <property name="solution" value="Server"/>
-   <call target="quickCompile"/>
-   <property name="DBMS.Type" value="postgresql"/>
-   <call target="createSQLStatements"/>
++  <call target="nanttasks"/>
++  <call target="minimalGenerateSolution"/>
++  <call target="quickCompile"/>
++  <property name="DBMS.Type" value="postgresql"/>
++  <call target="createSQLStatements"/>
 +  <call target="translation"/>
 +
 +  <!-- build Remote Setup Windows installer -->
@@ -30,6 +30,12 @@
 +  <call target="prepareSetupDirForTarFile"/>
 +  <call target="setupRemote"/>
 +
-   <property name="BuildArchive" value="server" overwrite="true"/>
-   <call target="prepareSetupDirForTarFile"/>
-   <move file="${setupDir}/centos/openpetra-server.sh" tofile="${setupDir}/openpetra-server.sh"/>
++  <property name="BuildArchive" value="server" overwrite="true"/>
++  <call target="prepareSetupDirForTarFile"/>
++  <move file="${dir.setup}/centos/openpetra-server.sh" tofile="${dir.setup}/openpetra-server.sh"/>
++
++  <!-- result is in dir.setup for building the rpm package -->
++</target>
++
+ </project>
+

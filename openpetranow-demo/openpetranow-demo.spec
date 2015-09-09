@@ -1,6 +1,6 @@
 %define name openpetranow-demo
-%define version 2015.01.0
-%define trunkversion 20150131_fixdemo
+%define version %{VERSION}
+%define branch %{BRANCH}
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
 
@@ -12,10 +12,10 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
-BuildRequires: nant dos2unix nsis gettext
-Requires: mono xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb
+BuildRequires: nant dos2unix nsis gettext mono-mvc mono-wcf
+Requires: mono mono-mvc mono-wcf xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
-Source: %{trunkversion}.tar.gz
+Source:  sources.tar.gz
 Source1: base.yml.gz
 Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
@@ -31,7 +31,7 @@ Server of OpenPetra using Postgresql as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n openpetra-%{trunkversion}
+%setup  -q -n openpetra-%{branch}
 dos2unix setup/setup.build
 %patch1 -p1
 dos2unix js/Default.aspx
@@ -49,7 +49,7 @@ tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_Banki
 %build
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-nant buildServerCentOSPostgresqlOBS -D:ReleaseID=%{version}.%{release}
+nant buildDemoSolidCharityCom -D:ReleaseID=%{version}.%{release}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -89,6 +89,10 @@ echo "For the first install, now run:"
 echo "  openpetra-server init"
 
 %changelog
+* Wed Sep 02 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- prepare release 2015-09
+* Thu Jun 25 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- prepare release 2015-06
 * Tue Feb 17 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - build for CentOS7 and with Xamarin packages
 * Sat Jan 31 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
