@@ -1,6 +1,5 @@
 %define name openpetranow-test
 %define version %{VERSION}
-%define trunkversion test
 %define branch %{BRANCH}
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
@@ -16,7 +15,7 @@ AutoReqProv: no
 BuildRequires: nant dos2unix nsis gettext mono-mvc mono-wcf
 Requires: mono mono-mvc mono-wcf xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb
 BuildRoot: /tmp/buildroot
-Source: %{trunkversion}.tar.gz
+Source:  sources.tar.gz
 Source1: base.yml.gz
 Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
