@@ -30,7 +30,6 @@ fi
 tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)
 cd $dir
-patch -p1 < ../StandaloneNoClientCache.patch || exit -1
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
