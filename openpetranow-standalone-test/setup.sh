@@ -39,10 +39,10 @@ fi
 nant buildWindowsStandalone -D:OpenBuildService=true -D:ReleaseID=$version || exit -1
 
 path=windows/openpetranow-standalone-test
-mkdir -p ~/repo/$path
+mkdir -p ~/repo/$path/$branch
 cd delivery
 for f in OpenPetraSetup-*.exe
 do
-  cp $f ~/repo/$path
-  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/$path/$f"
+  cp $f ~/repo/$path/$branch
+  echo "download the installer at https://download.solidcharity.com/repos/tpokorra/openpetra/centos/7/$path/$branch/$f"
 done
