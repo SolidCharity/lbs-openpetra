@@ -115,11 +115,11 @@ $upload_url = $result->upload_url;
 # now upload the zip file
 $conn=curl_init();
 $data_string = file_get_contents('/root/tarball/'.$zipname.'.zip');
-$upload_url = str_replace('{?name}', '?name='.$zipname.'.zip', $upload_url);
+$upload_url = str_replace('{?name,label}', '?name='.$zipname.'.zip', $upload_url);
 echo "uploading to ".$upload_url."...\n";
 curl_setopt($conn, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($conn, CURLOPT_USERAGENT, "myClient");
-curl_setopt($conn, CURLOPT_URL, str_replace('{?name}', '?name='.$zipname.'.zip', $upload_url));
+curl_setopt($conn, CURLOPT_URL, $upload_url);
 curl_setopt($conn, CURLOPT_TIMEOUT, 10*60); // seconds
 curl_setopt($conn, CURLOPT_BINARYTRANSFER, TRUE);
 curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
