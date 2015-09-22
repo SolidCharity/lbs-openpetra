@@ -20,6 +20,7 @@ Source1: base.yml.gz
 Source2: plugin_bankimport.tar.gz
 Source3: plugin_bankimport_csv.tar.gz
 Source4: plugin_bankimport_mt940.tar.gz
+Source5: i18n.tar.gz
 Patch1: BuildDemoSolidcharityOrg.patch
 Patch2: DefaultPageWithClientDownload.patch
 Patch3: NoChangePasswordDemo.patch
@@ -45,6 +46,10 @@ dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
+tar xzf ../../SOURCES/i18n.tar.gz
+mv openpetra-i18n-master/i18n/de.po i18n/de_DE.po
+mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
+mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
 
 %build
 export NSISDIR=/usr/local/nsis/

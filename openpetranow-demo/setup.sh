@@ -22,6 +22,7 @@ then
 else
   wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 fi
+wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow-demo.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow-demo.spec

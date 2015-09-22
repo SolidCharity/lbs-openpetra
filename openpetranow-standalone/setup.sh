@@ -26,10 +26,15 @@ then
 else
   wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 fi
+wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
 
 tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)
+tar xzf i18n.tar.gz
 cd $dir
+mv ../openpetra-i18n-master/i18n/de.po i18n/de_DE.po || exit -1
+mv ../openpetra-i18n-master/i18n/es.po i18n/es_ES.po || exit -1
+mv ../openpetra-i18n-master/i18n/da.po i18n/da_DK.po || exit -1
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
