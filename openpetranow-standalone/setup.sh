@@ -1,8 +1,7 @@
 #!/bin/bash
 
-branch=master
-branch=20150909_release_2015-09
-version=2015.09.0
+. env.sh
+
 if [ ! -z "$1" ]; then
   branch=$1
   version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
@@ -39,7 +38,6 @@ then
 fi
 nant buildWindowsStandalone -D:OpenBuildService=true -D:ReleaseID=$version || exit -1
 
-path=windows/openpetranow-standalone
 mkdir -p ~/repo/$path/$branch
 cd delivery
 for f in OpenPetraSetup-*.exe
