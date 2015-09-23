@@ -5,7 +5,7 @@
 if [ ! -z "$1" ]; then
   branch=$1
   version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-  version="$version.0"
+  version="$version.$subversion"
   echo "calculated version: $version"
   if [ -z "$version" ]
   then
@@ -19,12 +19,7 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 
 yum install -y mono-complete nant dos2unix nsis gettext patch wget
 
-if [[ "$branch" == "master" ]]
-then
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-else
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-fi
+wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
 
 tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)

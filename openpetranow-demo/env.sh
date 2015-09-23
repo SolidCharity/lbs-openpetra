@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export branch=master
-export version=2015.08
+export subversion=1
+export giturl=https://github.com/openpetra/openpetra/archive
 export kindOfRelease=demo
 

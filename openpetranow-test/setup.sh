@@ -5,7 +5,7 @@
 if [ ! -z "$1" ]; then
   branch=$1
   version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-  version="$version.0"
+  version="$version.$subversion"
   echo "calculated version: $version"
   if [ -z "$version" ]
   then
@@ -15,12 +15,8 @@ if [ ! -z "$1" ]; then
 fi
 
 yum install -y wget
-if [[ "$branch" == "master" ]]
-then
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-else
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-fi
+
+wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
 wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow-${kindOfRelease}.spec

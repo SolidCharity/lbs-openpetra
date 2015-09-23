@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export branch=master
-export version=2015.08
+export subversion=0
+export giturl=https://github.com/tpokorra/openpetra/archive
 export kindOfRelease=test
-
