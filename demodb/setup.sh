@@ -10,13 +10,13 @@ wget https://github.com/$repoowner/openpetra/archive/$branch.tar.gz
 tar xzf $branch.tar.gz
 cd openpetra-$branch
 
-generatedData=https://github.com/openpetra/demo-databases/raw/master/generatedDataUsedForDemodatabases.zip
-wget $generatedData -O generatedDataUsedForDemodatabases.zip
+generatedData=https://github.com/openpetra/demo-databases/archive/master.tar.gz
+wget $generatedData -O demodata.tar.gz
+tar xzf demodata.tar.gz
 
 mkdir -p demodata/generated
-cd demodata/generated
-unzip ../../generatedDataUsedForDemodatabases.zip
-cd ../../
+mv demo-databases-master/generatedDataUsedForDemodatabases/*.csv demodata/generated
+rm -Rf demo-databases-master
 
 # apply a patch so that starting and stopping works on Linux and Mono
 patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
