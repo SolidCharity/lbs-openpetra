@@ -29,7 +29,24 @@ export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
 then
-  version=`cat db/version.txt | awk -F. '{print $1"."$2".99.0"}'`
+  version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
+  newrelease=0
+  if [ -d ~/repo/$path/$branch ]
+  then
+    for f in ~/repo/$path/$branch/OpenPetraSetup-$version.*.exe
+    do
+      if [ ! -f "$f" ]
+      then
+        break;
+      fi
+      release=`basename $f | awk -F. '{print $4}'`
+      if [ $release -ge $newrelease ]
+      then
+        newrelease=$((release+1))
+      fi
+    done
+  fi
+  version=$version"."$newrelease
 fi
 nant buildWindowsStandalone -D:OpenBuildService=true -D:ReleaseID=$version || exit -1
 
