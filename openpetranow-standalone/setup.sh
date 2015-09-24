@@ -29,7 +29,7 @@ export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
 then
-  version=`cat db/version.txt | awk -F. '{print $1.$2.99.0}'`
+  version=`cat db/version.txt | awk -F. '{print $1"."$2".99.0"}'`
 fi
 nant buildWindowsStandalone -D:OpenBuildService=true -D:ReleaseID=$version || exit -1
 
