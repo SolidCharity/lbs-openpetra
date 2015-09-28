@@ -23,7 +23,7 @@ if (($result = file_get_contents($requesturl, false, $context)) === false) {
 	echo "Problem"."\n";
 	var_dump($http_response_header);
 	echo "\n";
-	die();
+        exit(-1);
 }
 echo print_r(json_decode($result),true);
 }
@@ -45,7 +45,7 @@ if (($result = file_get_contents($requesturl, false, $context)) === false) {
   echo "Problem"."\n";
   var_dump($http_response_header);
         echo "\n";
-        die();
+        exit(-1);
 }
 $result = json_decode($result);
 #echo print_r($result,true);
