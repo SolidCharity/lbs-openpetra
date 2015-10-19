@@ -134,6 +134,7 @@ curl_setopt($conn, CURLOPT_HTTPHEADER, array(
 #echo print_r(json_decode($result),true)."\n";
 $cmd = 'curl --silent -XPOST -H "Authorization: Basic '.base64_encode($token).'" -H "Content-Type:application/octet-stream" --data-binary @/root/tarball/'.$zipname.'.zip '.$upload_url;
 exec($cmd,$result,$returnvar);
+echo print_r($result,true)."\n";
 if ($returnvar!=0) {
    echo print_r($result,true)."\n";
    exit(-1);
