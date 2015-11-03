@@ -7,7 +7,7 @@ if [ ! -z "$1" ]; then
   if [[ "$branch" != "master" ]]
   then
     version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-    version="$version.$subversion"
+    version="$version"
     echo "calculated version: $version"
     if [ -z "$version" ]
     then
