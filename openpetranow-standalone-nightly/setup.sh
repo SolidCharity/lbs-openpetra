@@ -24,7 +24,7 @@ wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
 tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)
 cd $dir
-nant translation
+nant generateTools translation || exit -1
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
