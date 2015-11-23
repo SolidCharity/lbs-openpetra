@@ -46,6 +46,7 @@ dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
+tar xzf ../../SOURCES/plugin_bankimport_camt.tar.gz && mv OpenPetraPlugin_BankimportCAMT-master csharp/ICT/Petra/Plugins/BankimportCAMT
 tar xzf ../../SOURCES/i18n.tar.gz
 mv openpetra-i18n-master/i18n/de.po i18n/de_DE.po
 mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
