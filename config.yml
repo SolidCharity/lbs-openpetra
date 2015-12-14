@@ -1,7 +1,7 @@
 lbs:
   fedora:
-    '22':
-      repos: ['https://copr.fedoraproject.org/coprs/tpokorra/mono/repo/fedora-22/tpokorra-mono-fedora-22.repo']
+    '23':
+      repos: ['https://lbs.solidcharity.com/repos/tpokorra/openpetra/fedora/23/lbs-tpokorra-openpetra.repo']
   centos:
     '7':
       repos: ['http://download.lbs.solidcharity.com/repos/tpokorra/nsis/centos/7/lbs-tpokorra-nsis.repo', 'https://copr.fedoraproject.org/coprs/tpokorra/mono-4.2/repo/epel-7/tpokorra-mono-4.2-epel-7.repo', 'epel-release']
