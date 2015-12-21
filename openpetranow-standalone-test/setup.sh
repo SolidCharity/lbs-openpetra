@@ -22,9 +22,20 @@ yum install -y mono-devel libgdiplus-devel liberation-mono-fonts nant dos2unix n
 wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
 
 tar xzf sources.tar.gz
+srcdir=`pwd`
 dir=$(find . -type d -name openpetra-*)
 cd $dir
+tar xzf $srcdir/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
+tar xzf $srcdir/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
+tar xzf $srcdir/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
+tar xzf $srcdir/plugin_bankimport_camt.tar.gz && mv OpenPetraPlugin_BankimportCAMT-master csharp/ICT/Petra/Plugins/BankimportCAMT
+
+tar xzf $srcdir/i18n.tar.gz
+mv openpetra-i18n-master/i18n/de.po i18n/de_DE.po
+mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
+mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
 nant translation
+
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 if [[ "$branch" == "master" ]]
