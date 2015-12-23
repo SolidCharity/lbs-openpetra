@@ -2,6 +2,8 @@ lbs:
   source:
     download: 
       base.yml.gz: "https://github.com/openpetra/demo-databases/raw/master/base.yml.gz"
+      i18n.tar.gz: "https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz"
       plugin_bankimport.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_Bankimport/archive/master.tar.gz"
       plugin_bankimport_csv.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportCSV/archive/master.tar.gz"
       plugin_bankimport_mt940.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportMT940/archive/master.tar.gz"
+      plugin_bankimport_camt.tar.gz: "https://github.com/SolidCharity/OpenPetraPlugin_BankimportCAMT/archive/master.tar.gz"

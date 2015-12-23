@@ -5,7 +5,6 @@
 if [ ! -z "$1" ]; then
   branch=$1
   version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-  version="$version.$subversion"
   echo "calculated version: $version"
   if [ -z "$version" ]
   then
