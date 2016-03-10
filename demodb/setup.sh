@@ -25,7 +25,7 @@ rm -Rf demo-databases-master
 # apply a patch so that starting and stopping works on Linux and Mono
 patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
 
-postgresql-setup --initdb --unit postgresql
+postgresql-setup --initdb --unit postgresql || exit -1
 PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf
 echo "local all petraserver md5
 host all petraserver ::1/128 md5
