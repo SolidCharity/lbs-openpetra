@@ -31,7 +31,7 @@ then
   ssh-add ~/.ssh/id_rsa_cronjob
   localmachine=1
   echo "put ../codedoc.tar.gz" | sftp -o StrictHostKeyChecking=no upload@10.0.3.33:codedoc || localmachine=0
-  if [ $localmachine = 1 ]
+  if [ $localmachine -eq 1 ]
   then
     ssh -o StrictHostKeyChecking=no upload@10.0.3.33 "cd codedoc; tar xzf codedoc.tar.gz" || exit -1
   else
