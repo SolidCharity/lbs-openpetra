@@ -4,7 +4,7 @@
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server git || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server git libsodium || exit -1
 
 repoowner=tpokorra
 branch=somebranch
