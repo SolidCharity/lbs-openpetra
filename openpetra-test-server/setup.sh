@@ -10,6 +10,9 @@ yum install -y epel
 #rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 yum install -y wget sudo mono-devel mono-mvc mono-winfx mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp postgresql-server lsb libsodium
 
+# for tests with nunit console, we cannot specify the dll mapping for libsodium in a config file
+sed -i 's#</configuration>#<dllmap dll="libsodium" target="libsodium.so.13" os="!windows"/>\n</configuration>#g' /etc/mono/config
+
 if [[ "$branch" == "master" ]]
 then
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
