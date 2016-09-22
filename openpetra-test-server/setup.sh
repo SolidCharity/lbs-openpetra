@@ -29,6 +29,7 @@ PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf
 echo "local all petraserver md5
 host all petraserver ::1/128 md5
 host all petraserver 127.0.0.1/32 md5" | cat - $PGHBAFILE > /tmp/out && mv -f /tmp/out $PGHBAFILE
+/sbin/restorecon -v /var/lib/pgsql/data/pg_hba.conf
 systemctl start postgresql
 systemctl enable postgresql
 
