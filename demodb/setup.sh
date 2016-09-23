@@ -25,11 +25,18 @@ rm -Rf demo-databases-master
 # apply a patch so that starting and stopping works on Linux and Mono
 patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
 
+# on Fedora 24, there is libsodium.so.18
+for f in inc/template/etc/*.config
+do
+  sed -i "s/libsodium.so.13/libsodium.so.18/g" $f
+done
+
 postgresql-setup --initdb --unit postgresql || exit -1
 PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf
 echo "local all petraserver md5
 host all petraserver ::1/128 md5
 host all petraserver 127.0.0.1/32 md5" | cat - $PGHBAFILE > /tmp/out && mv -f /tmp/out $PGHBAFILE
+/sbin/restorecon -v /var/lib/pgsql/data/pg_hba.conf
 systemctl start postgresql
 systemctl enable postgresql
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
