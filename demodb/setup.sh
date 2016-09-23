@@ -42,6 +42,9 @@ systemctl enable postgresql
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
+# workaround for Fedora 24
+export LANG=C
+
 nant generateSolution initConfigFiles || exit -1
 nant createDatabaseUser recreateDatabase || exit -1
 
