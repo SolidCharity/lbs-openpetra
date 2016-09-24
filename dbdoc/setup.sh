@@ -9,8 +9,8 @@ dnf -y install mono-core mono-devel libgdiplus-devel nant wget tar sqlite sql2di
 fedorarelease=$(rpm -q --queryformat '%{VERSION}\n' fedora-release)
 if [ $fedorarelease -ge 24 ]
 then
-  dnf install glibc-all-langpacks
-  export LANG=C
+  # create the missing locale
+  localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
 fi
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
