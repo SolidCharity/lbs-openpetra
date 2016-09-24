@@ -6,13 +6,6 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 dnf -y install mono-core mono-devel libgdiplus-devel nant wget tar sqlite sql2diagram dia openssh-clients || exit 1
 
-fedorarelease=$(rpm -q --queryformat '%{VERSION}\n' fedora-release)
-if [ $fedorarelease -ge 24 ]
-then
-  # need to install the locales
-  dnf -y install glibc-locale-source
-fi
-
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
 #wget https://github.com/tpokorra/openpetra/archive/master.tar.gz
 tar xzf master.tar.gz
