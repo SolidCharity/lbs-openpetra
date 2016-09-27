@@ -11,9 +11,21 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono-devel libgdiplus-devel xsp mono-mvc mono-data-sqlite liberation-mono-fonts nant wget tar sqlite php-cli curl gettext libsodium
 
-# on Fedora 24, there is libsodium.so.18
+# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13
 cd /usr/lib64
-ln -s libsodium.so.18 libsodium.so
+if [ -f libsodium.so.18 ]
+then
+  ln -s libsodium.so.18 libsodium.so
+elif [ -f libsodium.so.13 ]
+then
+  ln -s libsodium.so.13 libsodium.so
+elif [ -f libsodium.so ]
+  echo "there is already a libsodium.so"
+else
+  echo "cannot create link for libsodium.so"
+  exit -1
+fi
+
 cd -
 
 if [[ "$branch" == "master" ]]
