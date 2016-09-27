@@ -11,6 +11,11 @@ yum install -y epel
 yum install -y wget sudo mono-devel mono-mvc mono-winfx mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp sqlite lsb libsodium
 yum install -y xorg-x11-server-Xvfb patch
 
+# on CentOS7, there is libsodium.so.13
+cd /usr/lib64
+ln -s libsodium.so.13 libsodium.so
+cd -
+
 if [[ "$branch" == "master" ]]
 then
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1

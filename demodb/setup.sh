@@ -26,10 +26,9 @@ rm -Rf demo-databases-master
 patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
 
 # on Fedora 24, there is libsodium.so.18
-for f in inc/template/etc/*.config
-do
-  sed -i "s/libsodium.so.13/libsodium.so.18/g" $f
-done
+cd /usr/lib64
+ln -s libsodium.so.18 libsodium.so
+cd -
 
 postgresql-setup --initdb --unit postgresql || exit -1
 PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf

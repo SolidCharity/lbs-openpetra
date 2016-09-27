@@ -11,6 +11,11 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono-devel libgdiplus-devel xsp mono-mvc mono-data-sqlite liberation-mono-fonts nant wget tar sqlite php-cli curl gettext libsodium
 
+# on Fedora 24, there is libsodium.so.18
+cd /usr/lib64
+ln -s libsodium.so.18 libsodium.so
+cd -
+
 if [[ "$branch" == "master" ]]
 then
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
