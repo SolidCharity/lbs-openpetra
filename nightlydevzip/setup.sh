@@ -20,6 +20,7 @@ elif [ -f libsodium.so.13 ]
 then
   ln -s libsodium.so.13 libsodium.so
 elif [ -f libsodium.so ]
+then
   echo "there is already a libsodium.so"
 else
   echo "cannot create link for libsodium.so"
