@@ -4,7 +4,7 @@
 
 if [ ! -z "$1" ]; then
   branch=$1
-  if [[ "$branch" != "master" ]]
+  if [[ "$branch" != "master" && "$branch" != "test" ]]
   then
     version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
     echo "calculated version: $version"
@@ -18,12 +18,18 @@ fi
 
 yum install -y wget
 
-wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
-wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
-
 if [[ "$branch" == "master" ]]
 then
-  version=`tar xzf sources.tar.gz openpetra-master/db/version.txt -O | awk -F- '{print $1}'`
+  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+else
+  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+fi
+
+wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
+
+if [[ "$branch" == "master" || "$branch" == "test" ]]
+then
+  version=`tar xzf sources.tar.gz openpetra-$branch/db/version.txt -O | awk -F- '{print $1}'`
 fi
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow-${kindOfRelease}.spec
