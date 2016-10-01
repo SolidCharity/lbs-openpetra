@@ -1,6 +1,6 @@
---- a/setup/setup.build	2015-06-26 08:43:09.159500484 +0200
-+++ b/setup/setup.build	2015-06-26 08:45:21.311494309 +0200
-@@ -613,4 +613,37 @@
+--- a/setup/setup.build	2016-09-29 06:05:52.252400687 +0000
++++ b/setup/setup.build	2016-09-29 06:06:44.200398971 +0000
+@@ -639,6 +639,39 @@
    </if>
  </target> 
  
@@ -37,5 +37,6 @@
 +  <!-- result is in dir.setup for building the rpm package -->
 +</target>
 +
- </project>
-
+ <target name="packageReports">
+        <exec program="${dir.delivery}/bin/Ict.Tools.PackageReports.exe" commandline="&quot;${dir.root}/XmlReports&quot; &quot;${dir.delivery}&quot;" />
+ </target>
