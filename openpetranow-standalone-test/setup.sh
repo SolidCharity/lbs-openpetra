@@ -4,7 +4,7 @@
 
 if [ ! -z "$1" ]; then
   branch=$1
-  if [[ "$branch" != "master" && "$branch" != "test" ]]
+  if [[ "$branch" != "master" && "$branch" != "test" ]]; then
     version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
     echo "calculated version: $version"
     if [ -z "$version" ]
