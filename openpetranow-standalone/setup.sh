@@ -4,12 +4,14 @@
 
 if [ ! -z "$1" ]; then
   branch=$1
-  version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-  echo "calculated version: $version"
-  if [ -z "$version" ]
-  then
-    echo "cannot make a version number out of $branch"
-    exit -1
+  if [[ "$branch" != "master" && "$branch" != "test" ]]
+    version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
+    echo "calculated version: $version"
+    if [ -z "$version" ]
+    then
+      echo "cannot make a version number out of $branch"
+      exit -1
+    fi
   fi
 fi
 
@@ -37,7 +39,7 @@ mv openpetra-i18n-master/i18n/da.po $dir/i18n/da_DK.po || exit -1
 cd $dir
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-if [[ "$branch" == "master" ]]
+if [[ "$branch" == "master" || "$branch" == "test" ]]
 then
   version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
 else
