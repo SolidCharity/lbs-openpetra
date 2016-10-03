@@ -3,6 +3,12 @@
 %define branch %{BRANCH}
 %define MonoPath /usr/
 %define OpenPetraServerPath /usr/local/openpetra
+%if 0%{?fedora} >= 24
+%define LIBSODIUM_VERSION 18
+%else
+# for CentOS7
+%define LIBSODIUM_VERSION 13
+%endif
 
 Summary: server of OpenPetra using Postgresql as database backend
 Name: %{name}
@@ -81,6 +87,8 @@ chmod a+w $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client/
 cp ../../SOURCES/base.yml.gz $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db30
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cp `pwd`/setup/petra0300/linuxserver/postgresql/centos/openpetra-server.service $RPM_BUILD_ROOT/usr/lib/systemd/system
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/libsodium*.dll
+ln -s /usr/lib64/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin30/libsodium.so
 
 %clean
 # Clean up after ourselves, but be careful in case someone sets a bad buildroot
@@ -97,6 +105,8 @@ echo "For the first install, now run:"
 echo "  openpetra-server init"
 
 %changelog
+* Mon Oct 03 2016 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- prepare release 2016-07
 * Wed Sep 02 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - prepare release 2015-09
 * Thu Jun 25 2015 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
