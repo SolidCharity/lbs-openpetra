@@ -7,7 +7,7 @@ if [ ! -z "$1" ]; then
   if [[ "$branch" != "master" && "$branch" != "test" ]]
   then
     version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-    countdots = `echo "$version" | grep -o "\." | wc -l`
+    countdots=`echo "$version" | grep -o "\." | wc -l`
     if [[ $countdots == 1 ]]
     then
       version=$version".0"
