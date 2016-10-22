@@ -30,8 +30,7 @@ Source5: i18n.tar.gz
 Patch1: BuildDemoSolidcharityOrg.patch
 Patch2: DefaultPageWithClientDownload.patch
 Patch3: NoChangePasswordDemo.patch
-Patch4: fix_postglbatch_postingregister.patch
-Patch5: fix_uploadymlgz.patch
+Patch4: fix_uploadymlgz.patch
 
 %description
 Server of OpenPetra using Postgresql as database backend
@@ -45,10 +44,8 @@ dos2unix js/Default.aspx
 %patch2 -p1
 dos2unix csharp/ICT/Petra/Server/lib/MSysMan/UserManager.cs
 %patch3 -p1
-dos2unix csharp/ICT/Petra/Server/lib/MFinance/Common/Common.Posting.cs
-%patch4 -p1
 dos2unix csharp/ICT/Common/IO/Yml2Xml.cs
-%patch5 -p1
+%patch4 -p1
 tar xzf ../../SOURCES/plugin_bankimport.tar.gz && mv OpenPetraPlugin_Bankimport-master csharp/ICT/Petra/Plugins/Bankimport
 tar xzf ../../SOURCES/plugin_bankimport_csv.tar.gz && mv OpenPetraPlugin_BankimportCSV-master csharp/ICT/Petra/Plugins/BankimportCSV
 tar xzf ../../SOURCES/plugin_bankimport_mt940.tar.gz && mv OpenPetraPlugin_BankimportMT940-master csharp/ICT/Petra/Plugins/BankimportMT940
