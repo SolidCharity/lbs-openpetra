@@ -1,4 +1,4 @@
 lbs:
   centos:
     '7':
-      repos: ['http://download.solidcharity.com/repos/tpokorra/nsis/centos/7/lbs-tpokorra-nsis.repo', 'https://copr.fedoraproject.org/coprs/tpokorra/mono-4.2/repo/epel-7/tpokorra-mono-4.2-epel-7.repo', 'epel-release']
+      repos: ['http://download.solidcharity.com/repos/tpokorra/nsis/centos/7/lbs-tpokorra-nsis.repo', 'epel-release', 'epel-testing']
