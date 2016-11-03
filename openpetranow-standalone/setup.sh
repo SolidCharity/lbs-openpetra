@@ -6,29 +6,15 @@ branch=master
 
 if [ ! -z "$1" ]; then
   branch=$1
-  if [[ "$branch" != "master" && "$branch" != "test" ]]; then
-    version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-    countdots=`echo "$version" | grep -o "\." | wc -l`
-    if [[ $countdots == 1 ]]
-    then
-      version=$version".0"
-    fi
-    echo "calculated version: $version"
-    if [ -z "$version" ]
-    then
-      echo "cannot make a version number out of $branch"
-      exit -1
-    fi
-  fi
 fi
 
 yum install -y mono-devel libgdiplus-devel liberation-mono-fonts nant dos2unix nsis gettext patch wget
 
-if [[ "$branch" == "master" ]]
+if [[ "$kindOfRelease" == "test" ]]
 then
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-else
   wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+else
+  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 fi
 
 tar xzf sources.tar.gz || exit -1
@@ -48,12 +34,7 @@ mv openpetra-i18n-master/i18n/da.po $dir/i18n/da_DK.po || exit -1
 cd $dir
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-if [[ "$branch" == "master" || "$branch" == "test" ]]
-then
-  version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
-else
-  version=`echo $version | awk -F. '{print $1"."$2"."$3}'`
-fi
+version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
 
 newrelease=0
 if [ -d ~/repo/$path/$branch ]

@@ -4,28 +4,16 @@
 
 if [ ! -z "$1" ]; then
   branch=$1
-  if [[ "$branch" != "master" && "$branch" != "test" ]]; then
-    version=`echo $branch | awk -F_ '{print $NF}' | sed -e 's#-#.#g'`
-    countdots=`echo "$version" | grep -o "\." | wc -l`
-    if [[ $countdots == 1 ]]
-    then
-      version=$version".0"
-    fi
-    echo "calculated version: $version"
-    if [ -z "$version" ]
-    then
-      echo "cannot make a version number out of $branch"
-      exit -1
-    fi
-  fi
 fi
-
-#install the key from Xamarin
-#rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 
 yum install -y mono-devel libgdiplus-devel liberation-mono-fonts nant dos2unix nsis gettext patch wget
 
-wget $giturl/$branch.tar.gz -O sources.tar.gz || exit -1
+if [[ "$kindOfRelease" == "test" ]]
+then
+  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+else
+  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+fi
 
 tar xzf sources.tar.gz || exit -1
 srcdir="/root/sources"
@@ -44,12 +32,7 @@ mv openpetra-i18n-master/i18n/da.po $dir/i18n/da_DK.po || exit -1
 cd $dir
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-if [[ "$branch" == "master" || "$branch" == "test" ]]
-then
-  version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
-else
-  version=`echo $version | awk -F. '{print $1"."$2"."$3}'`
-fi
+version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
 
 newrelease=0
 if [ -d ~/repo/$path/$branch ]
