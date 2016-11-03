@@ -34,7 +34,7 @@ mv openpetra-i18n-master/i18n/da.po $dir/i18n/da_DK.po || exit -1
 cd $dir
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-version=`cat db/version.txt | awk -F. '{print $1"."$2".99"}'`
+version=`cat db/version.txt | awk -F- '{print $1}'`
 
 newrelease=0
 if [ -d ~/repo/$path/$branch ]
