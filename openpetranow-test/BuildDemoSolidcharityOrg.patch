@@ -1,6 +1,6 @@
 --- a/setup/setup.build	2016-09-29 06:05:52.252400687 +0000
 +++ b/setup/setup.build	2016-09-29 06:06:44.200398971 +0000
-@@ -639,6 +639,39 @@
+@@ -639,6 +639,38 @@
    </if>
  </target> 
  
@@ -8,9 +8,8 @@
 +  <property name="WithLinuxClient" value="false"/>
 +  <property name="WithWindowsClient" value="true"/>
 +  <property name="OpenBuildService" value="true"/>
-+  <property name="LinuxTargetDistribution-list" value="centos-postgresql"/>
++  <property name="LinuxTargetDistribution-list" value="centos-mysql"/>
 +  <property name="HostedPort" value="9000"/>
-+  <property name="PostgreSQL.Version" value="9.2"/>
 +  <property name="OrgName" value="by SolidCharity.com" overwrite="true"/>
 +  <property name="OrgNameWithoutSpace" value="Demo" overwrite="true"/>
 +  <property name="HostedServer" value="demo.solidcharity.com" overwrite="true"/>
@@ -21,7 +20,7 @@
 +  <call target="nanttasks"/>
 +  <call target="minimalGenerateSolution"/>
 +  <call target="quickCompile"/>
-+  <property name="DBMS.Type" value="postgresql"/>
++  <property name="DBMS.Type" value="mysql"/>
 +  <call target="createSQLStatements"/>
 +  <call target="translation"/>
 +
