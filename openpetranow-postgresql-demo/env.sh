@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export kindOfRelease=demo
-
+export kindOfRelease=postgresql-demo
+export URL=demo2.solidcharity.com
