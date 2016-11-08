@@ -1,3 +1,4 @@
 #!/bin/bash
 
-export kindOfRelease=test
+export kindOfRelease=postgresql-test
+export URL=test.solidcharity.com

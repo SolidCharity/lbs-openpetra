@@ -1,4 +1,4 @@
-%define name openpetranow-postgresql-%{KINDOFRELEASE}
+%define name openpetranow-%{KINDOFRELEASE}
 %define version %{VERSION}
 %define branch %{BRANCH}
 %define MonoPath /usr/
@@ -58,8 +58,8 @@ mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
 %build
 export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
-# adjust for %{KINDOFRELEASE}.solidcharity.com
-sed -i "s#demo\.solidcharity\.com#%{KINDOFRELEASE}.solidcharity.com#g" setup/setup.build
+# adjust for *.solidcharity.com
+sed -i "s#demo\.solidcharity\.com#%{URL}#g" setup/setup.build
 nant buildDemoSolidCharityCom -D:ReleaseID=%{version}.%{release}
 
 %install

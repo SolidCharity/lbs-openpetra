@@ -8,7 +8,7 @@ fi
 
 yum install -y wget
 
-if [[ "$kindOfRelease" == "test" ]]
+if [[ $kindOfRelease =~ .*test ]]
 then
   wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 else
@@ -22,3 +22,4 @@ version=`tar xzf sources.tar.gz openpetra-$branch/db/version.txt -O | awk -F- '{
 sed -i "s#%{BRANCH}#$branch#g" openpetranow-${kindOfRelease}.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow-${kindOfRelease}.spec
 sed -i "s#%{KINDOFRELEASE}#${kindOfRelease}#g" openpetranow-${kindOfRelease}.spec
+sed -i "s#%{URL}#${URL}#g" openpetranow-${kindOfRelease}.spec

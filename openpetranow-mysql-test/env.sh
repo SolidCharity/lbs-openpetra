@@ -1,3 +1,4 @@
 #!/bin/bash
 
-export kindOfRelease=test
+export kindOfRelease=mysql-test
+export URL=test2.solidcharity.com
