@@ -1,0 +1,71 @@
+--- a/js/Default.aspx	2014-11-24 16:20:09.424216582 +0000
++++ b/js/Default.aspx	2014-11-24 17:09:21.220126769 +0000
+@@ -8,13 +8,18 @@
+     <meta name="author" content="">
+     <link rel="shortcut icon" href="img/favicon.png">
+ 
+-    <title>OpenPetra.js Login</title>
++    <title>OpenPetra Demo by SolidCharity.com</title>
+ 
+     <!-- Bootstrap core CSS -->
+     <link href="ThirdParty/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ 
+     <!-- Custom styles for this template -->
+     <link href="css/login.css" rel="stylesheet">
++    <style>
++      .form-signin {
++       width: 600px;
++      }
++    </style>
+ 
+     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+     <!--[if lt IE 9]>
+@@ -30,13 +35,46 @@
+ 
+     <div class="container">
+ 
++       <div class="form-signin">
++<%
++string [] files = System.IO.Directory.GetFiles("/var/www/openpetra/client", "OpenPetraRemoteSetup-Demo-*.exe");
++string filename = String.Empty;
++if (files.Length > 0)
++{
++    filename=System.IO.Path.GetFileName(files[0]);
++}
++%>
++      <div class="form-signin">
++        <div class="bs-callout bs-callout-warning"><h4>Download</h4>
++          <p>Install the Windows client and connect to our Demo OpenPetra server:</p>
++               <button id="btnDownload" class="btn btn-lg btn-primary btn-block" 
++                  onclick="location.href = '/client/<% Response.Write(filename); %>'">
++                    Get the Windows Client!
++               </button>
++        </div>
++        <div class="bs-callout bs-callout-warning"><h4>Login information</h4><p>Please login with user <b>demo</b> and password <b>demo</b></p></div>
++      </div>
++
+       <form class="form-signin">
+-        <h2 class="form-signin-heading">Please sign in to OpenPetra.js</h2>
++        <p>If you want to try something experimental, have a look at this preview of OpenPetra in the webbrowser:</p>
+-        <input type="text" class="form-control" placeholder="Email address" autofocus id="txtEmail">
++        <input type="text" class="form-control" placeholder="Email address" id="txtEmail">
+         <input type="password" class="form-control" placeholder="Password" id="txtPassword">
+         <button id="btnLogin" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
++
++        <div class="bs-callout bs-callout-warning">
++           <h4>Login information</h4>
++           <p>Please login with user <b>demo</b> and password <b>demo</b>, 
++                or even easier, just click "Sign in"!</p>
++        </div>
+       </form>
+ 
++      <div class="form-signin">
++        <div class="bs-callout bs-callout-info">
++            <h4>You are welcome!</h4>
++            <p>Brought to you by <a href="https://www.solidcharity.com">www.solidcharity.com</a></p>
++        </div>
++      </div>
++
+     </div> <!-- /container -->
+ 
+   </body>

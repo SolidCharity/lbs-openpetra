@@ -1,0 +1,12 @@
+--- a/csharp/ICT/Common/IO/Yml2Xml.cs
++++ b/csharp/ICT/Common/IO/Yml2Xml.cs
+@@ -588,6 +588,8 @@ namespace Ict.Common.IO
+             {
+                 if (s.StartsWith("\"") && s.EndsWith("\""))
+                 {
++                    s = s.Replace("\\\\", "\\");
++                    //s = s.Replace("\\\"", "\"");
+                     s = s.Substring(1, s.Length - 2);
+                 }
+             }
+

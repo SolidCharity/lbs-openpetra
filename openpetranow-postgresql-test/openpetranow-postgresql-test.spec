@@ -1,4 +1,4 @@
-%define name openpetranow-%{KINDOFRELEASE}
+%define name openpetranow-postgresql-%{KINDOFRELEASE}
 %define version %{VERSION}
 %define branch %{BRANCH}
 %define MonoPath /usr/
@@ -10,7 +10,7 @@
 %define LIBSODIUM_VERSION 13
 %endif
 
-Summary: server of OpenPetra using Postgresql as database backend
+Summary: server of OpenPetra using PostgreSQL as database backend
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -19,7 +19,7 @@ License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
 BuildRequires: nant dos2unix nsis gettext mono-mvc mono-wcf mono-devel liberation-mono-fonts libgdiplus-devel
-Requires: mono-core mono-mvc mono-wcf mono-winfx xsp postgresql-server >= 9.2 lighttpd lighttpd-fastcgi lsb libsodium
+Requires: mono-core mono-mvc mono-wcf mono-winfx xsp postgresql-server lighttpd lighttpd-fastcgi lsb libsodium
 BuildRoot: /tmp/buildroot
 Source:  sources.tar.gz
 Source1: base.yml.gz
@@ -33,7 +33,7 @@ Patch3: NoChangePasswordDemo.patch
 Patch4: fix_uploadymlgz.patch
 
 %description
-Server of OpenPetra using Postgresql as database backend
+Server of OpenPetra using PostgreSQL as database backend
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
