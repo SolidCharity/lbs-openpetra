@@ -3,6 +3,8 @@
 dnf install -y make python3-sphinx git rsync
 # don't use graphviz yet
 
+cd ~
+
 if [ ! -d docs-en ]
 then
   git clone --depth 1 https://github.com/openpetra/openpetra-docs.git docs-en
