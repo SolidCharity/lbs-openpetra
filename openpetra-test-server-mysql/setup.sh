@@ -43,4 +43,8 @@ nant generateORM || exit -1
 nant createDatabaseUser || exit -1
 nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
+
+# need this for the tests
+wget https://github.com/openpetra/demo-databases/raw/master/demoWith1ledger.yml.gz || exit -1
+
 nant test-without-display || exit -1
