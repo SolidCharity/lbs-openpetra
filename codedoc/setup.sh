@@ -21,23 +21,10 @@ EOF
 
 nant quickClean deleteBakFiles minimalGenerateSolution errorCodeDoc apiDoc || exit -1
 
-cd delivery/API-Doc/html
-tar czf ../codedoc.tar.gz .
+cd delivery/API-Doc/
 
-#upload to codedoc.openpetra.org
+#upload to Hostsharing
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
-  eval `ssh-agent`
-  ssh-add ~/.ssh/id_rsa_cronjob
-  localmachine=1
-  echo "put ../codedoc.tar.gz" | sftp -o StrictHostKeyChecking=no upload@10.0.3.33:codedoc || localmachine=0
-  if [ $localmachine -eq 1 ]
-  then
-    ssh -o StrictHostKeyChecking=no upload@10.0.3.33 "cd codedoc; tar xzf codedoc.tar.gz" || exit -1
-  else
-    echo "put ../codedoc.tar.gz" | sftp -o StrictHostKeyChecking=no -oPort=2033 upload@codedoc.openpetra.org:codedoc || exit -1
-    ssh -o StrictHostKeyChecking=no -p 2033 upload@codedoc.openpetra.org "cd codedoc; tar xzf codedoc.tar.gz" || exit -1
-  fi
-  kill $SSH_AGENT_PID
+  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ tim00-openpetra@tim00.hostsharing.net:codedoc
 fi
-

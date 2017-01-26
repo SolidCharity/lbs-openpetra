@@ -27,22 +27,11 @@ nant dbdoc || exit -1
 cd delivery/dbdoc
 rm -Rf bak
 rm -Rf *.bat
-tar czf ../dbdoc.tar.gz .
+cd ..
 
-#upload to dbdoc.openpetra.org
+#upload to Hostsharing
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
-  eval `ssh-agent`
-  ssh-add ~/.ssh/id_rsa_cronjob
-  localmachine=1
-  echo "put ../dbdoc.tar.gz" | sftp -o StrictHostKeyChecking=no upload@10.0.3.33:dbdoc || localmachine=0
-  if [ $localmachine -eq 1 ]
-  then
-    ssh -o StrictHostKeyChecking=no upload@10.0.3.33 "cd dbdoc; tar xzf dbdoc.tar.gz" || exit -1
-  else
-    echo "put ../dbdoc.tar.gz" | sftp -o StrictHostKeyChecking=no -oPort=2033 upload@dbdoc.openpetra.org:dbdoc || exit -1
-    ssh -o StrictHostKeyChecking=no -p 2033 upload@dbdoc.openpetra.org "cd dbdoc; tar xzf dbdoc.tar.gz" || exit -1
-  fi
-  kill $SSH_AGENT_PID
+  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" dbdoc tim00-openpetra@tim00.hostsharing.net:.
 fi
 
