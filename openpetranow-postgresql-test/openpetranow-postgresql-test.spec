@@ -56,7 +56,7 @@ mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
 mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
 
 %build
-export NSISDIR=/usr/local/nsis/
+export NSISDIR=/usr/share/nsis/
 export PATH=$NSISDIR:$PATH
 # adjust for *.solidcharity.com
 sed -i "s#demo\.solidcharity\.com#%{URL}#g" setup/setup.build
