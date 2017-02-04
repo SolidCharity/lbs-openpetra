@@ -32,7 +32,7 @@ cat > OpenPetra.build.config <<FINISH
     <property name="DBMS.Password" value=""/>
 </project>
 FINISH
-nant generateSolution initConfigFiles || exit -1
+nant generateSolution initConfigFiles copySQLFiles || exit -1
 nant recreateDatabase || exit -1
 
 function SaveYmlGzDatabase
