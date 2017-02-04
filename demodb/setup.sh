@@ -1,10 +1,8 @@
 #!/bin/bash
 
-# get the key for the Xamarin packages
-rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo postgresql-server git libsodium || exit -1
+dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo git libsodium || exit -1
 
 repoowner=openpetra
 branch=master
@@ -22,43 +20,37 @@ mkdir -p demodata/generated
 mv demo-databases-master/generatedDataUsedForDemodatabases/*.csv demodata/generated
 rm -Rf demo-databases-master
 
-# apply a patch so that starting and stopping works on Linux and Mono
-patch -p1 < ../OpenPetra.default.targets.xml.patch || exit -1
-
 # on Fedora 24, there is libsodium.so.18
 cd /usr/lib64
 ln -s libsodium.so.18 libsodium.so
 cd -
 
-postgresql-setup --initdb --unit postgresql || exit -1
-PGHBAFILE=/var/lib/pgsql/data/pg_hba.conf
-echo "local all petraserver md5
-host all petraserver ::1/128 md5
-host all petraserver 127.0.0.1/32 md5" | cat - $PGHBAFILE > /tmp/out && mv -f /tmp/out $PGHBAFILE
-/sbin/restorecon -v /var/lib/pgsql/data/pg_hba.conf
-systemctl start postgresql
-systemctl enable postgresql
-# avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
-sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
-
+cat > OpenPetra.build.config <<FINISH
+<?xml version="1.0"?>
+<project name="OpenPetra-userconfig">
+    <property name="DBMS.Type" value="sqlite"/>
+    <property name="DBMS.Password" value=""/>
+</project>
+FINISH
 nant generateSolution initConfigFiles || exit -1
-nant createDatabaseUser recreateDatabase || exit -1
+nant recreateDatabase || exit -1
 
 function SaveYmlGzDatabase
 {
 ymlgzfile=$1
 
-  nant startServer
-  sleep 3
   cd delivery/bin
-  mono PetraServerAdminConsole.exe -C:../../etc/ServerAdmin.config -Command:SaveYmlGz -YmlGzFile:../../$ymlgzfile || exit -1
-  cd ../../
-  nant stopServer
+  mono Ict.Petra.Tools.MSysMan.YmlGzImportExport.exe -C:../../etc/TestServer.config  -Action:dump -YmlGzFile:../../$ymlgzfile || exit -1
+  cd -
 }
 
 # create the base database
-nant resetDatabase || exit -1
+nant resetDatabase -D:WithDemoDataGermany=true || exit -1
 SaveYmlGzDatabase base.yml.gz
+
+# create the clean database (only SYSADMIN user, currency and other tables, but no partners, no ledger)
+nant resetDatabase -D:WithDemoDataGermany=false || exit -1
+SaveYmlGzDatabase clean.yml.gz
 
 # create a database with one ledger with one year of data
 nant resetDatabase importDemodata || exit -1
@@ -82,9 +74,11 @@ then
 
   alias cp=cp
   cp -f base.yml.gz demo-databases
+  cp -f clean.yml.gz demo-databases
   cp -f demo*.yml.gz demo-databases
   cd demo-databases
   msg="commit latest demo databases `date +%Y%m%d`"
+  git add .
   git config --global user.name "LBS BuildBot"
   git config --global user.email "buildbot@lbs.solidcharity.com"
   git commit -a -m "$msg" || exit -1
