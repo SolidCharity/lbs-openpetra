@@ -45,6 +45,6 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 # need this for the tests
-wget https://github.com/openpetra/demo-databases/raw/master/demoWith1ledger.yml.gz || exit -1
+wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz || exit -1
 
 nant test-without-display || exit -1
