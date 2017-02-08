@@ -32,7 +32,7 @@ mv openpetra-i18n-master/i18n/es.po $dir/i18n/es_ES.po || exit -1
 mv openpetra-i18n-master/i18n/da.po $dir/i18n/da_DK.po || exit -1
 
 cd $dir
-export NSISDIR=/usr/share/nsis/
+export NSISDIR=/usr/local/nsis/
 export PATH=$NSISDIR:$PATH
 version=`cat db/version.txt | awk -F- '{print $1}'`
 
