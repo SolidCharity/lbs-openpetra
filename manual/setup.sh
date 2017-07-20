@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dnf install -y make python3-sphinx git rsync
+dnf install -y make python3-sphinx git rsync || exit -1
 # don't use graphviz yet
 
 cd ~
@@ -12,9 +12,9 @@ then
 fi
 
 cd ~/docs-en
-make html
+make html || exit -1
 cd ~/docs-de
-make html
+make html || exit -1
 cd ~
 
 #upload to Hostsharing
