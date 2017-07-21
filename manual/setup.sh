@@ -11,6 +11,7 @@ then
   git clone --depth 1 https://github.com/openpetra/openpetra-docs-de.git docs-de
 fi
 
+export PATH=/usr/libexec/python3-sphinx:$PATH
 cd ~/docs-en
 make html || exit -1
 cd ~/docs-de
