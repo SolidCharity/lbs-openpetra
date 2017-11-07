@@ -67,5 +67,7 @@ then
   fi
 fi
 
+rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='5 days ago'`.zip
 rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='6 days ago'`.zip
+rm -f ~/tarball/openpetra_development_`date +"%Y-%m-%d" --date='7 days ago'`.zip
 echo download at https://download.solidcharity.com/tarballs/tpokorra/openpetra/openpetra_development_`date +"%Y-%m-%d"`.zip
