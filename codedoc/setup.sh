@@ -27,9 +27,9 @@ cd delivery/API-Doc/
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
   localmachine=1
-  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ upload@10.0.3.33:codedoc || localmachine=0
+  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ upload@192.168.122.110:codedoc || localmachine=0
   if [ $localmachine -eq 0 ]
   then
-    rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ upload@codedoc.openpetra.org:codedoc || localmachine=0
+    rsync -avz --delete -e "ssh -p 3110 -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ upload@codedoc.openpetra.org:codedoc
   fi
 fi
