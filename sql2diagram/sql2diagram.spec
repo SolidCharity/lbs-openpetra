@@ -1,6 +1,7 @@
 %define name sql2diagram
 %define version 0.2.1
 %define DATE    %(date +%%Y%%m%%d)
+%global debug_package %{nil}
 
 Summary: create html documentation for sql database structure
 Name: %{name}
