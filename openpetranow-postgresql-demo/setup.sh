@@ -10,7 +10,7 @@ yum install -y wget
 
 if [[ $kindOfRelease =~ .*test ]]
 then
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+  wget https://github.com/tbits/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 else
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 fi
