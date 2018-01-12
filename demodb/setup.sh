@@ -33,6 +33,7 @@ else
   echo "cannot create link for libsodium.so"
   exit -1
 fi
+cd -
 
 cat > OpenPetra.build.config <<FINISH
 <?xml version="1.0"?>
