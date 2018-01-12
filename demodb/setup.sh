@@ -4,7 +4,7 @@ yum -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite un
 
 repoowner=openpetra
 branch=master
-repoowner=tpokorra
+repoowner=tbits
 branch=test
 wget https://github.com/$repoowner/openpetra/archive/$branch.tar.gz
 tar xzf $branch.tar.gz
