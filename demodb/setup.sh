@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# get the key for the OpenPetra packages
-rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-dnf -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo git libsodium || exit -1
+yum -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo git libsodium || exit -1
 
 repoowner=openpetra
 branch=master
