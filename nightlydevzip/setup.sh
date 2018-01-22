@@ -11,7 +11,7 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono-devel libgdiplus-devel xsp mono-mvc mono-data-sqlite liberation-mono-fonts nant wget tar sqlite php-cli curl gettext libsodium git
 
-# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13
+# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13, and soon libsodium.so.23
 cd /usr/lib64
 if [ -f libsodium.so.18 ]
 then
@@ -19,6 +19,9 @@ then
 elif [ -f libsodium.so.13 ]
 then
   ln -s libsodium.so.13 libsodium.so
+elif [ -f libsodium.so.23 ]
+then
+  ln -s libsodium.so.23 libsodium.so
 elif [ -f libsodium.so ]
 then
   echo "there is already a libsodium.so"

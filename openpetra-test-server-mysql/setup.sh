@@ -8,9 +8,24 @@ fi
 yum install -y epel
 yum install -y wget sudo mono-devel mono-mvc mono-winfx mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp mariadb-server lsb libsodium
 
-# on CentOS7, there is libsodium.so.13
+# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13, and soon libsodium.so.23
 cd /usr/lib64
-ln -s libsodium.so.13 libsodium.so
+if [ -f libsodium.so.18 ]
+then
+  ln -s libsodium.so.18 libsodium.so
+elif [ -f libsodium.so.13 ]
+then
+  ln -s libsodium.so.13 libsodium.so
+elif [ -f libsodium.so.23 ]
+then
+  ln -s libsodium.so.23 libsodium.so
+elif [ -f libsodium.so ]
+then
+  echo "there is already a libsodium.so"
+else
+  echo "cannot create link for libsodium.so"
+  exit -1
+fi
 cd -
 
 if [[ "$branch" == "master" ]]
