@@ -53,6 +53,15 @@ systemctl enable postgresql
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
+cat > OpenPetra.build.config <<FINISH
+<?xml version="1.0"?>
+<project name="OpenPetra-userconfig">
+    <property name="DBMS.Type" value="postgresql"/>
+    <property name="DBMS.DBPort" value="5432"/>
+    <property name="DBMS.RootPassword" value=""/>
+</project>
+FINISH
+
 nant generateTools || exit -1
 nant generateORM || exit -1
 nant createDatabaseUser || exit -1
