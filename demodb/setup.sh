@@ -18,14 +18,14 @@ mkdir -p demodata/generated
 mv demo-databases-master/generatedDataUsedForDemodatabases/*.csv demodata/generated
 rm -Rf demo-databases-master
 
-# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13
+# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
 cd /usr/lib64
 if [ -f libsodium.so.18 ]
 then
   ln -s libsodium.so.18 libsodium.so
-elif [ -f libsodium.so.13 ]
+elif [ -f libsodium.so.23 ]
 then
-  ln -s libsodium.so.13 libsodium.so
+  ln -s libsodium.so.23 libsodium.so
 elif [ -f libsodium.so ]
 then
   echo "there is already a libsodium.so"
