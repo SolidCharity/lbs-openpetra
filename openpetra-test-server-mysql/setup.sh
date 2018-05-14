@@ -6,7 +6,7 @@ if [ ! -z "$1" ]; then
 fi
 
 yum install -y epel
-yum install -y wget sudo mono-devel mono-mvc mono-winfx mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp mariadb-server lsb libsodium
+yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp mariadb-server lsb libsodium
 
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13, and soon libsodium.so.23
 cd /usr/lib64

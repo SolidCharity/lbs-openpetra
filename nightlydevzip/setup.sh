@@ -5,8 +5,6 @@ if [ ! -z "$1" ]; then
   branch=$1
 fi
 
-# get the key for the Xamarin packages
-rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono-devel libgdiplus-devel xsp mono-mvc mono-data-sqlite liberation-mono-fonts nant wget tar sqlite php-cli curl gettext libsodium git
