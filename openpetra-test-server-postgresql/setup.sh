@@ -6,7 +6,11 @@ if [ ! -z "$1" ]; then
 fi
 
 yum install -y epel
-yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf libgdiplus-devel liberation-mono-fonts nant NUnit xsp postgresql-server lsb libsodium
+yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf libgdiplus-devel nant NUnit xsp lsb libsodium \
+  postgresql-server \
+  liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
+
+wget https://github.com/Holger-Will/code-128-font/raw/master/fonts/code128.ttf -O /usr/share/fonts/code128.ttf
 
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13, and soon libsodium.so.23
 cd /usr/lib64
