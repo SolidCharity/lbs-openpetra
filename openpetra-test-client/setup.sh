@@ -8,7 +8,7 @@ fi
 yum install -y epel
 yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf libgdiplus-devel nant NUnit xsp lsb libsodium \
   mariadb-server \
-  libXScrnSaver GConf2 \
+  libXScrnSaver GConf2 Xvfb \
   liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 
 wget https://github.com/Holger-Will/code-128-font/raw/master/fonts/code128.ttf -O /usr/share/fonts/code128.ttf
@@ -95,7 +95,10 @@ wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1
 
 nant checkHtml || exit -1
 
+nant install || exit -1
+systemctl start openpetra
+
 cd ../openpetra-client-js
-( npm install && npm run build && rm -Rf node_modules ) || exit -1
+( npm install && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 
