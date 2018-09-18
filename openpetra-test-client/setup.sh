@@ -23,6 +23,19 @@ npm install -g browserify
 npm install -g uglify-es
 npm install -g cypress
 
+# avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
+sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
+
+yum-config-manager --disable lbs-tpokorra-openpetra
+yum-config-manager --add-repo https://lbs.tbits.net/repos/tbits.net/openpetra/centos/7/lbs-tbits.net-openpetra.repo
+yum install -y openpetranow-mysql-test
+export OPENPETRA_DBPWD=`openpetra-server generatepwd`
+openpetra-server init || exit -1
+openpetra-server initdb || exit -1
+file=/tmp/demoWith1ledger.yml.gz
+wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
+userName=oppenpetra NAME=op_demo /usr/bin/openpetra-server loadYmlGz $file || exit -1
+
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
 cd /usr/lib64
 if [ -f libsodium.so.18 ]
@@ -68,12 +81,6 @@ then
   openpetraclientdir="openpetra-client-js"
 fi
 
-systemctl start mariadb
-systemctl enable mariadb
-
-# avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
-sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
-
 cd $openpetradir
 
 cat > OpenPetra.build.config <<FINISH
@@ -90,15 +97,9 @@ nant createDatabaseUser || exit -1
 nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
-# need this for the tests
-wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz || exit -1
+nant install
 
 nant checkHtml || exit -1
-
-yum-config-manager --disable lbs-tpokorra-openpetra
-yum-config-manager --add-repo https://lbs.tbits.net/repos/tbits.net/openpetra/centos/7/lbs-tbits.net-openpetra.repo
-yum install -y openpetranow-mysql-test
-nant install
 
 cd ../openpetra-client-js
 ( npm install && npm run build ) || exit -1
