@@ -99,7 +99,7 @@ nant generateSolution || exit -1
 
 nant install
 
-nant checkHtml || exit -1
+nant checkHtml
 
 cd ../openpetra-client-js
 ( npm install && npm run build ) || exit -1
