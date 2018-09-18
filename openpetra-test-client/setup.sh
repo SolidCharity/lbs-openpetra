@@ -95,6 +95,9 @@ wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1
 
 nant checkHtml || exit -1
 
+yum-config-manager --disable lbs-tpokorra-openpetra
+yum-config-manager --add-repo https://lbs.tbits.net/repos/tbits.net/openpetra/centos/7/lbs-tbits.net-openpetra.repo
+yum install -y openpetranow-mysql-test
 nant install || exit -1
 systemctl start openpetra
 
