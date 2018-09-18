@@ -99,10 +99,12 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 nant install
+systemctl status openpetra
 
 nant checkHtml
 
 cd ../openpetra-client-js
+npm config set loglevel warn
 ( npm install && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 
