@@ -20,6 +20,7 @@ yum -y install nodejs
 #8.9.4
 #npm --version
 #5.6.0
+npm set progress=false
 npm install -g browserify --quiet
 npm install -g uglify-es --quiet
 npm install cypress --quiet
