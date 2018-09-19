@@ -35,7 +35,7 @@ openpetra-server init || exit -1
 openpetra-server initdb || exit -1
 file=/tmp/demoWith1ledger.yml.gz
 wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
-userName=oppenpetra NAME=op_demo /usr/bin/openpetra-server loadYmlGz $file || exit -1
+/usr/bin/openpetra-server loadYmlGz $file || exit -1
 
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
 cd /usr/lib64
@@ -92,10 +92,6 @@ cat > OpenPetra.build.config <<FINISH
 </project>
 FINISH
 
-nant generateTools || exit -1
-nant generateORM || exit -1
-nant createDatabaseUser || exit -1
-nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 nant install
