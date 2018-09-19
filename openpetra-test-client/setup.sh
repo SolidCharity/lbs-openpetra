@@ -20,6 +20,9 @@ yum -y install nodejs
 #8.9.4
 #npm --version
 #5.6.0
+
+# set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
+export CI=1
 npm set progress=false
 npm install -g browserify --quiet
 npm install -g uglify-es --quiet
