@@ -106,5 +106,5 @@ nant checkHtml
 
 cd ../openpetra-client-js
 ( npm install --quiet && npm run build ) || exit -1
-LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
+CI=0 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 
