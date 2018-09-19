@@ -20,9 +20,9 @@ yum -y install nodejs
 #8.9.4
 #npm --version
 #5.6.0
-npm install -g browserify
-npm install -g uglify-es
-npm install -g cypress
+npm install -g browserify --quiet
+npm install -g uglify-es --quiet
+npm install cypress --quiet
 
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
@@ -99,12 +99,12 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 nant install
+sleep 3
 systemctl status openpetra
 
 nant checkHtml
 
 cd ../openpetra-client-js
-npm config set loglevel warn
-( npm install && npm run build ) || exit -1
+( npm install --quiet && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 
