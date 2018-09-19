@@ -21,12 +21,11 @@ yum -y install nodejs
 #npm --version
 #5.6.0
 
-# set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
-export CI=1
 npm set progress=false
 npm install -g browserify --quiet
 npm install -g uglify-es --quiet
-npm install cypress --quiet
+# set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
+CI=1 npm install cypress --quiet
 
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
@@ -106,5 +105,5 @@ nant checkHtml
 
 cd ../openpetra-client-js
 ( npm install --quiet && npm run build ) || exit -1
-CI=0 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
+LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 
