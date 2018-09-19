@@ -106,4 +106,5 @@ nant checkHtml
 cd ../openpetra-client-js
 ( npm install --quiet && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
-
+# we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
+echo
