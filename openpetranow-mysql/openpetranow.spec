@@ -61,7 +61,9 @@ mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}.%{release}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s ../bin bin && cd -
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s . api && cd -
-(cd ../openpetra-client && npm install && npm run build && rm -Rf node_modules && cd - ) || exit -1
+(cd ../openpetra-client && npm install && npm run build && \
+ cp node_modules/bootstrap/dist/css/bootstrap.min.css css && \
+ rm -Rf node_modules && cd - ) || exit -1
 cp -R ../openpetra-client/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
