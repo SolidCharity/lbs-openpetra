@@ -31,7 +31,7 @@ CI=1 npm install cypress --quiet
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
 yum-config-manager --disable lbs-tpokorra-openpetra
-yum-config-manager --add-repo https://lbs.tbits.net/repos/tbits.net/openpetra/centos/7/lbs-tbits.net-openpetra.repo
+yum-config-manager --add-repo https://lbs.solidcharity.com/repos/tpokorra/openpetra/centos/7/lbs-tpokorra-openpetra.repo
 yum install -y openpetranow-mysql-test
 export OPENPETRA_DBPWD=`openpetra-server generatepwd`
 openpetra-server init || exit -1
