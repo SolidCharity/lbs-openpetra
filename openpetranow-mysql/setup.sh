@@ -25,8 +25,6 @@ yum -y install nodejs
 #5.6.0
 npm install -g browserify
 npm install -g uglify-es
-# we don't need cypress for the release
-npm uninstall cypress
 
 if [ $test -eq 1 ]
 then
@@ -39,6 +37,8 @@ fi
 
 tar xzf sources-client.tar.gz
 cd openpetra-client-js-$branch
+# we don't need cypress for the release
+npm uninstall cypress
 npm install
 sed -i "s/this.develop = 1;/this.develop = 0;/g" src/lib/navigation.js
 sed -i "s/this.debug = 1;/this.debug = 0;/g" src/lib/navigation.js
