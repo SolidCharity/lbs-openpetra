@@ -25,6 +25,8 @@ yum -y install nodejs
 #5.6.0
 npm install -g browserify
 npm install -g uglify-es
+# we don't need cypress for the release
+npm uninstall cypress
 
 if [ $test -eq 1 ]
 then
