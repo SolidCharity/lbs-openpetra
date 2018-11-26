@@ -28,8 +28,8 @@ npm install -g uglify-es
 
 if [ $test -eq 1 ]
 then
-  wget https://github.com/tbits/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-  wget https://github.com/tbits/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
+  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+  wget https://github.com/tpokorra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
 else
   wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
   wget https://github.com/openpetra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
@@ -51,10 +51,10 @@ sed -i "s#%{BRANCH}#$branch#g" openpetranow.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow.spec
 
 # branding of the package
-sed -i "s#%{ORGNAME}#by TBits.net#g" openpetranow.spec
-sed -i "s#%{ORGNAMEWITHOUTSPACE}#TBitsNet#g" openpetranow.spec
-sed -i "s#%{PUBLISHERURL}#http://www.tbits.net#g" openpetranow.spec
-sed -i "s#%{PUBLISHERNAME}#TBits.net#g" openpetranow.spec
+sed -i "s#%{ORGNAME}#by SolidCharity#g" openpetranow.spec
+sed -i "s#%{ORGNAMEWITHOUTSPACE}#SolidCharity#g" openpetranow.spec
+sed -i "s#%{PUBLISHERURL}#http://www.solidcharity.com#g" openpetranow.spec
+sed -i "s#%{PUBLISHERNAME}#SolidCharity#g" openpetranow.spec
 
 if [ $test -eq 1 ]
 then
