@@ -30,8 +30,8 @@ CI=1 npm install cypress --quiet
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
-yum-config-manager --disable lbs-tpokorra-openpetra
-yum-config-manager --add-repo https://lbs.solidcharity.com/repos/tpokorra/openpetra/centos/7/lbs-tpokorra-openpetra.repo
+yum-config-manager --disable lbs-solidcharity-openpetra
+yum-config-manager --add-repo https://lbs.solidcharity.com/repos/solidcharity/openpetra/centos/7/lbs-solidcharity-openpetra.repo
 yum install -y openpetranow-mysql-test
 export OPENPETRA_DBPWD=`openpetra-server generatepwd`
 openpetra-server init || exit -1
