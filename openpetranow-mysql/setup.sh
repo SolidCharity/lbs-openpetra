@@ -4,6 +4,10 @@ branch="master"
 if [ ! -z "$1" ]; then
   branch=$1
 fi
+ghubuser=openpetra
+if [ ! -z "$2" ]; then
+  ghubuser=$2
+fi
 
 test=0
 if [[ $branch =~ .*test ]]
@@ -26,14 +30,8 @@ yum -y install nodejs
 npm install -g browserify
 npm install -g uglify-es
 
-if [ $test -eq 1 ]
-then
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-  wget https://github.com/tpokorra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-else
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-  wget https://github.com/openpetra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-fi
+wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+wget https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
 
 tar xzf sources-client.tar.gz
 cd openpetra-client-js-$branch

@@ -4,6 +4,10 @@ branch=master
 if [ ! -z "$1" ]; then
   branch=$1
 fi
+ghubuser=openpetra
+if [ ! -z "$2" ]; then
+  ghubuser=$2
+fi
 
 yum install -y epel
 yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf mono-winfx libgdiplus-devel nant nunit xsp lsb libsodium \
@@ -32,22 +36,12 @@ else
 fi
 cd -
 
-if [[ "$branch" == "master" ]]
-then
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-else
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-fi
+wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 
 tar xzf sources.tar.gz || exit -1
 openpetradir=$(find . -type d -name openpetra-*)
 
-if [[ "$branch" == "master" ]]
-then
-  wget https://github.com/openpetra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-else
-  wget https://github.com/tpokorra/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-fi
+wget https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
 
 tar xzf sources-client.tar.gz || exit -1
 openpetraclientdir=$(find . -type d -name openpetra-client-js*)

@@ -4,6 +4,10 @@ branch=master
 if [ ! -z "$1" ]; then
   branch=$1
 fi
+ghubuser=openpetra
+if [ ! -z "$2" ]; then
+  ghubuser=$2
+fi
 
 # get the key for the OpenPetra packages
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
@@ -30,12 +34,7 @@ fi
 
 cd -
 
-if [[ "$branch" == "master" ]]
-then
-  wget https://github.com/openpetra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-else
-  wget https://github.com/tpokorra/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-fi
+wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 
 tar xzf sources.tar.gz
 dir=$(find . -type d -name openpetra-*)

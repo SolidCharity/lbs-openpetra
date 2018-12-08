@@ -2,11 +2,9 @@
 
 yum -y install mono-core mono-devel libgdiplus-devel xsp nant wget tar sqlite unzip sudo git libsodium || exit -1
 
-repoowner=openpetra
+ghubuser=openpetra
 branch=master
-repoowner=tpokorra
-branch=test
-wget https://github.com/$repoowner/openpetra/archive/$branch.tar.gz
+wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz
 tar xzf $branch.tar.gz
 cd openpetra-$branch
 

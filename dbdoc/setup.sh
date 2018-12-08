@@ -5,7 +5,6 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&searc
 dnf -y install mono-core mono-devel libgdiplus-devel nant wget tar sqlite sql2diagram dia openssh-clients || exit 1
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
-#wget https://github.com/tpokorra/openpetra/archive/master.tar.gz
 tar xzf master.tar.gz
 cd openpetra-master
 
