@@ -1,4 +1,4 @@
 lbs:
   centos:
     '7':
-      repos: ['epel-release', 'epel-testing', 'https://copr.fedorainfracloud.org/coprs/tpokorra/mono-5.16/repo/epel-7/tpokorra-mono-5.16-epel-7.repo']
+      repos: ['epel-release', 'epel-testing', 'https://copr.fedorainfracloud.org/coprs/tpokorra/mono-5.18/repo/epel-7/tpokorra-mono-5.18-epel-7.repo']
