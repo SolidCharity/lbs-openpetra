@@ -13,8 +13,10 @@ fi
 
 export PATH=/usr/libexec/python3-sphinx:$PATH
 cd ~/docs-en
+export LANG=C
 make html || exit -1
 cd ~/docs-de
+export LANG="de_DE.UTF-8"
 make html || exit -1
 cd ~
 
