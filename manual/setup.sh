@@ -2,6 +2,7 @@
 
 dnf install -y make python3-sphinx git rsync || exit -1
 # don't use graphviz yet
+pip install -U Sphinx || exit -1
 
 cd ~
 
@@ -11,12 +12,10 @@ then
   git clone --depth 1 https://github.com/openpetra/openpetra-docs-de.git docs-de
 fi
 
-export PATH=/usr/libexec/python3-sphinx:$PATH
+#export PATH=/usr/libexec/python3-sphinx:$PATH
 cd ~/docs-en
-export LANG=C
 make html || exit -1
 cd ~/docs-de
-export LANG="de_DE.UTF-8"
 make html || exit -1
 cd ~
 
