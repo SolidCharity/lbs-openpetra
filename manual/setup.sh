@@ -1,8 +1,8 @@
 #!/bin/bash
 
-dnf install -y make python3-sphinx git rsync || exit -1
+dnf install -y make git rsync || exit -1
 # don't use graphviz yet
-pip install -U Sphinx || exit -1
+pip3 install sphinx || exit -1
 
 cd ~
 
