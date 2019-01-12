@@ -54,6 +54,7 @@ sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' .
 sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/src/lib/navigation.js
 sed -i 's~\.json"~.json?%{version}.%{release}~g' ../openpetra-client/src/lib/i18n.js
 sed -i 's~\.js"~.js?%{version}.%{release}"~g' ../openpetra-client/index.html
+sed -i 's~ + WithVersion~~g' ../openpetra-client/index.html
 
 %install
 rm -rf $RPM_BUILD_ROOT
