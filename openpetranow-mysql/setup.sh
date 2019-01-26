@@ -40,6 +40,7 @@ npm uninstall cypress
 npm install
 sed -i "s/this.develop = 1;/this.develop = 0;/g" src/lib/navigation.js
 sed -i "s/this.debug = 1;/this.debug = 0;/g" src/lib/navigation.js
+sed -i "s/this.develop = 1;/this.develop = 0;/g" src/lib/i18n.js
 cd -
 tar czf sources-client.tar.gz openpetra-client-js-$branch
 
