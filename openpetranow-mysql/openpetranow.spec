@@ -53,8 +53,11 @@ sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' .
 # make sure the user gets the latest javascript and html specific to this build
 sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/src/lib/navigation.js
 sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/src/lib/i18n.js
-sed -i 's~\.js"~.js?%{version}.%{release}"~g' ../openpetra-client/index.html
-sed -i 's~ + WithVersion~~g' ../openpetra-client/index.html
+sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/index.html
+sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/src/lib/navigation.js
+sed -i "s/debug = 1;/debug = 0;/g" ../openpetra-client/src/lib/navigation.js
+sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/src/lib/i18n.js
+sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/index.html
 
 %install
 rm -rf $RPM_BUILD_ROOT
