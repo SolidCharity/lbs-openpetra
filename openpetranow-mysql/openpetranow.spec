@@ -73,6 +73,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/bin
 chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 cd $RPM_BUILD_ROOT/usr/bin && ln -s ../../%{OpenPetraServerPath}/openpetra-server.sh openpetra-server && cd -
+cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && mv ../etc/web-sample.config web.config && cd -
 # base.yml.gz
 cp %{SOURCE3} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
 # clean.yml.gz
