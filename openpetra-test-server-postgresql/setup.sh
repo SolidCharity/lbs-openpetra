@@ -13,6 +13,7 @@ yum install -y epel
 yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf mono-winfx libgdiplus-devel nant nunit xsp lsb libsodium \
   postgresql-server \
   liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
+yum -y install https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm
 
 wget https://github.com/Holger-Will/code-128-font/raw/master/fonts/code128.ttf -O /usr/share/fonts/code128.ttf
 
