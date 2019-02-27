@@ -15,9 +15,9 @@ Packager: Timotheus Pokorra <tp@tbits.net>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
-BuildRequires: nant dos2unix gettext mono-mvc mono-wcf mono-devel >= 5.10 liberation-mono-fonts libgdiplus-devel
+BuildRequires: nant dos2unix gettext mono-mvc mono-wcf mono-devel >= 5.10 mono-data liberation-mono-fonts libgdiplus-devel
 BuildRequires: nodejs >= 8.9.4
-Requires: mono-core >= 5.10 mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
+Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 BuildRoot: /tmp/buildroot
 Source:  sources.tar.gz

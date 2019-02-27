@@ -10,7 +10,7 @@ if [ ! -z "$2" ]; then
 fi
 
 yum install -y epel
-yum install -y wget sudo mono-devel mono-mvc mono-winfxcore mono-wcf libgdiplus-devel nant NUnit xsp lsb libsodium \
+yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf libgdiplus-devel nant NUnit xsp lsb libsodium \
   mariadb-server \
   libXScrnSaver GConf2 Xvfb \
   liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts \
