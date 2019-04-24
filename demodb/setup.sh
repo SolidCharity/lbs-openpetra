@@ -1,6 +1,7 @@
 #!/bin/bash
 
-yum -y install mono-core mono-devel mono-data mono-web libgdiplus-devel xsp nant wget tar sqlite unzip sudo git libsodium || exit -1
+yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf mono-winfx libgdiplus-devel nant nunit xsp lsb libsodium \
+  nant tar sqlite unzip sudo git || exit -1
 
 ghubuser=openpetra
 branch=master
