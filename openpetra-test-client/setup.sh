@@ -28,8 +28,6 @@ yum -y install nodejs
 npm set progress=false
 npm install -g browserify --quiet
 npm install -g uglify-es --quiet
-# set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
-CI=1 npm install cypress --quiet
 
 # avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
@@ -41,7 +39,7 @@ export OPENPETRA_DBPWD=`openpetra-server generatepwd`
 openpetra-server init || exit -1
 openpetra-server initdb || exit -1
 file=/tmp/demoWith1ledger.yml.gz
-wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
+wget --no-verbose https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
 /usr/bin/openpetra-server loadYmlGz $file || exit -1
 
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
@@ -64,12 +62,12 @@ else
 fi
 cd -
 
-wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+wget --no-verbose https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 
 tar xzf sources.tar.gz || exit -1
 openpetradir=$(find . -type d -name openpetra-*)
 
-wget https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
+wget --no-verbose https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
 
 tar xzf sources-client.tar.gz || exit -1
 openpetraclientdir=$(find . -type d -name openpetra-client-js*)
@@ -98,7 +96,8 @@ systemctl status openpetra
 nant checkHtml
 
 cd ../openpetra-client-js
-( npm install --quiet && npm run build ) || exit -1
+# set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
+( CI=1 npm install --quiet && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
 # we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
 echo
