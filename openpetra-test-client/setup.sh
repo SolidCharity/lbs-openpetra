@@ -41,6 +41,7 @@ openpetra-server initdb || exit -1
 file=/tmp/demoWith1ledger.yml.gz
 wget --no-verbose https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
 /usr/bin/openpetra-server loadYmlGz $file || exit -1
+/usr/bin/openpetra-server upgradedb || exit -1
 
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
 cd /usr/lib64
