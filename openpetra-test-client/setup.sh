@@ -97,7 +97,7 @@ nant checkHtml
 
 cd ../openpetra-client-js
 # improve speed of initial request by user by forcing to load all assemblies now
-curl --silent http://localhost/api/serverSessionManager.asmx/IsUserLoggedIn > /dev/null
+curl --silent --retry 5 http://localhost/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
 # set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
 ( CI=1 npm install --quiet && npm run build ) || exit -1
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
