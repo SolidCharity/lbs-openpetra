@@ -70,6 +70,9 @@ nant generateSolution || exit -1
 # need this for the tests
 wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz || exit -1
 
+# update the certificates
+curl https://curl.haxx.se/ca/cacert.pem > ~/cacert.pem && sudo cert-sync ~/cacert.pem
+
 nant test-without-display || exit -1
 
 nant checkHtml || exit -1
