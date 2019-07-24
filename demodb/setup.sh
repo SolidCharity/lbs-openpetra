@@ -8,7 +8,7 @@ systemctl start mariadb
 systemctl enable mariadb
 
 ghubuser=openpetra
-branch=master
+branch=test
 wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz
 tar xzf $branch.tar.gz
 cd openpetra-$branch
