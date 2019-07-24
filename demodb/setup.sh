@@ -1,7 +1,11 @@
 #!/bin/bash
 
 yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf mono-winfx libgdiplus-devel nant nunit xsp lsb libsodium \
+  mariadb-server \
   nant tar sqlite unzip sudo git || exit -1
+
+systemctl start mariadb
+systemctl enable mariadb
 
 ghubuser=openpetra
 branch=master
@@ -37,10 +41,14 @@ cd -
 cat > OpenPetra.build.config <<FINISH
 <?xml version="1.0"?>
 <project name="OpenPetra-userconfig">
-    <property name="DBMS.Type" value="sqlite"/>
+    <property name="DBMS.Type" value="mysql"/>
     <property name="DBMS.Password" value=""/>
 </project>
 FINISH
+
+# avoid error during createDatabaseUser: sudo: sorry, you must have a tty to run sudo
+sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
+
 nant generateSolution initConfigFiles copySQLFiles || exit -1
 nant recreateDatabase || exit -1
 
