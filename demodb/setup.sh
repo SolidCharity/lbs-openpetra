@@ -42,7 +42,7 @@ cat > OpenPetra.build.config <<FINISH
 <?xml version="1.0"?>
 <project name="OpenPetra-userconfig">
     <property name="DBMS.Type" value="mysql"/>
-    <property name="DBMS.Password" value=""/>
+    <property name="DBMS.RootPassword" value=""/>
 </project>
 FINISH
 
