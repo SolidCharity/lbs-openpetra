@@ -50,6 +50,7 @@ FINISH
 sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
 nant generateSolution initConfigFiles copySQLFiles || exit -1
+nant createDatabaseUser || exit -1
 nant recreateDatabase || exit -1
 
 function SaveYmlGzDatabase
