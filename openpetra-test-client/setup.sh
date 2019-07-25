@@ -1,5 +1,6 @@
 #!/bin/bash
 
+db_tag=UsedForNUnitTests-201907
 branch=master
 if [ ! -z "$1" ]; then
   branch=$1
@@ -39,7 +40,7 @@ export OPENPETRA_DBPWD=`openpetra-server generatepwd`
 openpetra-server init || exit -1
 openpetra-server initdb || exit -1
 file=/tmp/demoWith1ledger.yml.gz
-wget --no-verbose https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz -O $file || exit -1
+wget --no-verbose https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz -O $file || exit -1
 /usr/bin/openpetra-server loadYmlGz $file || exit -1
 /usr/bin/openpetra-server upgradedb || exit -1
 

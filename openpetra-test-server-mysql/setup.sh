@@ -1,5 +1,6 @@
 #!/bin/bash
 
+db_tag=UsedForNUnitTests-201907
 branch=master
 if [ ! -z "$1" ]; then
   branch=$1
@@ -76,7 +77,7 @@ nant recreateDatabase resetDatabase || exit -1
 nant generateSolution || exit -1
 
 # need this for the tests
-wget https://github.com/openpetra/demo-databases/raw/UsedForNUnitTests/demoWith1ledger.yml.gz || exit -1
+wget https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz || exit -1
 
 # update the certificates
 curl https://curl.haxx.se/ca/cacert.pem > ~/cacert.pem && sudo cert-sync ~/cacert.pem
