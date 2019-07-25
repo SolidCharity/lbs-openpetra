@@ -1,6 +1,6 @@
 #!/bin/bash
 
-db_tag=UsedForNUnitTests-201907
+db_tag=UsedForNUnitTests
 branch=master
 if [ ! -z "$1" ]; then
   branch=$1
