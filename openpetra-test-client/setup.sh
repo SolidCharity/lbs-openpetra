@@ -91,7 +91,7 @@ FINISH
 
 nant generateSolution || exit -1
 
-nant install
+nant install || exit -1
 sleep 3
 systemctl status openpetra
 
