@@ -32,6 +32,7 @@ npm install -g uglify-es
 
 wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 
+tar xzf sources.tar.gz
 cd openpetra-$branch/js-client
 # we don't need cypress for the release
 npm uninstall cypress

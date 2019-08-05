@@ -11,7 +11,7 @@ Summary: Server of OpenPetra using MySQL as database backend
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Packager: Timotheus Pokorra <tp@tbits.net>
+Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
