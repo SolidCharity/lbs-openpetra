@@ -69,16 +69,6 @@ wget --no-verbose https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz 
 tar xzf sources.tar.gz || exit -1
 openpetradir=$(find . -type d -name openpetra-*)
 
-wget --no-verbose https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-
-tar xzf sources-client.tar.gz || exit -1
-openpetraclientdir=$(find . -type d -name openpetra-client-js*)
-if [ ! -d "openpetra-client-js" ]
-then
-  mv $openpetraclientdir openpetra-client-js
-  openpetraclientdir="openpetra-client-js"
-fi
-
 cd $openpetradir
 
 cat > OpenPetra.build.config <<FINISH
@@ -92,7 +82,7 @@ FINISH
 nant generateSolution || exit -1
 
 # need to install the node_modules so that nant install.js will work
-cd ../openpetra-client-js
+cd js-client
 # set CI=1 to avoid too much output from installing cypress. see https://github.com/cypress-io/cypress/issues/1243#issuecomment-365560861
 ( CI=1 npm install --quiet && npm run build ) || exit -1
 cd -
@@ -103,7 +93,7 @@ systemctl status openpetra
 
 nant checkHtml
 
-cd ../openpetra-client-js
+cd js-client
 # improve speed of initial request by user by forcing to load all assemblies now
 curl --silent --retry 5 http://localhost/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
 LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1

@@ -21,10 +21,9 @@ Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-s
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 BuildRoot: /tmp/buildroot
 Source:  sources.tar.gz
-Source1: sources-client.tar.gz
-Source2: i18n.tar.gz
-Source3: base.yml.gz
-Source4: clean.yml.gz
+Source1: i18n.tar.gz
+Source2: base.yml.gz
+Source3: clean.yml.gz
 
 %description
 OpenPetra is a Free Administration Software for Non-Profits
@@ -34,10 +33,8 @@ This package provides the server running with MySQL as database backend.
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
 %setup  -q -n openpetra-%{branch}
-tar xzf %{SOURCE1}
-mv openpetra-client-js-%{branch} ../openpetra-client
 # i18n.tar.gz
-tar xzf %{SOURCE2}
+tar xzf %{SOURCE1}
 mv openpetra-i18n-master/i18n/de.po i18n/de_DE.po
 mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
 mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
@@ -48,16 +45,16 @@ nant buildRPM -D:ReleaseID=%{version}.%{release} \
     -D:DBMS.Type=mysql
 
 # branding of packages
-sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' ../openpetra-client/index.html
+sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' js-client/index.html
 
 # make sure the user gets the latest javascript and html specific to this build
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/src/lib/navigation.js
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/src/lib/i18n.js
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' ../openpetra-client/index.html
-sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/src/lib/navigation.js
-sed -i "s/debug = 1;/debug = 0;/g" ../openpetra-client/src/lib/navigation.js
-sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/src/lib/i18n.js
-sed -i "s/develop = 1;/develop = 0;/g" ../openpetra-client/index.html
+sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/src/lib/navigation.js
+sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/src/lib/i18n.js
+sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/index.html
+sed -i "s/develop = 1;/develop = 0;/g" js-client/src/lib/navigation.js
+sed -i "s/debug = 1;/debug = 0;/g" js-client/src/lib/navigation.js
+sed -i "s/develop = 1;/develop = 0;/g" js-client/src/lib/i18n.js
+sed -i "s/develop = 1;/develop = 0;/g" js-client/index.html
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -65,19 +62,19 @@ mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}.%{release}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s ../bin bin && cd -
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s . api && cd -
-(cd ../openpetra-client && npm install && npm run build && \
+(cd js-client && npm install && npm run build && \
  cp node_modules/bootstrap/dist/css/bootstrap.min.css css && \
  rm -Rf node_modules && cd - ) || exit -1
-cp -R ../openpetra-client/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
+cp -R js-client/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 cd $RPM_BUILD_ROOT/usr/bin && ln -s ../../%{OpenPetraServerPath}/openpetra-server.sh openpetra-server && cd -
 cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && mv ../etc/web-sample.config web.config && cd -
 # base.yml.gz
-cp %{SOURCE3} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
+cp %{SOURCE2} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
 # clean.yml.gz
-cp %{SOURCE4} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
+cp %{SOURCE3} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cp `pwd`/setup/petra0300/linuxserver/mysql/centos/openpetra-server.service $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium*.dll
@@ -93,6 +90,8 @@ ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraSe
 /usr/bin/openpetra-server
 
 %changelog
+* Mon Aug 05 2018 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- js-client is now part of the main tarball
 * Tue Feb 27 2018 Timotheus Pokorra <tp@tbits.net>
 - use npm to manage javascript libraries and to bundle them
 * Mon Dec 04 2017 Timotheus Pokorra <tp@tbits.net>

@@ -31,15 +31,13 @@ npm install -g browserify
 npm install -g uglify-es
 
 wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-wget https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
 
-tar xzf sources-client.tar.gz
-cd openpetra-client-js-$branch
+cd openpetra-$branch/js-client
 # we don't need cypress for the release
 npm uninstall cypress
 npm install
 cd -
-tar czf sources-client.tar.gz openpetra-client-js-$branch
+tar czf sources.tar.gz openpetra-$branch
 
 wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
 

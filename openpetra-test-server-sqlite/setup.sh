@@ -43,16 +43,6 @@ wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.ta
 tar xzf sources.tar.gz || exit -1
 openpetradir=$(find . -type d -name openpetra-*)
 
-wget https://github.com/$ghubuser/openpetra-client-js/archive/$branch.tar.gz -O sources-client.tar.gz || exit -1
-
-tar xzf sources-client.tar.gz || exit -1
-openpetraclientdir=$(find . -type d -name openpetra-client-js*)
-if [ ! -d "openpetra-client-js" ]
-then
-  mv $openpetraclientdir openpetra-client-js
-  openpetraclientdir="openpetra-client-js"
-fi
-
 cd $openpetradir
 
 cat > OpenPetra.build.config <<FINISH
