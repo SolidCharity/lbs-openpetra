@@ -24,8 +24,8 @@ Source:  sources.tar.gz
 Source1: i18n.tar.gz
 Source2: base.yml.gz
 Source3: clean.yml.gz
-Source4: js/bootstrap.bundle.min.js
-Source5: css/bootstrap.min.css
+Source4: bootstrap.bundle.min.js
+Source5: bootstrap.min.css
 
 %description
 OpenPetra is a Free Administration Software for Non-Profits

@@ -33,6 +33,8 @@ npm install -g uglify-es
 wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
 wget https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip || exit -1
 unzip bootstrap-4.0.0-dist.zip || exit -1
+mv js/bootstrap.bundle.min.js .
+mv css/bootstrap.min.css .
 
 tar xzf sources.tar.gz
 cd openpetra-$branch/js-client
