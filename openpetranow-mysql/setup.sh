@@ -19,7 +19,7 @@ fi
 # they become activated by yum-builddep, and then the mirrors might not work
 rm -Rf /etc/yum.repos.d/CentOS-Sources.repo /etc/yum.repos.de/CentOS-Vault.repo
 
-yum install -y wget
+yum install -y wget unzip
 
 curl --silent --location https://rpm.nodesource.com/setup_8.x  | bash -
 yum -y install nodejs
@@ -31,6 +31,8 @@ npm install -g browserify
 npm install -g uglify-es
 
 wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
+wget https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip || exit -1
+unzip bootstrap-4.0.0-dist.zip || exit -1
 
 tar xzf sources.tar.gz
 cd openpetra-$branch/js-client

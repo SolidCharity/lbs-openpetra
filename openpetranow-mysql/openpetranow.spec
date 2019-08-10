@@ -24,6 +24,8 @@ Source:  sources.tar.gz
 Source1: i18n.tar.gz
 Source2: base.yml.gz
 Source3: clean.yml.gz
+Source4: js/bootstrap.bundle.min.js
+Source5: css/bootstrap.min.css
 
 %description
 OpenPetra is a Free Administration Software for Non-Profits
@@ -75,6 +77,9 @@ cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && mv ../etc/web-sample.config 
 cp %{SOURCE2} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
 # clean.yml.gz
 cp %{SOURCE3} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
+mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0
+cp %{SOURCE4} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0/
+cp %{SOURCE5} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0/
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cp `pwd`/setup/petra0300/linuxserver/mysql/centos/openpetra-server.service $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium*.dll
@@ -90,7 +95,9 @@ ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraSe
 /usr/bin/openpetra-server
 
 %changelog
-* Mon Aug 05 2018 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+* Sat Aug 10 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- include Bootstrap 4.0 because wkhtmltopdf does not format grids with newer Bootstrap
+* Mon Aug 05 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - js-client is now part of the main tarball
 * Tue Feb 27 2018 Timotheus Pokorra <tp@tbits.net>
 - use npm to manage javascript libraries and to bundle them
