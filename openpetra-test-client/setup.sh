@@ -17,6 +17,9 @@ yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf l
   liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts \
   || exit -1
 
+# get newer version of nant, to support mono-4.5 target framework
+yum -y --enablerepo=epel-testing update nant
+
 wget https://github.com/Holger-Will/code-128-font/raw/master/fonts/code128.ttf -O /usr/share/fonts/code128.ttf
 
 curl --silent --location https://rpm.nodesource.com/setup_8.x  | bash -

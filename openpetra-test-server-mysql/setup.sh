@@ -16,6 +16,9 @@ yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf m
   liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 yum -y install https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm
 
+# get newer version of nant, to support mono-4.5 target framework
+yum -y --enablerepo=epel-testing update nant
+
 wget https://github.com/Holger-Will/code-128-font/raw/master/fonts/code128.ttf -O /usr/share/fonts/code128.ttf
 
 
