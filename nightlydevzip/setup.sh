@@ -13,6 +13,9 @@ fi
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
 yum -y install mono-devel libgdiplus-devel xsp mono-mvc mono-data mono-data-sqlite liberation-mono-fonts nant wget tar sqlite php-cli curl gettext libsodium git
 
+# get newer version of nant, to support mono-4.5 target framework
+yum -y --enablerepo=epel-testing update nant
+
 # on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.13, and soon libsodium.so.23
 cd /usr/lib64
 if [ -f libsodium.so.18 ]
