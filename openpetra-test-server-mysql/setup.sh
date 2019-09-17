@@ -78,3 +78,4 @@ curl https://curl.haxx.se/ca/cacert.pem > ~/cacert.pem && sudo cert-sync ~/cacer
 nant test-without-display || exit -1
 
 nant checkHtml || exit -1
+nant checkCode || exit -1
