@@ -39,9 +39,9 @@ sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 yum-config-manager --disable lbs-solidcharity-openpetra
 yum-config-manager --add-repo https://lbs.solidcharity.com/repos/solidcharity/openpetra/centos/7/lbs-solidcharity-openpetra.repo
 yum install -y openpetranow-mysql-test
-export OPENPETRA_DBPWD=`openpetra-server generatepwd`
-openpetra-server init || exit -1
-openpetra-server initdb || exit -1
+
+URL=openpetra.org PREFIX= ./addOpenPetraInstance.sh test0001 localhost
+
 file=/tmp/demoWith1ledger.yml.gz
 wget --no-verbose https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz -O $file || exit -1
 /usr/bin/openpetra-server loadYmlGz $file || exit -1
@@ -98,7 +98,7 @@ nant checkHtml
 
 cd js-client
 # improve speed of initial request by user by forcing to load all assemblies now
-curl --silent --retry 5 http://localhost/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
-LANG=en CYPRESS_baseUrl=http://localhost ./node_modules/.bin/cypress run --config video=false || exit -1
+curl --silent --retry 5 http://localhost:7102/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
+LANG=en CYPRESS_baseUrl=http://localhost:7102 ./node_modules/.bin/cypress run --config video=false || exit -1
 # we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
 echo
