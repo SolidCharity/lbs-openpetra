@@ -98,7 +98,7 @@ nant checkHtml
 
 cd js-client
 # improve speed of initial request by user by forcing to load all assemblies now
-curl --silent --retry 5 http://localhost:7102/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
-LANG=en CYPRESS_baseUrl=http://localhost:7102 ./node_modules/.bin/cypress run --config video=false || exit -1
+curl --silent --retry 5 http://localhost:7000/api/serverSessionManager.asmx/IsUserLoggedIn # > /dev/null
+LANG=en CYPRESS_baseUrl=http://localhost:7000 ./node_modules/.bin/cypress run --config video=false || exit -1
 # we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
 echo
