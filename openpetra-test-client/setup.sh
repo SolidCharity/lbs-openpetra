@@ -10,7 +10,7 @@ if [ ! -z "$2" ]; then
   ghubuser=$2
 fi
 
-yum install -y epel
+yum install -y epel git
 yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf libgdiplus-devel nant NUnit xsp lsb libsodium \
   mariadb-server \
   libXScrnSaver GConf2 Xvfb gtk3 \
@@ -40,7 +40,10 @@ yum-config-manager --disable lbs-solidcharity-openpetra
 yum-config-manager --add-repo https://lbs.solidcharity.com/repos/solidcharity/openpetra/centos/7/lbs-solidcharity-openpetra.repo
 yum install -y openpetranow-mysql-test
 
+git clone https://github.com/SolidCharity/OpenPetraScripts.git
+cd OpenPetraScripts/openpetra
 URL=openpetra.org PREFIX= ./addOpenPetraInstance.sh test0001 localhost
+cd -
 
 file=/tmp/demoWith1ledger.yml.gz
 wget --no-verbose https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz -O $file || exit -1
