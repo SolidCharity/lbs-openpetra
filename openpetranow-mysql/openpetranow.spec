@@ -85,6 +85,11 @@ cp `pwd`/setup/petra0300/linuxserver/mysql/centos/openpetra-server.service $RPM_
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium*.dll
 ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.so
 
+%post
+adduser --no-create-home openpetra
+systemctl enable openpetra
+systemctl start openpetra
+
 %clean
 # Clean up after ourselves, but be careful in case someone sets a bad buildroot
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
