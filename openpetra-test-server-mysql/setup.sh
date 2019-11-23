@@ -2,6 +2,7 @@
 
 db_tag=UsedForNUnitTests
 user=op_dev
+dbms=mysql
 branch=master
 if [ ! -z "$1" ]; then
   branch=$1
@@ -11,7 +12,7 @@ if [ ! -z "$2" ]; then
   ghubuser=$2
 fi
 
-curl https://getopenpetra.com | bash -s devenv $ghubuser $branch || exit -1
+curl https://getopenpetra.com | bash -s devenv $ghubuser $branch $dbms || exit -1
 
 cd /home/$user/openpetra
 
