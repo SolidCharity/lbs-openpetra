@@ -17,7 +17,7 @@ curl https://getopenpetra.com | bash -s devenv $ghubuser $branch $dbms || exit -
 cd /home/$user/openpetra
 
 # need this for the tests
-curl --silent --location https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz > demoWith1ledger.yml || exit -1
+curl --silent --location https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz > demoWith1ledger.yml.gz || exit -1
 
 nant test-without-display || exit -1
 
