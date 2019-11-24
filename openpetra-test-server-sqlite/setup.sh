@@ -2,7 +2,7 @@
 
 db_tag=UsedForNUnitTests
 user=op_dev
-dbms=mysql
+dbms=sqlite
 branch=master
 if [ ! -z "$1" ]; then
   branch=$1
