@@ -17,7 +17,7 @@ curl https://getopenpetra.com | bash -s devenv $ghubuser $branch $dbms || exit -
 cd /home/$user/openpetra
 
 # need this for the tests
-demodbfile=demoWith1ledger.yml.gz
+demodbfile=`pwd`/demoWith1ledger.yml.gz
 curl --silent --location https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz > $demodbfile || exit -1
 OP_CUSTOMER=$user /home/$user/openpetra-server.sh loadYmlGz $demodbfile || exit -1
 
