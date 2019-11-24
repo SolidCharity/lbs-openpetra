@@ -21,9 +21,9 @@ demodbfile=demoWith1ledger.yml.gz
 curl --silent --location https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz > $demodbfile || exit -1
 OP_CUSTOMER=$user /home/$user/openpetra-server.sh loadYmlGz $demodbfile || exit -1
 
-nant checkHtml || exit -1
+su $user -c "nant checkHtml" || exit -1
 
-nant test-client || exit -1
+su $user -c "nant test-client" || exit -1
 
 # we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
 echo
