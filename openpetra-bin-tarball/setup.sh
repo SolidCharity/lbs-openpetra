@@ -20,7 +20,7 @@ su $user -c "nant buildRelease" || exit -1
 for f in /home/$user/openpetra/delivery/openpetra-*-bin.tar.gz; do
   tarball=`basename $f`
   mv $f ~/tarball
-fi
+done
 
 echo "DONE with building the tarball for " $branch
 echo "download at https://download.solidcharity.com/tarballs/solidcharity/openpetra-bin-tarball/$tarball"
