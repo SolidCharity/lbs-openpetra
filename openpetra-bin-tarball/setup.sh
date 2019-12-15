@@ -23,7 +23,7 @@ for f in /home/$user/openpetra/delivery/openpetra-*-bin.tar.gz; do
 done
 
 echo "DONE with building the tarball for " $branch
-echo "download at https://download.solidcharity.com/tarballs/solidcharity/openpetra-bin-tarball/$tarball"
+echo "download at https://download.solidcharity.com/tarballs/solidcharity/openpetra/$tarball"
 
 # we need a line feed so that the 0 is on the last line on its own for LBS to know that this succeeded
 echo
