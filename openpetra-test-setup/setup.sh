@@ -1,18 +1,21 @@
 #!/bin/bash
 
 user=op_test
-url=test.localhost
+url="http://test.localhost"
 
 curl https://getopenpetra.com | bash -s test --instance=$user --url=$url || exit -1
 
 curl http://localhost > index.out
 if [[ -z "`cat index.out | grep reqnewpwdclickhere`" ]]; then
+  echo "cannot find reqnewpwdclickhere"
   exit -1
 fi
 
 curl http://localhost/api/serverSessionManager.asmx/IsUserLoggedIn? > isuserloggedin.out
 expected='"resultcode":"error"'
 if [[ -z "`cat isuserloggedin.out | grep $expected`" ]]; then
+  echo "cannot find resultcode error"
+  cat isuserloggedin.out
   exit -1
 fi
 
