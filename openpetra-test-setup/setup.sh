@@ -6,7 +6,7 @@ url=test.localhost
 curl https://getopenpetra.com | bash -s test --instance=$user --url=$url || exit -1
 
 curl http://localhost > index.out
-if [[ -z "`cat index.out | grep reqnewpwdclickhere`"]; then
+if [[ -z "`cat index.out | grep reqnewpwdclickhere`" ]]; then
   exit -1
 fi
 
