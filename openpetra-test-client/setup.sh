@@ -12,7 +12,9 @@ if [ ! -z "$2" ]; then
   ghubuser=$2
 fi
 
-curl https://getopenpetra.com | bash -s devenv --github_user=$ghubuser --branch=$branch --dbms=$dbms || exit -1
+git_url=https://github.com/openpetra/$ghubuser.git
+
+curl https://getopenpetra.com | bash -s devenv --git_url=$git_url --branch=$branch --dbms=$dbms || exit -1
 
 cd /home/$user/openpetra
 
