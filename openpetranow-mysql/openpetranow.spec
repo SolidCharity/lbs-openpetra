@@ -14,7 +14,6 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
-BuildRequires: libsodium
 Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 BuildRoot: /tmp/buildroot
@@ -43,7 +42,6 @@ rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/Mono.Data.Sqlite.dll
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/sqlite3.dll
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.dll
 rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium-64.dll
-ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.so
 dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cat `pwd`/templates/openpetra.service \
@@ -56,6 +54,7 @@ mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROO
 adduser --no-create-home openpetra
 chmod a+r -R %{OpenPetraServerPath}
 chown -R openpetra:openpetra %{OpenPetraServerPath}
+ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} %{OpenPetraServerPath}/bin/libsodium.so
 systemctl enable openpetra
 systemctl start openpetra
 
