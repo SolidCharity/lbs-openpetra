@@ -20,6 +20,10 @@ yum install -y wget unzip
 wget https://getopenpetra.com/openpetra-latest-bin.tar.gz -O openpetra-bin.tar.gz || exit -1
 
 version=`tar xzf openpetra-bin.tar.gz --wildcards "*/version.txt" -O | awk -F- '{print $1}'`
+major=`echo $version | cut -d. -f1`
+minor=`echo $version | cut -d. -f2`
+revision=`echo $version | cut -d. -f3`
+version="$major.$minor.$revision"
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow.spec
