@@ -48,6 +48,7 @@ cat `pwd`/templates/openpetra.service \
 	| sed -e "s#OPENPETRA_SERVER_BIN#${OpenPetraServerPath}/openpetra-server.sh#" \
 	| sed -e "s#OPENPETRA_USER#openpetra#" \
 	> $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
+mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc/common.config
 
 %post
