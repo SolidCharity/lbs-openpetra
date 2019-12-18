@@ -14,6 +14,7 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
+BuildRequires: libsodium
 Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 BuildRoot: /tmp/buildroot

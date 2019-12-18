@@ -4,10 +4,6 @@ branch="master"
 if [ ! -z "$1" ]; then
   branch=$1
 fi
-ghubuser=openpetra
-if [ ! -z "$2" ]; then
-  ghubuser=$2
-fi
 
 test=0
 if [[ $branch =~ .*test ]]
@@ -21,32 +17,9 @@ rm -Rf /etc/yum.repos.d/CentOS-Sources.repo /etc/yum.repos.de/CentOS-Vault.repo
 
 yum install -y wget unzip
 
-curl --silent --location https://rpm.nodesource.com/setup_8.x  | bash -
-yum -y install nodejs
-#node --version
-#8.9.4
-#npm --version
-#5.6.0
-npm install -g browserify
-npm install -g uglify-es
+wget https://getopenpetra.com/openpetra-latest-bin.tar.gz -O openpetra-latest-bin.tar.gz || exit -1
 
-wget https://github.com/$ghubuser/openpetra/archive/$branch.tar.gz -O sources.tar.gz || exit -1
-wget https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip || exit -1
-unzip bootstrap-4.0.0-dist.zip || exit -1
-mv js/bootstrap.bundle.min.js .
-mv css/bootstrap.min.css .
-
-tar xzf sources.tar.gz
-cd openpetra-$branch/js-client
-# we don't need cypress for the release
-npm uninstall cypress
-npm install
-cd -
-tar czf sources.tar.gz openpetra-$branch
-
-wget https://github.com/openpetra/openpetra-i18n/archive/master.tar.gz -O i18n.tar.gz || exit -1
-
-version=`tar xzf sources.tar.gz openpetra-$branch/db/version.txt -O | awk -F- '{print $1}'`
+version=`tar xzf openpetra-latest-bin.tar.gz --wildcards "*/version.txt" -O | awk -F- '{print $1}'`
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow.spec
