@@ -1,8 +1,7 @@
 %define name %{PKGNAME}
 %define version %{VERSION}
 %define branch %{BRANCH}
-%define MonoPath /usr/
-%define OpenPetraServerPath /usr/local/openpetra
+%define OpenPetraServerPath /home/openpetra
 # for CentOS7
 %define LIBSODIUM_VERSION 23
 %define debug_package %{nil}
@@ -15,17 +14,10 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: Office Suite and Productivity
 AutoReqProv: no
-BuildRequires: nant dos2unix gettext mono-mvc mono-wcf mono-devel >= 5.10 mono-data liberation-mono-fonts libgdiplus-devel
-BuildRequires: nodejs >= 8.9.4
 Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
 BuildRoot: /tmp/buildroot
-Source:  sources.tar.gz
-Source1: i18n.tar.gz
-Source2: base.yml.gz
-Source3: clean.yml.gz
-Source4: bootstrap.bundle.min.js
-Source5: bootstrap.min.css
+Source:  openpetra-bin.tar.gz
 
 %description
 OpenPetra is a Free Administration Software for Non-Profits
@@ -34,59 +26,35 @@ This package provides the server running with MySQL as database backend.
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup  -q -n openpetra-%{branch}
-# i18n.tar.gz
-tar xzf %{SOURCE1}
-mv openpetra-i18n-master/i18n/de.po i18n/de_DE.po
-mv openpetra-i18n-master/i18n/es.po i18n/es_ES.po
-mv openpetra-i18n-master/i18n/da.po i18n/da_DK.po
+%setup -q -n openpetra-%{version}.0
 
 %build
-nant buildRPM -D:ReleaseID=%{version}.%{release} \
-    -D:LinuxTargetDistribution-list=centos-mysql \
-    -D:DBMS.Type=mysql
 
 # branding of packages
-sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' js-client/index.html
-
-# make sure the user gets the latest javascript and html specific to this build
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/src/lib/navigation.js
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/src/lib/i18n.js
-sed -i 's~CURRENTRELEASE~%{version}.%{release}~g' js-client/index.html
-sed -i "s/develop = 1;/develop = 0;/g" js-client/src/lib/navigation.js
-sed -i "s/debug = 1;/debug = 0;/g" js-client/src/lib/navigation.js
-sed -i "s/develop = 1;/develop = 0;/g" js-client/src/lib/i18n.js
-sed -i "s/develop = 1;/develop = 0;/g" js-client/index.html
+sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' client/index.html
 
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
-cp -R `pwd`/delivery/bin/tmp/openpetraorg-%{version}.%{release}/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
-cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s ../bin bin && cd -
-cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && ln -s . api && cd -
-(cd js-client && npm install && npm run build && \
- cp node_modules/bootstrap/dist/css/bootstrap.min.css css && \
- rm -Rf node_modules && cd - ) || exit -1
-cp -R js-client/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}/client
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-chmod a+x $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
-dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
-cd $RPM_BUILD_ROOT/usr/bin && ln -s ../../%{OpenPetraServerPath}/openpetra-server.sh openpetra-server && cd -
-cd $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server && mv ../etc/web-sample.config web.config && cd -
-# base.yml.gz
-cp %{SOURCE2} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
-# clean.yml.gz
-cp %{SOURCE3} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/db
-mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0
-cp %{SOURCE4} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0/
-cp %{SOURCE5} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bootstrap-4.0/
-mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
-cp `pwd`/setup/petra0300/linuxserver/mysql/centos/openpetra-server.service $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium*.dll
+cp -R `pwd`/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/Mono.Security.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/Mono.Data.Sqlite.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/sqlite3.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium-64.dll
 ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.so
+dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
+mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
+cat `pwd`/templates/openpetra.service \
+	| sed -e "s#OPENPETRA_SERVER_BIN#${OpenPetraServerPath}/openpetra-server.sh#" \
+	| sed -e "s#OPENPETRA_USER#openpetra#" \
+	> $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
+mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc/common.config
 
 %post
 adduser --no-create-home openpetra
+chmod a+r -R %{OpenPetraServerPath}
+chown -R openpetra:openpetra %{OpenPetraServerPath}
 systemctl enable openpetra
 systemctl start openpetra
 
@@ -97,9 +65,10 @@ systemctl start openpetra
 %files
 %{OpenPetraServerPath}
 /usr/lib/systemd/system
-/usr/bin/openpetra-server
 
 %changelog
+* Sat Dec 14 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- use binary tarball as source
 * Sat Aug 10 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - include Bootstrap 4.0 because wkhtmltopdf does not format grids with newer Bootstrap
 * Mon Aug 05 2019 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>

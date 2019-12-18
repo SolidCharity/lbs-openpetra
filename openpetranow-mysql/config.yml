@@ -1,5 +1,4 @@
 lbs:
   source:
-    download: 
-      base.yml.gz: "https://github.com/openpetra/demo-databases/raw/master/base.yml.gz"
-      clean.yml.gz: "https://github.com/openpetra/demo-databases/raw/master/clean.yml.gz"
+    download:
+      openpetra-bin.tar.gz: https://getopenpetra.com/openpetra-latest-bin.tar.gz
