@@ -17,9 +17,9 @@ rm -Rf /etc/yum.repos.d/CentOS-Sources.repo /etc/yum.repos.de/CentOS-Vault.repo
 
 yum install -y wget unzip
 
-wget https://getopenpetra.com/openpetra-latest-bin.tar.gz -O openpetra-latest-bin.tar.gz || exit -1
+wget https://getopenpetra.com/openpetra-latest-bin.tar.gz -O openpetra-bin.tar.gz || exit -1
 
-version=`tar xzf openpetra-latest-bin.tar.gz --wildcards "*/version.txt" -O | awk -F- '{print $1}'`
+version=`tar xzf openpetra-bin.tar.gz --wildcards "*/version.txt" -O | awk -F- '{print $1}'`
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow.spec
