@@ -37,11 +37,11 @@ sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' c
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
 cp -R `pwd`/* $RPM_BUILD_ROOT/%{OpenPetraServerPath}
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/Mono.Security.dll
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/Mono.Data.Sqlite.dll
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/sqlite3.dll
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium.dll
-rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium-64.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/Mono.Security.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/Mono.Data.Sqlite.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/sqlite3.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/libsodium.dll
+rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/libsodium-64.dll
 dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cat `pwd`/templates/openpetra.service \
@@ -55,7 +55,7 @@ mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROO
 adduser --no-create-home openpetra
 chmod a+r -R %{OpenPetraServerPath}
 chown -R openpetra:openpetra %{OpenPetraServerPath}
-ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} %{OpenPetraServerPath}/bin/libsodium.so
+ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} %{OpenPetraServerPath}/server/bin/libsodium.so
 systemctl enable openpetra
 systemctl start openpetra
 
