@@ -45,7 +45,7 @@ rm -f $RPM_BUILD_ROOT/%{OpenPetraServerPath}/bin/libsodium-64.dll
 dos2unix $RPM_BUILD_ROOT/%{OpenPetraServerPath}/openpetra-server.sh
 mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 cat `pwd`/templates/openpetra.service \
-	| sed -e "s#OPENPETRA_SERVER_BIN#${OpenPetraServerPath}/openpetra-server.sh#" \
+	| sed -e "s#OPENPETRA_SERVER_BIN#"${OpenPetraServerPath}"/openpetra-server.sh#" \
 	| sed -e "s#OPENPETRA_USER#openpetra#" \
 	> $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc
