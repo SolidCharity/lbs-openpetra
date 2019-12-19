@@ -52,7 +52,7 @@ mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc/common.config
 
 %post
-adduser --no-create-home openpetra
+id -u openpetra &>/dev/null || adduser --no-create-home openpetra
 chmod a+r -R %{OpenPetraServerPath}
 chown -R openpetra:openpetra %{OpenPetraServerPath}
 ln -s %{_libdir}/libsodium.so.%{LIBSODIUM_VERSION} %{OpenPetraServerPath}/server/bin/libsodium.so
