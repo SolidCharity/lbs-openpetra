@@ -17,7 +17,7 @@ curl https://getopenpetra.com | bash -s devenv --git_url=$git_url --branch=$bran
 
 cd /home/$user/openpetra
 
-su $user -c "nant buildRelease" || exit -1
+su $user -c "nant buildRelease -D:OnlyTarball=true" || exit -1
 
 for f in /home/$user/openpetra/delivery/openpetra-*-bin.tar.gz; do
   tarball=`basename $f`
