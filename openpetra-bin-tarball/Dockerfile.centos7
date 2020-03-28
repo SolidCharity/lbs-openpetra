@@ -1,0 +1,8 @@
+RUN yum -y install wget epel-release && \
+     yum -y install nant dos2unix gettext mono-mvc mono-wcf mono-devel liberation-mono-fonts libgdiplus-devel \
+       tar createrepo gcc rpm-build rpm-sign gnupg make curl iptables rsync perl yum-utils yum-plugin-priorities \
+       nginx mariadb-server libsodium libXScrnSaver GConf2 Xvfb gtk3
+RUN yum -y install https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm
+RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
+     yum-config-manager --enable remi-php71 && yum-config-manager --enable remi && \
+     yum -y install phpMyAdmin php-fpm
