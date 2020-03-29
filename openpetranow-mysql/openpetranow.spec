@@ -16,6 +16,7 @@ Group: Office Suite and Productivity
 AutoReqProv: no
 Requires: mono-core >= 5.10 mono-data mono-mvc mono-wcf mono-winfx xsp mariadb-server nginx lsb libsodium
 Requires: liberation-fonts liberation-fonts-common liberation-mono-fonts liberation-narrow-fonts liberation-serif-fonts liberation-sans-fonts
+BuildRequires: dos2unix
 BuildRoot: /tmp/buildroot
 Source:  openpetra-bin.tar.gz
 
