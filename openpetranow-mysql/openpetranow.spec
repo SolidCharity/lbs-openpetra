@@ -34,6 +34,10 @@ This package provides the server running with MySQL as database backend.
 # branding of packages
 sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' client/index.html
 
+# include the release in the version number
+echo "%{version}.%{release}" > server/bin/pkg_version.txt
+for f in `find client/src -name "*.js"` client/index.html; do sed -i "s/currentrelease = .*/currentrelease = '%{version}.%{release}';/g" $f; done
+
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}
@@ -51,9 +55,6 @@ cat `pwd`/templates/openpetra.service \
 	> $RPM_BUILD_ROOT/usr/lib/systemd/system/openpetra.service
 mkdir -p $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc
 mv $RPM_BUILD_ROOT/%{OpenPetraServerPath}/templates/common.config $RPM_BUILD_ROOT/%{OpenPetraServerPath}/etc/common.config
-# include the release in the version number
-echo "%{version}.%{release}" > $RPM_BUILD_ROOT/%{OpenPetraServerPath}/server/bin/pkg_version.txt
-for f in `find client/src -name "*.js"` client/index.html; do sed -i "s/currentrelease = .*/currentrelease = '%{version}.%{release}';/g" $f; done
 
 %post
 id -u openpetra &>/dev/null || adduser --no-create-home openpetra
