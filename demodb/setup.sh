@@ -21,23 +21,6 @@ mkdir -p demodata/generated
 mv demo-databases-master/generatedDataUsedForDemodatabases/*.csv demodata/generated
 rm -Rf demo-databases-master
 
-# on Fedora 24, there is libsodium.so.18, on CentOS7 there is libsodium.so.23
-cd /usr/lib64
-if [ -f libsodium.so.18 ]
-then
-  ln -s libsodium.so.18 libsodium.so
-elif [ -f libsodium.so.23 ]
-then
-  ln -s libsodium.so.23 libsodium.so
-elif [ -f libsodium.so ]
-then
-  echo "there is already a libsodium.so"
-else
-  echo "cannot create link for libsodium.so"
-  exit -1
-fi
-cd -
-
 cat > OpenPetra.build.config <<FINISH
 <?xml version="1.0"?>
 <project name="OpenPetra-userconfig">
