@@ -13,7 +13,7 @@ fi
 
 git_url=https://github.com/openpetra/$ghubuser.git
 
-curl https://getopenpetra.com | bash -s devenv --git_url=$git_url --branch=$branch --dbms=$dbms || exit -1
+curl https://get.openpetra.org | bash -s devenv --git_url=$git_url --branch=$branch --dbms=$dbms || exit -1
 
 cd /home/$user/openpetra
 
