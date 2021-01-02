@@ -1,5 +1,6 @@
 #!/bin/bash
 
+yum install -y epel-release
 yum install -y wget sudo mono-devel mono-data mono-mvc mono-winfxcore mono-wcf mono-winfx libgdiplus-devel nant nunit xsp lsb libsodium \
   mariadb-server \
   nant tar sqlite unzip sudo git || exit -1
