@@ -3,7 +3,7 @@
 user=op_test
 url="http://test.localhost"
 
-curl https://get.openpetra.org | bash -s test --instance=$user --url=$url || exit -1
+curl https://get.openpetra.org | bash -s test --instance=$user --url=$url --iknowwhatiamdoing=yes || exit -1
 
 sleep 5
 
