@@ -17,12 +17,25 @@ curl https://get.openpetra.org | bash -s devenv --git_url=$git_url --branch=$bra
 
 cd /home/$user/openpetra
 
-su $user -c "nant buildRelease -D:OnlyTarball=true" || exit -1
+versionWithoutBuild=`cat db/version.txt | awk -F '.' '{print $1 "." $2 "." $3}'`
+prevTarball=`curl https://download.solidcharity.com/tarballs/solidcharity/openpetra/latest.txt`
+prevVersion=`echo $prevTarball | awk -F '-' '{print $2}'`
+prevVersionWithoutBuild=`echo $prevVersion | awk -F '.' '{print $1 "." $2 "." $3}'`
+if [[ "$versionWithoutBuild" -eq "$prevVersionWithoutBuild" ]]; then
+  # increase the build number
+  buildnumber=`echo $prevVersion | awk -F '.' '{print $4}'`
+  buildnumber=$((buildnumber+1))
+  versionWithBuild="$versionWithoutBuild.$buildnumber"
+else
+  versionWithBuild="$versionWithoutBuild.0"
+fi
 
-for f in /home/$user/openpetra/delivery/openpetra-*-bin.tar.gz; do
-  tarball=`basename $f`
-  mv $f ~/tarball
-done
+echo $versionWithBuild > db/version.txt
+tarball="openpetra-$versionWithBuild-bin.tar.gz"
+su $user -c "nant buildRelease -D:OnlyTarball=true -D:tarfile=$tarball" || exit -1
+
+mv /home/$user/openpetra/delivery/$tarball ~/tarball
+echo "$tarball" > ~/tarball/latest.txt
 
 echo "DONE with building the tarball for " $branch
 echo "download at https://download.solidcharity.com/tarballs/solidcharity/openpetra/$tarball"
