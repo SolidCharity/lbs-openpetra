@@ -17,7 +17,7 @@ curl https://get.openpetra.org | bash -s devenv --git_url=$git_url --branch=$bra
 
 cd /home/$user/openpetra
 
-versionWithoutBuild=`cat db/version.txt | awk -F '.' '{print $1 "." $2 "." $3}'`
+versionWithoutBuild=`cat db/version.txt | sed -e "s/-/./g" | awk -F '.' '{print $1 "." $2 "." $3}'`
 prevTarball=`curl https://download.solidcharity.com/tarballs/solidcharity/openpetra/latest.txt`
 prevVersion=`echo $prevTarball | awk -F '-' '{print $2}'`
 prevVersionWithoutBuild=`echo $prevVersion | awk -F '.' '{print $1 "." $2 "." $3}'`
