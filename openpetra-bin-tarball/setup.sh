@@ -21,18 +21,18 @@ versionWithoutBuild=`cat db/version.txt | sed -e "s/-/./g" | awk -F '.' '{print 
 prevTarball=`curl https://download.solidcharity.com/tarballs/solidcharity/openpetra/latest.txt`
 prevVersion=`echo $prevTarball | awk -F '-' '{print $2}'`
 prevVersionWithoutBuild=`echo $prevVersion | awk -F '.' '{print $1 "." $2 "." $3}'`
-if [[ "$versionWithoutBuild" -eq "$prevVersionWithoutBuild" ]]; then
+if [[ "$versionWithoutBuild" == "$prevVersionWithoutBuild" ]]; then
   # increase the build number
   buildnumber=`echo $prevVersion | awk -F '.' '{print $4}'`
   buildnumber=$((buildnumber+1))
-  versionWithBuild="$versionWithoutBuild.$buildnumber"
 else
-  versionWithBuild="$versionWithoutBuild.0"
+  buildnumber=0
 fi
+versionWithBuild="$versionWithoutBuild.$buildnumber"
 
-echo $versionWithBuild > db/version.txt
+echo $versionWithBuild > db/pkg_version.txt
 tarball="openpetra-$versionWithBuild-bin.tar.gz"
-su $user -c "nant buildRelease -D:OnlyTarball=true -D:tarfile=$tarball" || exit -1
+su $user -c "BUILD_NUMBER=$buildnumber nant buildRelease -D:OnlyTarball=true -D:tarfile=$tarball" || exit -1
 
 mv /home/$user/openpetra/delivery/$tarball ~/tarball
 echo "$tarball" > ~/tarball/latest.txt
