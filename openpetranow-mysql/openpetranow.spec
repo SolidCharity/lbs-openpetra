@@ -27,7 +27,7 @@ This package provides the server running with MySQL as database backend.
 
 %prep
 [ -d $RPM_BUILD_ROOT ] && [ "/" != "$RPM_BUILD_ROOT" ] && rm -rf $RPM_BUILD_ROOT
-%setup -q -n openpetra-%{version}.0
+%setup -q -n openpetra-%{PKGVERSION}
 
 %build
 
@@ -35,8 +35,8 @@ This package provides the server running with MySQL as database backend.
 sed -i 's~<title>OpenPetra</title>~<title>OpenPetra by SolidCharity</title>~g' client/index.html
 
 # include the release in the version number
-echo "%{version}.%{release}" > server/bin/pkg_version.txt
-for f in `find client/src -name "*.js"` client/index.html; do sed -i "s/currentrelease = .*/currentrelease = '%{version}.%{release}';/g" $f; done
+echo "%{PKGVERSION}" > server/bin/pkg_version.txt
+for f in `find client/src -name "*.js"` client/index.html; do sed -i "s/currentrelease = .*/currentrelease = '%{PKGVERSION}';/g" $f; done
 
 %install
 rm -rf $RPM_BUILD_ROOT

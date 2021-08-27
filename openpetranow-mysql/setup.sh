@@ -19,14 +19,17 @@ yum install -y wget unzip
 
 wget https://get.openpetra.org/openpetra-latest-bin.tar.gz -O openpetra-bin.tar.gz || exit -1
 
-version=`tar xzf openpetra-bin.tar.gz --wildcards "*/version.txt" -O | awk -F- '{print $1}'`
+version=`tar xzf openpetra-bin.tar.gz --wildcards "*/pkg_version.txt" -O`
 major=`echo $version | cut -d. -f1`
 minor=`echo $version | cut -d. -f2`
 revision=`echo $version | cut -d. -f3`
+build=`echo $version | cut -d. -f4`
 version="$major.$minor.$revision"
+pkgversion="$major.$minor.$revision.$build"
 
 sed -i "s#%{BRANCH}#$branch#g" openpetranow.spec
 sed -i "s#%{VERSION}#$version#g" openpetranow.spec
+sed -i "s#%{PKGVERSION}#$pkgversion#g" openpetranow.spec
 
 # branding of the package
 sed -i "s#%{ORGNAME}#by SolidCharity#g" openpetranow.spec
