@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# get the key for the OpenPetra packages
-rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x4796B710919684AC"
-dnf -y install mono-core mono-devel libgdiplus-devel nant wget tar sqlite sql2diagram dia openssh-clients || exit 1
+# get our own mono packages
+apt-get -y install apt-transport-https dirmngr gnupg ca-certificates
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x4796B710919684AC
+echo 'deb [arch=amd64] https://lbs.solidcharity.com/repos/tpokorra/mono/debian/buster buster main' | sudo tee /etc/apt/sources.list.d/mono-tpokorra.list
+apt-get update
+
+apt-get -y install nant mono-devel mono-xsp4 mono-fastcgi-server4 ca-certificates-mono xfonts-75dpi fonts-liberation libgdiplus || exit -1
 
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
 tar xzf master.tar.gz
