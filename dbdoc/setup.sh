@@ -9,6 +9,11 @@ apt-get update
 
 apt-get -y install nant mono-devel mono-xsp4 mono-fastcgi-server4 ca-certificates-mono xfonts-75dpi fonts-liberation libgdiplus || exit -1
 
+# to avoid errors like: error CS0433: The imported type `System.CodeDom.Compiler.CompilerError' is defined multiple times
+if [ -f /usr/lib/mono/4.5-api/System.dll -a -f /usr/lib/mono/4.5/System.dll ]; then
+  rm -f /usr/lib/mono/4.5-api/System.dll
+fi
+
 wget https://github.com/openpetra/openpetra/archive/master.tar.gz
 tar xzf master.tar.gz
 cd openpetra-master
