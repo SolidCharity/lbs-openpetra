@@ -8,7 +8,7 @@ echo 'deb [arch=amd64] https://download.solidcharity.com/repos/tpokorra/nant/deb
 echo 'deb [arch=amd64] https://download.solidcharity.com/repos/solidcharity/openpetra/debian/buster buster main' >> /etc/apt/sources.list
 apt-get update
 
-apt-get -y install wget sudo mono-devel mono-xsp4 mono-fastcgi-server4 ca-certificates-mono xfonts-75dpi fonts-liberation libgdiplus nant nunit mariadb-server unzip git || exit -1
+apt-get -y install wget sudo mono-devel mono-xsp4 mono-fastcgi-server4 ca-certificates-mono xfonts-75dpi fonts-liberation libgdiplus nant nunit libsodium23 mariadb-server unzip git || exit -1
 
 # to avoid errors like: error CS0433: The imported type `System.CodeDom.Compiler.CompilerError' is defined multiple times
 if [ -f /usr/lib/mono/4.5-api/System.dll -a -f /usr/lib/mono/4.5/System.dll ]; then
