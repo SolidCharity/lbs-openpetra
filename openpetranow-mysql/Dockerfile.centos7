@@ -1,3 +1,0 @@
-RUN yum -y install wget epel-release && \
-     yum -y install nant dos2unix gettext mono-mvc mono-wcf mono-devel liberation-mono-fonts libgdiplus-devel \
-       tar createrepo gcc rpm-build rpm-sign gnupg make curl iptables rsync perl yum-utils yum-plugin-priorities
