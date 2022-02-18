@@ -21,7 +21,9 @@ cd /home/$user/openpetra
 # need this for the tests
 curl --silent --location https://github.com/openpetra/demo-databases/raw/$db_tag/demoWith1ledger.yml.gz > demoWith1ledger.yml.gz || exit -1
 
-nant test-without-display || exit -1
+su $user -c "nant test-without-display" || exit -1
+
+su $user -c "nant test-client" || exit -1
 
 nant checkHtml || exit -1
 nant checkCode || exit -1
