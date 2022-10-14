@@ -2,7 +2,7 @@
 
 # get our own mono packages
 apt-get -y install apt-transport-https dirmngr gnupg ca-certificates
-mkdir $HOME/.gnupg
+mkdir $HOME/.gnupg && chmod 700 $HOME/.gnupg
 gpg --no-default-keyring --keyring /usr/share/keyrings/solidcharity-openpetra-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x4796B710919684AC
 echo 'deb [arch=amd64, signed-by=/usr/share/keyrings/solidcharity-openpetra-keyring.gpg] https://download.solidcharity.com/repos/tpokorra/mono/debian/buster buster main' > /etc/apt/sources.list.d/tpokorra-mono.list
 echo 'deb [arch=amd64, signed-by=/usr/share/keyrings/solidcharity-openpetra-keyring.gpg] https://download.solidcharity.com/repos/tpokorra/nant/debian/buster buster main' > /etc/apt/sources.list.d/tpokorra-nant.list
