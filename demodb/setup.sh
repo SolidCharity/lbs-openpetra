@@ -96,5 +96,8 @@ then
   git commit -a -m "$msg" || exit -1
   git push || exit -1
   kill $SSH_AGENT_PID
+else
+  echo "upload of databases is not configured"
+  exit -1
 fi
 

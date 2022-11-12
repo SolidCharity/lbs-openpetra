@@ -41,6 +41,9 @@ cd ..
 #upload to Hostsharing
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
-  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" dbdoc tim00-openpetra@tim00.hostsharing.net:.
+  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" dbdoc tim00-openpetra@tim00.hostsharing.net:. || exit -1
+else
+  echo "Upload of docs is not configured"
+  exit -1
 fi
 
