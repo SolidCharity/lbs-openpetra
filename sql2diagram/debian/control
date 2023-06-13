@@ -1,7 +1,7 @@
 Source: sql2diagram
 Section: unknown
 Priority: extra
-Maintainer: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+Maintainer: Timotheus Pokorra <release@solidcharity.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.2
 Homepage: http://www.solidcharity.com
