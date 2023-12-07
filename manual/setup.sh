@@ -2,7 +2,9 @@
 
 apt-get install -y make git rsync python3-pip || exit -1
 # don't use graphviz yet
-pip3 install sphinx || exit -1
+# pip3 install sphinx || exit -1
+apt-get install -y python3-sphinx || exit -1
+
 
 cd ~
 
