@@ -14,6 +14,7 @@ fi
 
 git_url=https://github.com/openpetra/$ghubuser.git
 
+set -o pipefail
 curl https://get.openpetra.org | bash -s devenv --git_url=$git_url --branch=$branch --dbms=$dbms --iknowwhatiamdoing=yes || exit -1
 
 cd /home/$user/openpetra
