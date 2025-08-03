@@ -34,7 +34,7 @@ cd delivery/API-Doc/
 #upload to Hostsharing
 if [ -f ~/.ssh/id_rsa_cronjob ]
 then
-  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ tim00-openpetra@tim00.hostsharing.net:codedoc || exit -1
+  rsync -avz --delete -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa_cronjob" html/ tim13-netcodedoc@tim13.hostsharing.net:codedoc || exit -1
 else
   echo "upload of docs is not configured"
   exit -1
